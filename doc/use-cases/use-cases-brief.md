@@ -23,6 +23,13 @@ been selected
 
 ## Single Player
 
+### Game Flow
+1. Game starts
+2. Player plays the game until finish conditions are met (all answered correctly, one wrong answer, etc)
+3. Results are printed for the round
+4. If any rounds are left, repeat process with new game style, otherwise, print final results.
+
+
 ### Choosing a category
 1. Player receives multiple categories to answer a question from
 2. Player chooses fromm the given category
@@ -51,6 +58,8 @@ been selected
 Player receives option to play again
 
 ## Accessing Trivia Questions
-1. Based on the given criteria (category, difficulty, question type, etc),
+1. Based on the given criteria (category, difficulty, question type, etc.),
 search for an appropriate trivia question
-2. Once one is found, return it to the program and display to the user
+2. Checks that question has not been asked in the same game session
+3. Once one is found, return it to the program and display to the user
+
