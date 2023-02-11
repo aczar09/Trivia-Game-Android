@@ -8,11 +8,12 @@
 
 ## Game Opens - Multiple Game Mode
 1. Game opening screen is shown
-2. Player receives multiple options of style of game to choose
-3. Player's picks an option between: different styles or random
-4. Player's choice is registered
-5. Process repeats until a given number of styles have been chosen
-6. Single player mode is activated
+2. Player decides how many round they'd like to play.
+3. Player receives multiple options of style of game to choose
+4. Player's picks an option between: different styles or random
+5. Player's choice is registered
+6. Process repeats until a given number of styles have been chosen
+7. Single player mode is activated
 
 ### Choosing a random game mode
 1. Player chooses the random game option
@@ -55,7 +56,8 @@ been selected
 3. Win is recorded on account record
 
 ## Post-Results
-Player receives option to play again
+1. Player receives win statistics
+2. Player receives option to play again
 
 ## Accessing Trivia Questions
 1. Based on the given criteria (category, difficulty, question type, etc.),
@@ -63,3 +65,55 @@ search for an appropriate trivia question
 2. Checks that question has not been asked in the same game session
 3. Once one is found, return it to the program and display to the user
 
+Use Case: Playing Single Player Multiple Choice Game
+=================================
+**Actors**: Player, Systems, Database
+
+**Priority**: High
+
+**Level** : User goal
+
+**Scope**: Software system
+
+**Purpose**: Intention of the use case.
+
+**Type**: Primary (Secondary, Optional)
+
+**Preconditions**: User has chosen to play a standard multiple choice game.
+
+**Overview**: A brief description of what happens in this use case.
+
+Typical course of events:
+----------------------
+
+| Actor Action                                     | System Response                                                                          | Database Response                                    |
+|:-------------------------------------------------|:-----------------------------------------------------------------------------------------|------------------------------------------------------|
+|                                                  | 1. Game starts                                                                           |                                                      |
+| 3. Selects a category to receive a question from | 2. Prints out a selection of question categories to choose from                          |                                                      |
+| 4.                                               | 5. Registers the user choice                                                             |                                                      |
+| 5.                                               | 6. Requests a question from the database                                                 | 7. Searches for a question which matches the request |
+|                                                  | 9. Receives question                                                                     | 8. Sends question to the system                      |
+|                                                  | 10. Checks if question has been asked already. If so, repeat process.                    |                                                      |
+| 12. Selects an answer                            | 11. If question is valid, then output question to the user with choices                  |                                                      |
+|                                                  | 13. Checks if answer is valid.                                                           |                                                      |
+|                                                  | 14. If so, outputs congratulations message, otherwise output a failure message           |                                                      |
+|                                                  | 15. Repeat process until limit of questions has been reached or user answers incorrectly |                                                      |
+|                                                  | 16. Output final stats message (questions correct, points earned, etc.)                  |                                                      |                                                 |                                                                                          |                                                      |
+
+
+Alternative Courses:
+-----------
+1a. ...
+
+3a. ...
+
+3b. ...
+
+Section: A subsection of the use case, e.g. Paying by cash
+-----------
+| Actor Action                                                   | System Response                                   |
+|:---------------------------------------------------------------|:--------------------------------------------------|
+| 1. This use case begins when Actor wants to initiate an event. |                                                   |
+| 2. The Actor does something...                                 | 3. The system determines something or responds... |
+| 4.                                                             ||
+| 5.                                                             | 6.                                                |

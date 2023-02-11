@@ -24,4 +24,4 @@ guarantee that the game works with the single-player mode.
 Another constraint will be the source of trivia questions, in which we will
 need to put in various questions into our trivia game. This means that we will
 either have to implement them ourselves or find a database that we can insert
-questions from. 
+questions from.
