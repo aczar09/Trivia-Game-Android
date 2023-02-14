@@ -65,6 +65,7 @@ search for an appropriate trivia question
 2. Checks that question has not been asked in the same game session
 3. Once one is found, return it to the program and display to the user
 
+
 Use Case: Playing Single Player Multiple Choice Game
 =================================
 **Actors**: Player, Systems, Database

@@ -1,0 +1,30 @@
+@startuml
+!theme reddress-lightred
+scale max 600 height
+title Single-Player Multiple Choice Game Flow
+'define swimlanes
+|#technology|Player|
+|#implementation|System|
+|System|
+start
+:Game starts;
+while(Game over?) is (no)
+:Prints out a selection of question categories to choose from;
+|Player|
+:Selects a category to receive a question from;
+|System|
+:Registers the user choice;
+:Print out question to the user with choices;
+|Player|
+:Selects an answer;
+|System|
+if (Is answer is correct?) then (yes)
+:Output congratulations;
+else (no)
+:Output failure;
+endif
+endwhile
+:Output final stats message (questions correct, points earned, etc.);
+Stop
+
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+!theme reddress-lightred
+title Choosing a question
+'define swimlanes
+|#implementation|System|
+|#aliceblue|Database|
+|System|
+start
+while(Has a valid question been chosen?) is (No)
+:Requests a question from the database;
+|Database|
+:Searches for a question which matches the request;
+:Receives question;
+:Sends question to the system;
+|System|
+:Check if question has been asked;
+endwhile (Yes)
+stop
+
+@enduml
