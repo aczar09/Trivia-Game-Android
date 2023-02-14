@@ -33,7 +33,7 @@ been selected
 
 ### Choosing a category
 1. Player receives multiple categories to answer a question from
-2. Player chooses fromm the given category
+2. Player chooses from the given category
 3. Game outputs a question from the category chosen by the player
 
 ### Multiple Choice, general category
@@ -88,23 +88,38 @@ Use Case: Playing Single Player Multiple Choice Game
 The user is given an appropriate question, and the user provides an answer from four given choices.
 This continues either until the user loses, or they answer all questions correctly.
 
+## Typical course of events:
+
+![img.png](img.png)
+
+### Section A: Choosing A Question
+
+![img_1.png](img_1.png)
+
+Use Case: Choosing Game Modes From the Starting Menu
+=================================
+**Actors**: Player, Systems
+
+**Priority**: Medium
+
+**Level** : User goal
+
+**Scope**: Software system
+
+**The Primary Actor**: User playing the game
+
+**Purpose**: To assign the game flow based on user input
+
+**Type**: Primary
+
+**Preconditions**: User has opened the app
+
+**Overview**: The user decides how many rounds of game shows they'd like to play and which variations they'd like to play.
+The game will begin once the desired amount of formats has been selected.
+
 Typical course of events:
 ----------------------
-
-| Actor Action                                     | System Response                                                                          | Database Response                                    |
-|:-------------------------------------------------|:-----------------------------------------------------------------------------------------|------------------------------------------------------|
-|                                                  | 1. Game starts                                                                           |                                                      |
-| 3. Selects a category to receive a question from | 2. Prints out a selection of question categories to choose from                          |                                                      |
-| 4.                                               | 5. Registers the user choice                                                             |                                                      |
-| 5.                                               | 6. Requests a question from the database                                                 | 7. Searches for a question which matches the request |
-|                                                  | 9. Receives question                                                                     | 8. Sends question to the system                      |
-|                                                  | 10. Checks if question has been asked already. If so, repeat process.                    |                                                      |
-| 12. Selects an answer                            | 11. If question is valid, then output question to the user with choices                  |                                                      |
-|                                                  | 13. Checks if answer is valid.                                                           |                                                      |
-|                                                  | 14. If so, outputs congratulations message, otherwise output a failure message           |                                                      |
-|                                                  | 15. Repeat process until limit of questions has been reached or user answers incorrectly |                                                      |
-|                                                  | 16. Output final stats message (questions correct, points earned, etc.)                  |                                                      |                                                 |                                                                                          |                                                      |
-
+![img_2.png](img_2.png)
 
 Alternative Courses:
 -----------
@@ -116,10 +131,3 @@ Alternative Courses:
 
 Section: A subsection of the use case, e.g. Paying by cash
 -----------
-
-| Actor Action                                                   | System Response                                   |
-|:---------------------------------------------------------------|:--------------------------------------------------|
-| 1. This use case begins when Actor wants to initiate an event. |                                                   |
-| 2. The Actor does something...                                 | 3. The system determines something or responds... |
-| 4.                                                             ||
-| 5.                                                             | 6.                                                |
