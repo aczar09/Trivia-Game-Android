@@ -76,13 +76,17 @@ Use Case: Playing Single Player Multiple Choice Game
 
 **Scope**: Software system
 
-**Purpose**: Intention of the use case.
+**The Primary Actor**: User playing the game
 
-**Type**: Primary (Secondary, Optional)
+**Purpose**: To play a basic round of multiple choice trivia
+
+**Type**: Primary
 
 **Preconditions**: User has chosen to play a standard multiple choice game.
 
-**Overview**: A brief description of what happens in this use case.
+**Overview**: The user begins the game by deciding a category of trivia question to choose from.
+The user is given an appropriate question, and the user provides an answer from four given choices.
+This continues either until the user loses, or they answer all questions correctly.
 
 Typical course of events:
 ----------------------
@@ -112,6 +116,7 @@ Alternative Courses:
 
 Section: A subsection of the use case, e.g. Paying by cash
 -----------
+
 | Actor Action                                                   | System Response                                   |
 |:---------------------------------------------------------------|:--------------------------------------------------|
 | 1. This use case begins when Actor wants to initiate an event. |                                                   |
