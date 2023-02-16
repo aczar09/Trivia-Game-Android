@@ -84,6 +84,8 @@ Use Case: Playing Single Player Multiple Choice Game
 
 **Preconditions**: User has chosen to play a standard a given trivia game.
 
+**Post-condition**: User will have completed a game of trivia on their record.
+
 **Overview**: Based on the type of game show, a question is selected by the system for the user to provide a response to.
 This continues either until the user loses, or they answer all questions correctly.
 
@@ -119,6 +121,12 @@ Stop
 
 ```
 
+Alternative Courses:
+-----------
+1. Question may be selected based on user's decision or by random generation based on a game's format
+2. User may answer free response or multiple choice
+3. User may exit the game at any given moment
+4. 
 
 Use Case: Choosing Game Modes From the Starting Menu
 =================================
@@ -138,6 +146,8 @@ Use Case: Choosing Game Modes From the Starting Menu
 
 **Preconditions**: User has opened the app
 
+**Post-condition**: User will begin the main game flow.
+
 **Overview**: The user decides how many rounds of game shows they'd like to play and which variations they'd like to play.
 The game will begin once the desired amount of formats has been selected.
 
@@ -154,7 +164,7 @@ title Choosing Game Modes From the Starting Menu
 start
 :Presents start menu;
 |Player|
-:Select the number of gameshows they'd like to play;
+:Select the number of game-shows they'd like to play;
 while(Has number of game shows been chosen?) is (no)
 :Prints out a selection of game shows to choose from;
 while(Game show  been selected?) is (no)
@@ -176,7 +186,3 @@ Alternative Courses:
 -----------
 1. User may select and then deselect a given game show.
 2. User may exit the game at any given moment
-3. 
-
-Section: A subsection of the use case, e.g. Paying by cash
------------
