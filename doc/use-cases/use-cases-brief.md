@@ -1,4 +1,4 @@
-# Basic Cases
+# Brief Use Cases
 
 ## Game Opens - Single Game Mode
 1. Game opening screen is shown
@@ -90,11 +90,39 @@ This continues either until the user loses, or they answer all questions correct
 
 ## Typical course of events:
 
-![img.png](img.png)
+```plantuml
+@startuml
+!theme reddress-lightred
+scale max 600 height
+title Single-Player Multiple Choice Game Flow
+'define swimlanes
+|#technology|Player|
+|#implementation|System|
+|System|
+start
+:Game starts;
+while(Has user failed or answered every question correct?) is (no)
+:Prints out a selection of question categories to choose from;
+|Player|
+:Selects a category to receive a question from;
+|System|
+:Print out question to the user with choices;
+|Player|
+:Selects an answer;
+|System|
+if (Is answer is correct?) then (yes)
+:Output congratulations;
+else (no)
+:Output failure;
+endif
+endwhile
+:Output final stats message (questions correct, points earned, etc.);
+Stop
 
-### Section A: Choosing A Question
+@enduml
 
-![img_1.png](img_1.png)
+```
+
 
 Use Case: Choosing Game Modes From the Starting Menu
 =================================
@@ -119,7 +147,37 @@ The game will begin once the desired amount of formats has been selected.
 
 Typical course of events:
 ----------------------
-![img_2.png](img_2.png)
+```plantuml
+@startuml
+!theme reddress-lightred
+scale max 600 height
+title Choosing Game Modes From the Starting Menu
+'define swimlanes
+|#technology|Player|
+|#implementation|System|
+|System|
+start
+:Presents start menu;
+|Player|
+:Select the number of gameshows they'd like to play;
+while(Has number of game shows been chosen?) is (no)
+:Prints out a selection of game shows to choose from;
+while(Game show  been selected?) is (no)
+:Selects a game show to play;
+|System|
+if(Has a valid selection been made?) then (yes)
+
+:Add to list of game shows;
+endif
+end while
+endwhile
+
+:Begin the game;
+stop
+
+@enduml
+[use-cases-brief.md](use-cases-brief.md)
+```
 
 Alternative Courses:
 -----------
