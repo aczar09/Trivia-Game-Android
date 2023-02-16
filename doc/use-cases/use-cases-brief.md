@@ -170,7 +170,6 @@ endwhile
 stop
 
 @enduml
-[use-cases-brief.md](use-cases-brief.md)
 ```
 
 Alternative Courses:
