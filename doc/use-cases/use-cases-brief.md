@@ -95,7 +95,7 @@ This continues either until the user loses, or they answer all questions correct
 @startuml
 
 scale max 600 height
-title Single-Player Multiple Choice Game Flow
+title Single-Player Trivia Game Flow
 'define swimlanes
 |#technology|Player|
 |#implementation|System|
