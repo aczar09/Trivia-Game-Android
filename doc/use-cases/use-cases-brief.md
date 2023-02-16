@@ -82,17 +82,16 @@ Use Case: Playing Single Player Multiple Choice Game
 
 **Type**: Primary
 
-**Preconditions**: User has chosen to play a standard multiple choice game.
+**Preconditions**: User has chosen to play a standard a given trivia game.
 
-**Overview**: The user begins the game by deciding a category of trivia question to choose from.
-The user is given an appropriate question, and the user provides an answer from four given choices.
+**Overview**: Based on the type of game show, a question is selected by the system for the user to provide a response to.
 This continues either until the user loses, or they answer all questions correctly.
 
 ## Typical course of events:
 
 ```plantuml
 @startuml
-!theme reddress-lightred
+
 scale max 600 height
 title Single-Player Multiple Choice Game Flow
 'define swimlanes
@@ -102,11 +101,8 @@ title Single-Player Multiple Choice Game Flow
 start
 :Game starts;
 while(Has user failed or answered every question correct?) is (no)
-:Prints out a selection of question categories to choose from;
-|Player|
-:Selects a category to receive a question from;
-|System|
-:Print out question to the user with choices;
+:Picks a question based on given criteria (category, difficulty, question type, etc.);
+:Print out question to the user with response type (free response, multiple choice, etc.);
 |Player|
 :Selects an answer;
 |System|
@@ -149,7 +145,6 @@ Typical course of events:
 ----------------------
 ```plantuml
 @startuml
-!theme reddress-lightred
 scale max 600 height
 title Choosing Game Modes From the Starting Menu
 'define swimlanes
@@ -166,12 +161,11 @@ while(Game show  been selected?) is (no)
 :Selects a game show to play;
 |System|
 if(Has a valid selection been made?) then (yes)
-
 :Add to list of game shows;
 endif
 end while
 endwhile
-
+|System|
 :Begin the game;
 stop
 
@@ -181,11 +175,9 @@ stop
 
 Alternative Courses:
 -----------
-1a. ...
-
-3a. ...
-
-3b. ...
+1. User may select and then deselect a given game show.
+2. User may exit the game at any given moment
+3. 
 
 Section: A subsection of the use case, e.g. Paying by cash
 -----------
