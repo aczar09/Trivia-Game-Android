@@ -25,3 +25,22 @@ Another constraint will be the source of trivia questions, in which we will
 need to put in various questions into our trivia game. This means that we will
 either have to implement them ourselves or find a database that we can insert
 questions from.
+```plantuml
+@startuml
+:Player:
+package GameWorks{
+usecase "Answers Question" as CG
+usecase "Chooses single-player/multiplayer" as PG
+usecase "Reads Game Stats" as RGS
+}
+Player --> CG
+Player --> PG
+Player --> RGS
+:Trivia Game Flow: <<System>> as TGF
+CG --> TGF
+:Game Mode Selection: <<System>> as GMS
+PG --> GMS
+:Breakout: <<System>> as BT
+RGS --> BT
+@enduml
+```
