@@ -1,8 +1,4 @@
 
-# Functionality
-Our game must run on Android devices. Also, our game must be written using Java. We also want our game to have multiple
-game shows to choose from, so we want to ensure that it has the capability of doing so. We also want a multiplayer
-feature, so that also adds onto the capabilities that we want to add.  
 # Usability
 The game most be able to run on Android devices
 with touch screen. The visualizations and the
@@ -31,3 +27,16 @@ lapses as efficient and smooth performance is needed.
 The user will be able to continuously be fed new questions until they've reached the 10 question limit or got a
 question incorrect. We want to make sure that our app will be able to allow a player to finish one came and still
 be able to run the next, without the app crashing. This support is necessary for the app to run smoothly.
+# Implementation 
+Our game must run on Android devices. Also, our game must be written using Java. We also want our game to have multiple
+game shows to choose from, so we want to ensure that it has the capability of doing so. We also want a multiplayer
+feature, so that also adds onto the capabilities that we want to add.
+# Interface
+We have to pull questions from an outside database/interface. That way we can easily
+put them into our game, making much easier to design. It is important that this interface provides a 
+structure where we can easily pull questions of various categories and give valid solutions
+to them. 
+# Legal
+We need to ensure that the questions that we use are legal, in the sense they
+could be privatized. Also, when designing our game, we have to avoid legal restrictions
+on certain structures, such as popular game shows. 
