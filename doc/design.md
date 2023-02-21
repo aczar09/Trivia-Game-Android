@@ -9,8 +9,7 @@
 | Stats Record    |                        |                                                                     |   
 
 ```plantuml
-hide circle
-hide empty methods
+
 ' classes
 class Game{
 main()
