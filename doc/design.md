@@ -13,6 +13,9 @@ hide circle
 hide empty methods
 ' classes
 class Game{
+main()
+playSingleGame()
+answerQuestion()
 }
 class Question{
     prompt: String
