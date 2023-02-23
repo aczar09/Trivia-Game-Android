@@ -39,6 +39,7 @@ Question -- Choice
 Game -- Player
 Game "1"-- " 1 " IGameShow
 class RandMultChoice{
+    questionPool: Set<Question>
     pullQuestion(): Question
 }
 IGameShow -- RandMultChoice
