@@ -106,7 +106,7 @@ participant "question : Question" as q
 rmc -> qp: getQ(category, difficulty, format, hasConditions)
 [o-> qp: validQ = false
 loop !validQ or !hasConditions
-[o-> qp: randomQ = get(randomSelection)
+qp -->> q **: randomQ = get(randomSelection)
 qp-> q: validQ = (randomQ.category == category) \n && (randomQ.difficulty == difficulty) \n && (randomQ.format == format)
 end
 qp -> rmc: return randomQ 
