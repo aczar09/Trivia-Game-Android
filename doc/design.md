@@ -102,7 +102,7 @@ end ref
 mainframe sd Getting Question from the Question Pool
 participant "gameshow : RandMultChoice" as rmc
 participant "questionPool : Set<Question>" as qp
-participant "question : Question" as q
+participant "randomQ : Question" as q
 rmc -> qp: getQ(category, difficulty, format, hasConditions)
 [o-> qp: validQ = false
 loop !validQ or !hasConditions
