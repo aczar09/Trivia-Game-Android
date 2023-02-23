@@ -38,24 +38,28 @@ Game "1" -- "*" Question : contains 1...*
 Question -- Choice
 Game -- Player
 Game "1"-- " 1 " IGameShow
-class RandMultChoice{
+class RandMultiChoice{
     questionPool: Set<Question>
     pullQuestion(): Question
 }
-IGameShow -- RandMultChoice
+IGameShow -- RandMultiChoice
 ```
 ```plantuml
 @startuml
 title:Single Player MCQ Game Flow
+
 participant "game : Game" as g
 participant "p1 : Player" as p1
-participant "gameshow : RandMultChoice" as rmc
+participant "gameshow : RandMultiChoice" as rmc
 participant "question : Question" as q
+==Initialization==
+[o-->> g **: game = new Game()
 [o-> g: correct = true
 [o-> g: numGames = 5
 [o-> g: wins = 0
 g -->> p1 **: p1 = new Player()
-g -->> rmc **: gameshow = new RandMultChoice()
+g -->> rmc **: gameshow = new RandMultiChoice()
+==Game Flow==
 loop numGames != wins && correct
 g -> rmc : question = rmc.pullQuestion()
 rmc -->> q **: pullQuestion()
@@ -69,7 +73,7 @@ alt correct
 [o-> g : win++
 end
 end
-
+==Print results==
 alt correct
 [o-> g : print("Congrats")
 else !correct
@@ -85,7 +89,7 @@ end
 
 mainframe sd Pulling Question
 
-participant "gameshow : RandMultChoice" as rmc
+participant "gameshow : RandMultiChoice" as rmc
 participant "questionPool : Set<Question>" as qp
 [o-> rmc: pullQuestion()
 rmc -->> qp:: q = questionPool.getQ(category, difficulty, format, hasConditions)
@@ -101,7 +105,7 @@ end ref
 ```plantuml
 @startuml
 mainframe sd Getting Question from the Question Pool
-participant "gameshow : RandMultChoice" as rmc
+participant "gameshow : RandMultiChoice" as rmc
 participant "questionPool : Set<Question>" as qp
 participant "randomQ : Question" as q
 rmc -> qp: getQ(category, difficulty, format, hasConditions)
