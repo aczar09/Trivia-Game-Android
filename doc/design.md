@@ -8,6 +8,7 @@
 |                 |                        |                                                                     |
 | Stats Record    |                        |                                                                     |   
 
+/* Have to think about a controller, one for answering questions and processing questions, and choosing/outputting questions*/
 ```plantuml
 title Class Diagram
 ' classes

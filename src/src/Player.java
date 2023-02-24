@@ -1,4 +1,4 @@
 public class Player {
     String name;
-    int correctRecord;
+    int correctRecord = 0;
 }
