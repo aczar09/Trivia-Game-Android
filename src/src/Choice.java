@@ -6,4 +6,8 @@ public class Choice {
         this.name = name;
         this.correct = correct;
     }
+
+    public String toString(){
+        return this.name;
+    }
 }
