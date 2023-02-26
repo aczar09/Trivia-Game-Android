@@ -1,6 +1,6 @@
 package src.src;
 public class RandMultiChoice implements IGameShow {
-    public Question pullQuestion(){
+    public Question pullQuestion() {
         return null;
     }
 }

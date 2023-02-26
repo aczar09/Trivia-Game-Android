@@ -1,8 +1,11 @@
 package src.src;
 
+import java.util.Scanner;
+
 public class Game {
     int numGames;
     boolean correct = true;
+    int correctRecord;
     public Game(int numGames ){
         this.numGames = numGames;
     }
@@ -10,16 +13,26 @@ public class Game {
         Game g = new Game(5);
         Player p1 = new Player();
         RandMultiChoice gameshow = new RandMultiChoice();
-        int correctRecord = 0;
-        while(g.numGames != correctRecord || g.correct){
+        g.correctRecord = 0;
+        while (g.numGames != correctRecord || g.correct) {
 
         }
-        if(g.correct){
+        if (g.correct) {
             System.out.println("Congratulations");
-        }else{
+        } else {
             System.out.println("Failure");
         }
-
+    }
+    public void checkAnswer(Question q, int index){
+        Choice c = q.choices[index];
+        if (c.correct){
+            correctRecord++;
+        }
+        else{
+            correct = false;
+        }
 
     }
+
+
 }
