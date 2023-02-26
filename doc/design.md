@@ -12,38 +12,45 @@
 ```plantuml
 title Class Diagram
 ' classes
+'skinparam classAttributeIconSize 0 
 class Game{
+--
 main()
 playSingleGame()
 answerQuestion()
 }
 class Question{
-    prompt: String
-    choices: array[Choice]
+    -prompt: String
+    -choices: array[Choice]
+    --
     toString(): String
     
 }
 class Choice{
-    name : String
-    correct: boolean
+    -name : String
+    -correct: boolean
+    --
     toString(): String
 }
 class Player{
-name: String
-correctRecord: int
+-name: String
+-correctRecord: int
 }
 interface IGameShow{
+--
     pullQuestion(): Question
 }
-Game "1" -- "*" Question : contains 1...*
-Question -- Choice
-Game -- Player
-Game "1"-- " 1 " IGameShow
+Game "1" ---left-- "*" Question : "      are-contained-in     "
+Question "\t1" -left-->"(1..*)" Choice:choices\n{random order, array}
+Game "1\t" --right-- "1..*" Player: "      requires         "
+Game "1 " -down- " 1 " IGameShow: " is-described-by"
 class RandMultiChoice{
-    questionPool: Set<Question>
+    -questionPool: Set<Question>
+    --
     pullQuestion(): Question
 }
-IGameShow -- RandMultiChoice
+IGameShow"\t   1\n\n\n\n" <|..left.."1\t" RandMultiChoice:" is-formatted-by"
+RandMultiChoice "1 "--up-- " * " Question: " are-contained-in"
 ```
 ```plantuml
 @startuml
