@@ -1,9 +1,14 @@
+package src.src;
+
 public class Player {
     String name;
-    int correctRecord = 0;
+    int wins = 0;
 
     public Player(String name){
         this.name = name;
     }
 
+    public Player() {
+        this.name = "Player 1";
+    }
 }

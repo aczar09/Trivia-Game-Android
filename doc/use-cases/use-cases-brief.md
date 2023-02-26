@@ -1,6 +1,6 @@
 # Brief Use Cases
 
-## Game Opens - Single Game Mode
+## Configure Game
 1. Game opening screen is shown
 2. Player receives multiple options of style of game to choose
 3. Player's picks an option between: different styles or random
@@ -21,6 +21,8 @@
 3. If game mode has already been selected, then try again, until three modes have
 been selected
 
+### Play Game Round
+1.
 
 ## Single Player
 
