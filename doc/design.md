@@ -40,7 +40,7 @@ interface IGameShow{
 --
     pullQuestion(): Question
 }
-Game "1" ---left-- "*" Question : "            contains            "
+Game "1" ---left-- "*" Question : "      are-contained-in     "
 Question "\t1" -left-->"(1..*)" Choice:choices\n{random order, array}
 Game "1\t" --right-- "1..*" Player: "      requires         "
 Game "1 " -down- " 1 " IGameShow: " is-described-by"
@@ -49,8 +49,8 @@ class RandMultiChoice{
     --
     pullQuestion(): Question
 }
-IGameShow"\t1" --left--"1\t" RandMultiChoice:"is-formatted-by"
-RandMultiChoice "1 "--up--"* " Question
+IGameShow"\t   1\n\n\n\n" <|..left.."1\t" RandMultiChoice:" is-formatted-by"
+RandMultiChoice "1 "--up-- " * " Question: " are-contained-in"
 ```
 ```plantuml
 @startuml
