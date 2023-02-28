@@ -43,10 +43,7 @@ public class Game {
         //QuestionPool qp = new QuestionPool();
         QuestionPool qp = new QuestionPool();
         while ((this.correct) && (this.correctRecord < 5)) {
-            Question qt = qp.getQuestion();
-            System.out.println(qt);
-            int ans = p1.getAnswer();
-            this.checkAnswer(qt, ans);
+            this.correct = answerQuestion(qp.getQuestion(), p1);
         }
         return this.correct;
         /*if (!this.correct) {
@@ -56,6 +53,11 @@ public class Game {
         }*/
     }
 
+    public boolean answerQuestion(Question q, Player p1){
+        //System.out.println(q);
+        int ans = p1.getAnswer();
+        return this.checkAnswer(q, ans);
+    }
     public void resetGame(){
         correct = true;
         correctRecord = 0;
