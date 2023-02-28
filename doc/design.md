@@ -21,9 +21,12 @@ answerQuestion()
 }
 class Question{
     -prompt: String
+    -difficulty: String
+    -category: String
+    -questionType: String
     -choices: array[Choice]
     --
-    toString(): String
+    +toString(): String
     
 }
 class Choice{
