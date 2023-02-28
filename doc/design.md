@@ -44,7 +44,7 @@ interface IGameShow{
     pullQuestion(): Question
 }
 Game "1" ---left-- "*" Question : "      are-contained-in     "
-Question "\t1" -left-->"(1..*)" Choice:choices\n{random order, array}
+Question "\t1" -left-->"(1..*)" Choice:choices\n{random order, arrayList}
 Game "1\t" --right-- "1..*" Player: "      requires         "
 Game "1 " -down- " 1 " IGameShow: " is-described-by"
 class RandMultiChoice{
