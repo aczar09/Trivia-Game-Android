@@ -31,4 +31,8 @@ public class Question {
         return s;
     }
 
+    public boolean isCorrect(int selection){
+        return choices.get(selection).getCorrect();
+    }
+
 }

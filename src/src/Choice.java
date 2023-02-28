@@ -12,4 +12,8 @@ public class Choice {
     public String toString(){
         return this.name;
     }
+
+    public boolean getCorrect(){
+        return correct;
+    }
 }
