@@ -32,6 +32,48 @@ public class QuestionPool {
                 new Choice("In the desert",false),new Choice("At the bottom of the ocean",true));
         qp.add(q5);
 
+        Question q6 = new Question("Which of these countries borders People's Republic of China?", "hard", "Geography", "mcq",
+                new Choice("Bangladesh",false),new Choice("Thailand",false),
+                new Choice("Cambodia",false),new Choice("Tajikistan",true));
+        qp.add(q6);
+
+        Question q7 = new Question("Where in the world are bell peppers originally from?", "hard", "Food & Drink", "mcq",
+                new Choice("Europe",false),new Choice("Central Asia",false),
+                new Choice("China",false),new Choice("Central America",true));
+        qp.add(q7);
+
+        Question q8 = new Question("What did Wilhelm Roentgen discover in 1895?", "hard", "General Knowledge", "mcq",
+                new Choice("Nuclear radiation",false),new Choice("The jet engine" ,false),
+                new Choice("The Galapagos Islands",false),new Choice("X-rays",true));
+        qp.add(q8);
+
+        Question q9 = new Question("Which of these people was an Italian explorer who landed in America?", "easy", "Society & Culture", "mcq",
+                new Choice("Marco Polo",false),new Choice("Martin Luther",false),
+                new Choice("Napoleon Bonaparte",false),new Choice("Christopher Columbus",true));
+        qp.add(q9);
+
+        Question q10 = new Question("Which author wrote 'The Communist Manifesto'?", "medium", "Arts & Literature", "mcq",
+                new Choice("Karl May",false),new Choice("Erich Maria Remarque",false),
+                new Choice("Michael Ende",false),new Choice("Friedrich Engels",true));
+        qp.add(q10);
+
+
+        Question q11 = new Question("Which sport is played at The Billie Jean King Cup?", "medium", "Sports & Leisure", "mcq",
+                new Choice("Athletics",false),new Choice("Motorsports",false),
+                new Choice("Baseball",false),new Choice("Tennis",true));
+        qp.add(q11);
+
+
+        Question q12 = new Question("Conakry is the capital city of which country?", "hard", "Geography", "mcq",
+                new Choice("Barbados",false),new Choice("Lebanon",false),
+                new Choice("Romania",false),new Choice("Guinea",true));
+        qp.add(q12);
+
+
+        Question q13 = new Question("Which actor has starred in films including Gladiator and Her?", "medium", "Film & TV", "mcq",
+                new Choice("Alan Cumming",false),new Choice("Roger Moore",false),
+                new Choice("Peter O'Toole",false),new Choice("Joaquin Phoenix",true));
+        qp.add(q13);
         Collections.shuffle(qp);
     }
 
