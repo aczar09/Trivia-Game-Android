@@ -36,8 +36,10 @@ public class QuestionPool {
     }
 
     public Question getQuestion(){
-        int randInd = (int)(Math.random() * qp.size())
-        return qp.get(randInd);
+        int randInd = (int)(Math.random() * qp.size());
+        Question q = qp.get(randInd);
+        qp.remove(randInd);
+        return q;
     }
 
     public void removeQuestion(int index){
