@@ -1,11 +1,5 @@
 package src.src;
 
-import src.src.Player;
-import src.src.Question;
-import src.src.RandMultiChoice;
-
-import java.awt.*;
-
 public class Game {
     static int numGames = 1;
     boolean correct = true;

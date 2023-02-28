@@ -7,7 +7,7 @@ public class TextUI {
         TextUI ui = new TextUI();
         Game g = new Game(1);
         int gcount = 0;
-        while(gcount < g.numGames){
+        while(gcount < Game.numGames){
             ui.playSingleGame(g);
             gcount++;
         }
@@ -17,11 +17,11 @@ public class TextUI {
 
         Player p1 = new Player();
         //QuestionPool qp = new QuestionPool();
-        QuestionPool qp = new QuestionPool();
+        RandMultiChoice rmc = new RandMultiChoice();
         while((g.correct) && (g.correctRecord < 5)){
-            Question qt = qp.getQuestion();
+            Question qt = rmc.getQuestion();
             System.out.println(qt.toString());
-            int ans = p1.getAnswer();
+            int ans = this.getAnswer();
             System.out.println(g.checkAnswer(qt, ans));
         }
         if (!g.correct){
@@ -34,6 +34,7 @@ public class TextUI {
 
     public int getAnswer() {
         Scanner scan = new Scanner(System.in);
+
         while (true) {
             String ans = scan.nextLine();
             ans = ans.toUpperCase();
