@@ -74,6 +74,57 @@ public class QuestionPool {
                 new Choice("Alan Cumming",false),new Choice("Roger Moore",false),
                 new Choice("Peter O'Toole",false),new Choice("Joaquin Phoenix",true));
         qp.add(q13);
+
+        Question q14 = new Question("Which horizon in a soil profile consists of bedrock?", "hard","Science & Nature","mcq",
+                new Choice("O",false),new Choice("D",false),
+                new Choice("B",false),new Choice("R",true));
+        qp.add(q14);
+
+        Question q15 = new Question("How many sovereign states are members of the United Nations?", "medium","Geography","mcq",
+                new Choice("201",false),new Choice("178",false),
+                new Choice("153",false),new Choice("195",true));
+        qp.add(q15);
+
+        Question q16 = new Question("How many federal states does Germany have?", "easy","Geography","mcq",
+                new Choice("13",false),new Choice("25",false),
+                new Choice("32",false),new Choice("16",true));
+        qp.add(q16);
+
+        Question q17 = new Question("The Pyrenees mountains are located on the border of which two countries?", "medium","Geography","mcq",
+                new Choice("Italy and Switzerland",false),new Choice("Norway and Sweden",false),
+                new Choice("Russia and Ukraine",false),new Choice("France and Spain",true));
+        qp.add(q17);
+
+        Question q18 = new Question("In the Morse code, which letter is indicated by 3 dots?", "medium","General Knowledge","mcq",
+                new Choice("O",false),new Choice("A",false),
+                new Choice("C",false),new Choice("S",true));
+        qp.add(q18);
+
+        Question q19 = new Question("Which one of the following rhythm games was made by Harmonix?", "easy","General Knowledge","mcq",
+                new Choice("Meat Beat Mania",false),new Choice("Guitar Hero Live",false),
+                new Choice("Dance Dance Revolution",false),new Choice("Rock Band",true));
+        qp.add(q19);
+
+        Question q20 = new Question("The website ”Shut Up & Sit Down” reviews which form of media?", "medium","General Knowledge","mcq",
+                new Choice("Television Shows",false),new Choice("Video Games",false),
+                new Choice("Films",false),new Choice("Board Games",true));
+        qp.add(q20);
+
+        Question q21 = new Question("What does film maker Dan Bell typically focus his films on?", "easy","Celebrities","mcq",
+                new Choice("Historic Landmarks",false),new Choice("Action Films",false),
+                new Choice("Documentaries",false),new Choice("Abandoned Buildings and Dead Malls",true));
+        qp.add(q21);
+
+        Question q22 = new Question("How tall is Tom Cruise?", "hard","Celebrities","mcq",
+                new Choice("5’ 9",false),new Choice("5’ 4",false),
+                new Choice("5’ 5",false),new Choice("5’ 7",true));
+        qp.add(q22);
+
+        Question q23 = new Question("How old was Muhammad Ali when he died?", "medium","Celebrities","mcq",
+        new Choice("N/A (Still alive)",false),new Choice("61",false),
+        new Choice("56",false),new Choice("74",true));
+        qp.add(q23);
+
         Collections.shuffle(qp);
     }
 
