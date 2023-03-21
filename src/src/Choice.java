@@ -2,7 +2,7 @@ package src.src;
 
 public class Choice {
     String name;
-    public boolean correct;
+    boolean correct;
 
     public Choice(String name, boolean correct){
         this.name = name;

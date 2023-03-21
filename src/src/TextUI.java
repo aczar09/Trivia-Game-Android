@@ -7,7 +7,7 @@ public class TextUI {
         TextUI ui = new TextUI();
         Game g = new Game(5);
         int gcount = 0;
-        while(gcount < Game.numGames){
+        while(gcount < g.numGames){
             ui.playSingleGame(g);
             g.resetGame();
             gcount++;

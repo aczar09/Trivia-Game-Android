@@ -1,7 +1,7 @@
 package src.src;
 
 public class Game {
-    static int numGames = 1;
+    int numGames;
     boolean correct = true;
     int correctRecord = 0;
     public Game(int numGames ){
