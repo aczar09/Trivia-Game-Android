@@ -14,6 +14,9 @@ public class Question {
     public Question(String prompt, String difficulty, String category, String questionType, Choice c1, Choice c2, Choice c3, Choice c4){
         this.prompt = prompt;
 
+        this.difficulty = difficulty;
+        this.category = category;
+        this.questionType = questionType;
         this.choices.add(c1);
         this.choices.add(c2);
         this.choices.add(c3);
@@ -22,7 +25,8 @@ public class Question {
     }
 
     public String toString(){
-        String s = prompt +" \n";
+        String s = this.category + ": \n";
+        s += prompt +" \n";
         char choiceLetter = 'A';
         for(Choice c: choices){
             s += choiceLetter + ") " + c.toString() + "\n";

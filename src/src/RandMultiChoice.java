@@ -135,10 +135,6 @@ public class RandMultiChoice implements IGameShow {
         return q;
     }
 
-    public void removeQuestion(int index){
-        qp.remove(index);
-    }
-
     public Question getQuestion(String category, String difficulty, String questionType){
         Collections.shuffle(qp);
         for(Question q: qp){

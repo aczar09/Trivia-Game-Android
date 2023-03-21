@@ -5,17 +5,18 @@ import java.util.Scanner;
 public class TextUI {
     public static void main(String[] args) {
         TextUI ui = new TextUI();
-        Game g = new Game(1);
+        Game g = new Game(5);
         int gcount = 0;
         while(gcount < Game.numGames){
             ui.playSingleGame(g);
+            g.resetGame();
             gcount++;
         }
     }
 
     public void playSingleGame(Game g){
 
-        Player p1 = new Player();
+        Player p1 = new  Player();
         //QuestionPool qp = new QuestionPool();
         RandMultiChoice rmc = new RandMultiChoice();
         while((g.correct) && (g.correctRecord < 5)){
@@ -25,11 +26,13 @@ public class TextUI {
             System.out.println(g.checkAnswer(qt, ans));
         }
         if (!g.correct){
-            System.out.print("GAME OVER" + "\nYou got " + g.correctRecord+ " question(s) right! Better luck next time!");
+            System.out.println("GAME OVER" + "\nYou got " + g.correctRecord+ " question(s) right! Better luck next time!");
         }
         else{
-            System.out.print("Congratulations!! You succesfully answered all " + g.correctRecord + " questions! You're a trivia master!");
+            System.out.println("Congratulations!! You succesfully answered all " + g.correctRecord + " questions! You're a trivia master!");
         }
+
+
     }
 
     public int getAnswer() {

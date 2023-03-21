@@ -8,26 +8,11 @@ public class Game {
         this.numGames = numGames;
     }
 
-    // public static void main(String[] args) {
-    // Game g = new Game(1);
-    // int gcount = 0;
-    // while(gcount < g.numGames){
-    // g.playSingleGame();
-    // gcount++;
-    // }
-    // //
-    // // Player p1 = new Player();
-    // // RandMultiChoice gameshow = new RandMultiChoice();
-    // // g.correctRecord = 0;
-    // // while (g.numGames != g.correctRecord || g.correct) {
+    public void resetGame(){
+        correct = true;
+        correctRecord = 0;
+    }
 
-    // // }
-    // // if (g.correct) {
-    // // System.out.println("Congratulations");
-    // // } else {
-    // // System.out.println("Failure");
-    // // }
-    // }
 
     public String checkAnswer(Question q, int index){
         Choice c = q.choices.get(index);
@@ -53,21 +38,4 @@ public class Game {
         return s;
     }
 
-    // public void playSingleGame(){
-    // Player p1 = new Player();
-    // //QuestionPool qp = new QuestionPool();
-    // QuestionPool qp = new QuestionPool();
-    // while((this.correct) && (this.correctRecord < 5)){
-    // Question qt = qp.getQuestion();
-    // System.out.println(qt.toString());
-    // int ans = p1.getAnswer();
-    // //this.checkAnswer(qt, ans);
-    // }
-    // if (!this.correct){
-    // System.out.print("GAME OVER" + "\nYou got " + correctRecord+ " question(s) right! Better luck next time!");
-    // }
-    // else{
-    // System.out.print("Congratulations!! You succesfully answered all " + correctRecord + " questions! You're a trivia master!");
-    // }
-    // }
 }
