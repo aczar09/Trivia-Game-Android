@@ -20,7 +20,7 @@ public class TextUI {
         //QuestionPool qp = new QuestionPool();
         RandMultiChoice rmc = new RandMultiChoice();
         while((g.correct) && (g.correctRecord < 5)){
-            Question qt = rmc.getQuestion();
+            Question qt = g.getQuestion(rmc);
             System.out.println(qt.toString());
             int ans = this.getAnswer();
             System.out.println(g.checkAnswer(qt, ans));

@@ -128,14 +128,14 @@ public class RandMultiChoice implements IGameShow {
         Collections.shuffle(qp);
     }
 
-    public Question getQuestion(){
+    /*public Question getQuestion(){
         int randInd = (int)(Math.random() * qp.size());
         Question q = qp.get(randInd);
         qp.remove(randInd);
         return q;
     }
 
-     public Question getQuestion(String category, String difficulty, String questionType){
+    public Question getQuestion(String category, String difficulty, String questionType){
         Collections.shuffle(qp);
         for(Question q: qp){
             if(q.category.equals(category) && q.difficulty.equals(difficulty) && q.questionType.equals(questionType)){
@@ -143,6 +143,5 @@ public class RandMultiChoice implements IGameShow {
             }
         }
         return null;
-    }
-
+    }*/
 }

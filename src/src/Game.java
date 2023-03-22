@@ -37,5 +37,11 @@ public class Game {
         }
         return s;
     }
+    public Question getQuestion(RandMultiChoice rmc){
+        int randInd = (int)(Math.random() * rmc.qp.size());
+        Question q = rmc.qp.get(randInd);
+        rmc.qp.remove(randInd);
+        return q;
+    }
 
 }
