@@ -128,7 +128,7 @@ public class RandMultiChoice implements IGameShow {
         Collections.shuffle(qp);
     }
 
-    public Question getQuestion(){
+    /*public Question getQuestion(){
         int randInd = (int)(Math.random() * qp.size());
         Question q = qp.get(randInd);
         qp.remove(randInd);
@@ -143,5 +143,5 @@ public class RandMultiChoice implements IGameShow {
             }
         }
         return null;
-    }
+    }*/
 }
