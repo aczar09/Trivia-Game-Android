@@ -139,3 +139,26 @@ end
 qp -> rmc: return randomQ 
 @enduml
 ```
+```plantuml
+@startuml
+hide footbox
+mainframe sd Play Game Round
+actor "User" as us 
+participant "TextUI" as tui 
+participant "Game (controller)" as clr
+participant RandMultiChoice as rmc
+participant "QuestionPool: arraylist" as qp
+
+clr -> rmc: getQuestion(RandMultiChoice)
+rmc -> qp: qt = QuestionPool.get(int ranIdx)
+rmc -> qp: QuestionPool.remove(int ranIdx)
+qp -> rmc: Question Pool updated
+rmc -> clr: Controller receives question qt
+clr -> tui: Controller provides question for UI
+tui -> us: System prints out question
+tui -> us: ""
+us -> tui: User reads question
+tui ->
+
+@enduml
+``` 
