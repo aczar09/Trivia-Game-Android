@@ -29,7 +29,7 @@ public class TextUI {
             System.out.println("GAME OVER" + "\nYou got " + g.correctRecord+ " question(s) right! Better luck next time!");
         }
         else{
-            System.out.println("Congratulations!! You succesfully answered all " + g.correctRecord + " questions! You're a trivia master!");
+            System.out.println("Congratulations!! You successfully answered all " + g.correctRecord + " questions! You're a trivia master!");
         }
 
 
