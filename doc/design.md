@@ -142,6 +142,19 @@ qp -> rmc: return randomQ
 ```plantuml
 @startuml
 hide footbox
+mainframe sd Configure Game
+actor "User" as us 
+participant "TextUI" as tui 
+participant "Game (controller)" as clr 
+tui -> us: num = gameSetUp()
+us -> tui: Inputs number of games to play
+tui --> clr: g = new Game(num)
+tui -> 
+
+```
+```plantuml
+@startuml
+hide footbox
 mainframe sd Play Game Round
 actor "User" as us 
 participant "TextUI" as tui 
@@ -164,10 +177,12 @@ participant "choices: choice array" as chc
 clr -> chc:\ts = checkAnswer(Question q, int index)
 participant "c: Choice" as cc 
 chc -> cc: correct = choices.get(int index).correct
-ref over clr
-Correct output response
-end ref
-
+clr -> tui: Provides whether index is correct 
+alt correctResponse
+tui -> us: Print("Congrats")
+else !correctResponse
+tui -> us: Print("Failure")
+end
 
 
 @enduml
