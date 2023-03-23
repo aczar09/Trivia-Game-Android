@@ -39,7 +39,8 @@ does not quickly become repetitive and boring. We also hope to maintenance the g
 We have to pull questions from an outside database/interface. At this point, we will likely create or find a large
 .csv file or .txt file of trivia questions which we will parse through to find questions and create our database. 
 That way we can easily  put them into our game, making much easier to design. It is important that this interface provides a 
-structure where we can easily pull questions of various categories and give valid solutions  to them. 
+structure where we can easily pull questions of various categories and give valid solutions  to them. We found a free Trivia
+API that will allow us get trivia questions in such format. The link is https://the-trivia-api.com/.
 # Legal
 We need to ensure that the questions that we use are legal, in the sense they
 could be privatized. Also, when designing our game, we have to avoid legal restrictions
