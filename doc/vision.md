@@ -25,22 +25,29 @@ Another constraint will be the source of trivia questions, in which we will
 need to put in various questions into our trivia game. This means that we will
 either have to implement them ourselves or find a database that we can insert
 questions from.
+
+## Actor Goal List
+
+| Player             | Database          |
+|--------------------|-------------------|
+| Configure Game     | Store question    |
+| Answer Question    | Retrieve question |
+| Breakout from Game | Prevent repeats   |
+
 ```plantuml
 @startuml
 :Player:
 package GameWorks{
-usecase "Answers Question" as CG
-usecase "Chooses single-player/multiplayer" as PG
-usecase "Reads Game Stats" as RGS
+usecase "Configure Game" as CG
+usecase "Play Game Round" as PG
+usecase "Play Games" as RGS
 }
 Player --> CG
 Player --> PG
 Player --> RGS
-:Trivia Game Flow: <<System>> as TGF
-CG --> TGF
-:Game Mode Selection: <<System>> as GMS
+
+:Database: <<System>> as GMS
 PG --> GMS
-:Breakout: <<System>> as BT
-RGS --> BT
+RGS --> GMS
 @enduml
 ```
