@@ -13,8 +13,11 @@ if there is a problem with loading a second player onto the app, then instead
 of the app failing, we can provide the option to switch back to single-player,
 as it does not require a secondary player.  We must also make sure that whenever a player is provided 
 questions that they receive unique questions and one's that fall in their chosen category. Whenever a player
-answers such a question, we also want to ensure that they are properly registered. When do not want to act 
-as if the player selected one choice when they actually clicked on a different one. 
+answers such a question, we also want to ensure that they are properly registered. We do not want to act 
+as if the player selected one choice when they actually clicked on a different one. The user will be able to continuously be fed new questions until they've reached the 5 question limit or got a
+question incorrect. We want to make sure that our app will be able to allow a player to finish one came and still
+be able to run the next, without the app crashing. This support is necessary for the app to run smoothly.We also plan to eventually save 
+game progress, so that if a game were to crash, the user wouldn't have to worry about lost progress. 
 # Performance
 The game will be able to generate questions at a decent rate, despite
 pulling from a large database. A player should not have to wait more
@@ -24,13 +27,14 @@ The game should also be able to provide answer choices and register
 the user's answers at a quick rate as well. We do not need long time 
 lapses as efficient and smooth performance is needed. 
 # Supportability
-The user will be able to continuously be fed new questions until they've reached the 5 question limit or got a
-question incorrect. We want to make sure that our app will be able to allow a player to finish one came and still
-be able to run the next, without the app crashing. This support is necessary for the app to run smoothly.
+We could potentially support different variations, in which our questions could 
+be translated into different languages, allowing us to expand our market. As for now, 
+we are primarily focused on making this work on Android apps only, so we do not expect to 
+work on IOS or other operating systems. 
 # Implementation 
 Our game must run on Android devices. Also, our game must be written using Java. We also want our game to have multiple
-game shows to choose from, so we want to ensure that it has the capability of doing so. We also want a multiplayer
-feature, so that also adds onto the capabilities that we want to add.
+game shows to choose from, so we want to ensure that it has the capability of doing so. We want to do this so that our game 
+does not quickly become repetitive and boring. We also hope to maintenance the game with new updated shows. 
 # Interface
 We have to pull questions from an outside database/interface. At this point, we will likely create or find a large
 .csv file or .txt file of trivia questions which we will parse through to find questions and create our database. 
