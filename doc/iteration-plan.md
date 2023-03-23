@@ -25,6 +25,9 @@
 | High   | Multiplayer Game Mode                | Not as important, as ot os riskier to implement                                                                                              |
 | Low    | Choosing a Random Game Mode          | Not important, but a cool add-on                                                                                                             |
 | Low    | Post Results                         | Not required to function, but nice added feature                                                                                             |
-
-
+### Requirements Update
+While working on iteration 1, we realized that we need to put more emphasis on 
+pulling questions from a database. In this iteration, we have only manually inputted questions, but we would
+like to expand further and create a simpler way of pulling questions. Thi will shift our
+attention away from the multiplayer setting for now. 
 
