@@ -144,7 +144,7 @@ thus resulting in corresponding congratulations message being printed
 
 ## Test 5: Questions Choices Shuffled
 ### User Input: 
-User inputs the same response/answer choice for the same question
+User inputs the same response/answer choice for the same question (separate occurrences/rounds)
 ### Output:
 ```
 Food & Drink: 
