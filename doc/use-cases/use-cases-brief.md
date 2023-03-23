@@ -1,14 +1,3 @@
-# Brief Use Cases
-
-### Configure Game
-1. Game opening screen is shown
-2. Player decides how many round they'd like to play
-3. System outputs receives multiple options of style of game to choose
-4. Player's picks an option between: choose styles or random
-5. If random, system selects a random set of the available game modes, otherwise
-user chooses until they have a valid number of modes selected
-6. System registers user's choice and single player is activated
-
 
 
 
