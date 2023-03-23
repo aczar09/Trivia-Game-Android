@@ -10,3 +10,4 @@
 | Question type          | Determines if a question is free response, multiple choice, true or false                                                                                                      |
 | Category               | The general topic that a trivia question may fall under                                                                                                                        |
 | Question pool/database | The set of questions the system pulls from outputs to the user                                                                                                                 |
+| Breakout               | Condition that determines the end of a round (i.e answering all questions right or one wrong)                                                                                  |
