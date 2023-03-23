@@ -6,7 +6,8 @@
 
 This program serves as a text-based multiple choice trivia game, which in the future will
 include various game show format. The user can select to play as many rounds of
-5 question multiple choice trivia as they'd like, however there are some limitations:
+5 question multiple choice trivia as they'd like, with each rounding ending once the user
+has either got all 5 right or answered one incorrectly. However, there are some limitations:
 1. There is only one game mode available to play, single-player multiple choice, but this will
 expand in the future
 2. Each round, the game pulls from the same question pool, so repeat questions are inevitable across
