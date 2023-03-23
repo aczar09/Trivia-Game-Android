@@ -143,6 +143,7 @@ qp -> rmc: return randomQ
 @startuml
 hide footbox
 mainframe sd Configure Game
+actor "User" as us
 actor "User" as us 
 participant "TextUI" as tui 
 participant "Game (controller)" as clr 
@@ -150,6 +151,18 @@ participant "p1: Player" as p1
 tui -> us: num = gameSetUp()
 us -> tui: Inputs number of games to play
 tui --> clr: g = new Game(num)
+ref over clr
+Play Game
+end
+```
+```plantuml
+@startuml
+hide footbox
+mainframe sd Play Game
+actor "User" as us 
+participant "TextUI" as tui 
+participant "Game (controller)" as clr 
+participant "p1: Player" as p1
 clr --> p1: p1 = new Player()
 loop gameCount < g.numGames
 tui -> clr: playSingleGame(g)
@@ -206,10 +219,10 @@ end
 @enduml
 ``` 
 
-```plantuml
-@startuml
-hide footbox 
-mainframe sd Correct output response
-```
+
 qp -> rmc: Question Pool updated
 rmc -> clr: Controller receives question
+
+tui -> us: num = gameSetUp()
+us -> tui: Inputs number of games to play
+tui --> clr: g = new Game(num
