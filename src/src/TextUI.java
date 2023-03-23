@@ -3,9 +3,32 @@ package src.src;
 import java.util.Scanner;
 
 public class TextUI {
+    public int gameSetUp(){
+        Scanner scan = new Scanner(System.in);
+        int num = -1;
+        while(true){
+            try{
+                num = scan.nextInt();
+            }
+            catch(Exception e){
+                System.out.println("Invalid number given. Please give valid number:  ");
+                continue;
+            }
+            return num;
+        }
+    }
+
     public static void main(String[] args) {
+        System.out.print("Welcome to our trivia game\nHow many games would you like to play?\nChoose your number:  ");
         TextUI ui = new TextUI();
-        Game g = new Game(5);
+        //boolean valid = false;
+        Game g = null;
+        int num = ui.gameSetUp();
+        while(num < 1){
+            System.out.println("Invalid number given. Please give valid number:  ");
+            num=ui.gameSetUp();
+        }
+        g = new Game(num);
         int gcount = 0;
         while(gcount < g.numGames){
             ui.playSingleGame(g);
@@ -15,7 +38,6 @@ public class TextUI {
     }
 
     public void playSingleGame(Game g){
-
         Player p1 = new  Player();
         //QuestionPool qp = new QuestionPool();
         RandMultiChoice rmc = new RandMultiChoice();
@@ -32,12 +54,9 @@ public class TextUI {
             System.out.println("Congratulations!! You succesfully answered all " + g.correctRecord + " questions! You're a trivia master!");
         }
 
-
     }
-
     public int getAnswer() {
         Scanner scan = new Scanner(System.in);
-
         while (true) {
             String ans = scan.nextLine();
             ans = ans.toUpperCase();

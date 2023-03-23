@@ -142,6 +142,19 @@ qp -> rmc: return randomQ
 ```plantuml
 @startuml
 hide footbox
+mainframe sd Configure Game
+actor "User" as us 
+participant "TextUI" as tui 
+participant "Game (controller)" as clr 
+tui -> us: num = gameSetUp()
+us -> tui: Inputs number of games to play
+tui --> clr: g = new Game(num)
+tui -> 
+
+```
+```plantuml
+@startuml
+hide footbox
 mainframe sd Play Game Round
 actor "User" as us 
 participant "TextUI" as tui 
@@ -152,13 +165,33 @@ participant "QuestionPool: arraylist" as qp
 clr -> rmc: getQuestion(RandMultiChoice)
 rmc -> qp: qt = QuestionPool.get(int ranIdx)
 rmc -> qp: QuestionPool.remove(int ranIdx)
-qp -> rmc: Question Pool updated
-rmc -> clr: Controller receives question qt
-clr -> tui: Controller provides question for UI
+
+clr -> tui: Provides question for UI
 tui -> us: System prints out question
-tui -> us: ""
-us -> tui: User reads question
-tui ->
+loop !valid
+tui -> us: int index = getAnswer()
+us -> tui: Reads question and inputs response
+end
+tui -> clr: Provides valid answer index
+participant "choices: choice array" as chc
+clr -> chc:\ts = checkAnswer(Question q, int index)
+participant "c: Choice" as cc 
+chc -> cc: correct = choices.get(int index).correct
+clr -> tui: Provides whether index is correct 
+alt correctResponse
+tui -> us: Print("Congrats")
+else !correctResponse
+tui -> us: Print("Failure")
+end
+
 
 @enduml
 ``` 
+
+```plantuml
+@startuml
+hide footbox 
+mainframe sd Correct output response
+```
+qp -> rmc: Question Pool updated
+rmc -> clr: Controller receives question
