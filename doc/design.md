@@ -146,10 +146,22 @@ mainframe sd Configure Game
 actor "User" as us 
 participant "TextUI" as tui 
 participant "Game (controller)" as clr 
+participant "p1: Player" as p1
 tui -> us: num = gameSetUp()
 us -> tui: Inputs number of games to play
 tui --> clr: g = new Game(num)
-tui -> 
+clr --> p1: p1 = new Player()
+tui -> clr: playSingleGame(g)
+loop g.correct && (g.correctRecord < 5)
+ref over clr
+Play Game Round
+end
+end
+alt g.correct
+clr -> p1: p1.wins++
+else !g.correct
+tui -> us: Print("Game Lost")
+end
 
 ```
 ```plantuml
@@ -180,8 +192,10 @@ chc -> cc: correct = choices.get(int index).correct
 clr -> tui: Provides whether index is correct 
 alt correctResponse
 tui -> us: Print("Congrats")
+tui -> clr: g.correctRecord++ 
 else !correctResponse
 tui -> us: Print("Failure")
+tui -> clr: g.correct = false
 end
 
 
