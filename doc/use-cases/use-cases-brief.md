@@ -20,17 +20,8 @@ user chooses until they have a valid number of modes selected
 4. If any rounds are left, repeat process with new game style, otherwise, print final results.
 
 
-### Play Game Round
-1. Game starts
-2. System selects and outputs a question based on given criteria
-3. Player selects an answer
-4. System register answer and compares to correct answer
-4. If answer is correct, System outputs congratulation, otherwise outputs failure
-5. Repeat until given number of questions have been answered without failure, or 
-one question has been answered incorrectly
-6. Output final stats message (questions correct, points earned, etc.)
 
-Use Case: Play Single Player Multiple Choice Game
+Use Case: Play Game Round
 =================================
 **Actors**: Player, Systems, Database
 
@@ -93,7 +84,7 @@ Alternative Courses:
 4. For any question, the user may select to use a hint before answering (50/50, Phone a friend, Ask the audience),
 which will print onto the screen to help the user answer.
 
-Use Case: Choosing Game Modes From the Starting Menu
+Use Case: Configure Game: Non-Random
 =================================
 **Actors**: Player, Systems
 
