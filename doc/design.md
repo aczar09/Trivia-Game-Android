@@ -51,7 +51,7 @@ Game "1 " --down-- " 1 " IGameShow: " is-described-by"
 class RandMultiChoice{
     -questionPool: ArrayList<Question>
 }
-IGameShow"\t   1\n\n\n\n" <|..left.."1\t" RandMultiChoice:" \t\t            is-formatted-by   \t\t\t                    "
+IGameShow"\t   1\n\n\n\n" <|..left.."1\t" RandMultiChoice:" \t\t            is-formatted-by     \t\t\t                    "
 RandMultiChoice "1 "--up-- " * " Question: " are-contained-in"
 Game "1" -up-- "1" TextUI: " interacts with "
 ```
@@ -69,13 +69,13 @@ tui -> us: num = gameSetUp()
 us -> tui: Inputs number of games to play
 tui --> clr: g = new Game(num)
 ref over clr
-Play Game
+Play Games
 end
 ```
 ```plantuml
 @startuml
 hide footbox
-mainframe sd Play Game
+mainframe sd Play Games
 actor "User" as us 
 participant "TextUI" as tui 
 participant "Game (controller)" as clr 
