@@ -12,8 +12,19 @@
  | Low    | Multiplayer Game Mode                 | Not as important, as ot os riskier to implement                                    |
 | Low    | Choosing a Random Game Mode           | Not important, but a cool add-on                                                   |
 | Low    | Post Results                          | Not required to function, but nice added feature                                   |
- 
 
+
+# Iteration 2 Plan
+
+| Rank   | Requirements                         | Comments                                                                                                                                     |
+|--------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| High   | Multiple Game Modes                  | Expanding on the existing structure of the game                                                                                              |
+| High   | Question Database                    | Need to switch over to a format that is more scalable than manually inputting every question into the program                                |
+| Medium | Choosing a game modes                | It is not as important as not every game requires players to choose their category                                                           |
+| Medium | Choosing questions based on criteria | Depending on the game mode, access specific questions based on category, difficulty, etc; Main way game modes feel different from each other |
+| High   | Multiplayer Game Mode                | Not as important, as ot os riskier to implement                                                                                              |
+| Low    | Choosing a Random Game Mode          | Not important, but a cool add-on                                                                                                             |
+| Low    | Post Results                         | Not required to function, but nice added feature                                                                                             |
 
 
 
