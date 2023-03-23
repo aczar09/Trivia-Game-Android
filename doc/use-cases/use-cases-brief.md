@@ -12,14 +12,6 @@ user chooses until they have a valid number of modes selected
 
 
 
-### Play Game Rounds
-1. Configure game
-2. Game starts
-2. Player plays a game round until end conditions are met (all answered correctly, one wrong answer, etc)
-3. Results are printed for the round
-4. If any rounds are left, repeat process with new game style, otherwise, print final results.
-
-
 
 Use Case: Play Game Round
 =================================
@@ -84,7 +76,7 @@ Alternative Courses:
 4. For any question, the user may select to use a hint before answering (50/50, Phone a friend, Ask the audience),
 which will print onto the screen to help the user answer.
 
-Use Case: Configure Game: Non-Random
+Use Case: Configure Game
 =================================
 **Actors**: Player, Systems
 
@@ -112,7 +104,7 @@ Typical course of events:
 ```plantuml
 @startuml
 scale max 600 height
-title Choosing Game Modes From the Starting Menu
+title Configure Game
 'define swimlanes
 |#technology|Player|
 |#implementation|System|
@@ -121,6 +113,8 @@ start
 :Prints start menu, offers selection of number of game shows;
 |Player|
 :Select the number of game-shows they'd like to play;
+if(Select random generated game shows?) then (no)
+
 while(Has number of game shows been chosen?) is (no)
 |System|
 :Prints out a selection of game shows to choose from;
@@ -133,6 +127,12 @@ if(Has a valid selection been made?) then (yes)
 endif
 end while
 endwhile
+else (yes)
+:Generate list of gameshows;
+endif
+|Player|
+:Confirm selection;
+|System|
 : Return list of game shows;
 Stop
 
@@ -142,3 +142,59 @@ Alternative Courses:
 -----------
 1. User may select and then deselect a given game show.
 2. User may exit the game at any given moment
+3. User may reshuffle random gameshows
+
+Use Case: Play Multiple Game Rounds
+=================================
+**Actors**: Player, Systems, Database
+
+**Priority**: High
+
+**Level** : User goal
+
+**Scope**: Software system
+
+**The Primary Actor**: User playing the game
+
+**Purpose**: To play multiple rounds of trivia games
+
+**Type**: Primary
+
+**Preconditions**: User has chosen to play a multiple game modes
+
+**Post-condition**: User will have completed multiple games of trivia on their record.
+
+**Overview**: After the game configures, the game presents multiple rounds of trivia game modes in a sequence.
+After completing each round, the next game mode will be played until there is no more rounds to be played.
+## Typical course of events:
+
+```plantuml
+@startuml
+
+scale max 600 height
+title Play Multiple Game Rounds 
+'define swimlanes
+|#technology|Player|
+|#implementation|System|
+|System|
+start
+:Configure game;
+:Game starts with first given game mode;
+while(Number of rounds has been reached?) is (no)
+|Player|
+:Play Game Round;
+|System|
+:Update number of rounds completed;
+:Change to next game mode, if applicable;
+endwhile
+:Output final stats message (questions correct, points earned, etc.);
+Stop
+
+@enduml
+
+```
+
+Alternative Courses:
+-----------
+1. User may quit in the middle of the game
+
