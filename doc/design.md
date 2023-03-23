@@ -151,6 +151,7 @@ tui -> us: num = gameSetUp()
 us -> tui: Inputs number of games to play
 tui --> clr: g = new Game(num)
 clr --> p1: p1 = new Player()
+loop gameCount < g.numGames
 tui -> clr: playSingleGame(g)
 loop g.correct && (g.correctRecord < 5)
 ref over clr
@@ -159,8 +160,11 @@ end
 end
 alt g.correct
 clr -> p1: p1.wins++
+tui -> us: Print("Game Won")
 else !g.correct
 tui -> us: Print("Game Lost")
+end
+tui -> clr: g.resetGame()
 end
 
 ```
