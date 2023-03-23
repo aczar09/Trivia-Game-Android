@@ -24,7 +24,7 @@ The game should also be able to provide answer choices and register
 the user's answers at a quick rate as well. We do not need long time 
 lapses as efficient and smooth performance is needed. 
 # Supportability
-The user will be able to continuously be fed new questions until they've reached the 10 question limit or got a
+The user will be able to continuously be fed new questions until they've reached the 5 question limit or got a
 question incorrect. We want to make sure that our app will be able to allow a player to finish one came and still
 be able to run the next, without the app crashing. This support is necessary for the app to run smoothly.
 # Implementation 
@@ -32,10 +32,10 @@ Our game must run on Android devices. Also, our game must be written using Java.
 game shows to choose from, so we want to ensure that it has the capability of doing so. We also want a multiplayer
 feature, so that also adds onto the capabilities that we want to add.
 # Interface
-We have to pull questions from an outside database/interface. That way we can easily
-put them into our game, making much easier to design. It is important that this interface provides a 
-structure where we can easily pull questions of various categories and give valid solutions
-to them. 
+We have to pull questions from an outside database/interface. At this point, we will likely create or find a large
+.csv file or .txt file of trivia questions which we will parse through to find questions and create our database. 
+That way we can easily  put them into our game, making much easier to design. It is important that this interface provides a 
+structure where we can easily pull questions of various categories and give valid solutions  to them. 
 # Legal
 We need to ensure that the questions that we use are legal, in the sense they
 could be privatized. Also, when designing our game, we have to avoid legal restrictions

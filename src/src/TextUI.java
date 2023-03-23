@@ -5,13 +5,14 @@ import java.util.Scanner;
 public class TextUI {
     public int gameSetUp(){
         Scanner scan = new Scanner(System.in);
-        int num = -1;
+        int num;
         while(true){
             try{
                 num = scan.nextInt();
             }
             catch(Exception e){
                 System.out.println("Invalid number given. Please give valid number:  ");
+                scan.nextLine();
                 continue;
             }
             return num;
@@ -22,7 +23,7 @@ public class TextUI {
         System.out.print("Welcome to our trivia game\nHow many games would you like to play?\nChoose your number:  ");
         TextUI ui = new TextUI();
         //boolean valid = false;
-        Game g = null;
+        Game g;
         int num = ui.gameSetUp();
         while(num < 1){
             System.out.println("Invalid number given. Please give valid number:  ");
@@ -38,7 +39,7 @@ public class TextUI {
     }
 
     public void playSingleGame(Game g){
-        Player p1 = new  Player();
+        //Player p1 = new  Player();
         //QuestionPool qp = new QuestionPool();
         RandMultiChoice rmc = new RandMultiChoice();
         while((g.correct) && (g.correctRecord < 5)){

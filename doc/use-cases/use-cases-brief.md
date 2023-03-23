@@ -1,6 +1,6 @@
 # Brief Use Cases
 
-## Configure Game
+### Configure Game
 1. Game opening screen is shown
 2. Player decides how many round they'd like to play
 3. System outputs receives multiple options of style of game to choose
@@ -11,12 +11,8 @@ user chooses until they have a valid number of modes selected
 
 
 
-### Play Game Round
-1.
 
-## Single Player
-
-### Play Multiple Game ROunds
+### Play Game Rounds
 1. Configure game
 2. Game starts
 2. Player plays a game round until end conditions are met (all answered correctly, one wrong answer, etc)
@@ -34,7 +30,7 @@ user chooses until they have a valid number of modes selected
 one question has been answered incorrectly
 6. Output final stats message (questions correct, points earned, etc.)
 
-Use Case: Playing Single Player Multiple Choice Game
+Use Case: Play Single Player Multiple Choice Game
 =================================
 **Actors**: Player, Systems, Database
 
@@ -94,7 +90,8 @@ Alternative Courses:
 1. Question may be selected based on user's decision or by random generation based on a game's format
 2. User may answer free response or multiple choice
 3. User may exit the game at any given moment
-4. For any question,
+4. For any question, the user may select to use a hint before answering (50/50, Phone a friend, Ask the audience),
+which will print onto the screen to help the user answer.
 
 Use Case: Choosing Game Modes From the Starting Menu
 =================================
@@ -130,7 +127,7 @@ title Choosing Game Modes From the Starting Menu
 |#implementation|System|
 |System|
 start
-:Presents start menu;
+:Prints start menu, offers selection of number of game shows;
 |Player|
 :Select the number of game-shows they'd like to play;
 while(Has number of game shows been chosen?) is (no)
@@ -145,15 +142,11 @@ if(Has a valid selection been made?) then (yes)
 endif
 end while
 endwhile
-
-stop
+: Return list of game shows;
+Stop
 
 @enduml
 ```
-"system presents available game styles", 
-"user selects styles they want", 
-"system validates selection not empty, outputs error and asks to try again, 
-otherwise records selection, the end."
 Alternative Courses:
 -----------
 1. User may select and then deselect a given game show.

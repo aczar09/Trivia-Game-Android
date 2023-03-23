@@ -143,7 +143,8 @@ Yes, as the user input the correct answer for all the questions in the round,
 thus resulting in corresponding congratulations message being printed
 
 ## Test 5: Questions Choices Shuffled
-### User Input: User inputs the same response/answer choice for the same question
+### User Input: 
+User inputs the same response/answer choice for the same question
 ### Output:
 ```
 Food & Drink: 
