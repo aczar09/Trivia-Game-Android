@@ -8,6 +8,7 @@ class TextUI{
 +main(String[] args): void
 + playSingleGame(Game g): void
 + getAnswer(): int
++ gameSetUp(): int
 }
 class Game{
     -numGames: int
@@ -15,6 +16,8 @@ class Game{
     - correctRecord = 0: int
 --
     + checkAnswer(Question q, int index): String
+    + getQuestion(RandMultiChoice rmc): Question
+    + resetGame(): void
 }
 class Question{
     -prompt: String
@@ -39,8 +42,7 @@ class Player{
 -wins: int
 }
 interface IGameShow{
---
-    getQuestion(): Question
+
 }
 Game "1" ---left-- "*" Question : "                         are-contained-in                        "
 Question "\t1" -left-->"(1..*)" Choice:choices\n{random order, arrayList}
@@ -48,11 +50,8 @@ Game "1\t" --right-- "1..*" Player: "      requires         "
 Game "1 " --down-- " 1 " IGameShow: " is-described-by"
 class RandMultiChoice{
     -questionPool: ArrayList<Question>
-    --
-    +getQuestion(): Question
-    +getQuestion(String category, String difficulty, String questionType): Question
 }
-IGameShow"\t   1\n\n\n\n" <|..left.."1\t" RandMultiChoice:"        is-formatted-by                    "
+IGameShow"\t   1\n\n\n\n" <|..left.."1\t" RandMultiChoice:" \t\t            is-formatted-by   \t\t\t                    "
 RandMultiChoice "1 "--up-- " * " Question: " are-contained-in"
 Game "1" -up-- "1" TextUI: " interacts with "
 ```
