@@ -11,6 +11,7 @@ include various game show format. The user can select to play as many rounds of
 expand in the future
 2. Each round, the game pulls from the same question pool, so repeat questions are inevitable across
 rounds, but not within rounds themselves
+3. No data persistence as of right now, every time the game starts, previous results aren't kept track of
 
 
 
