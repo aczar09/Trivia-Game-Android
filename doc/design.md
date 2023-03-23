@@ -1,14 +1,4 @@
-| Class           | Methods                | Fields                                                              |
-|-----------------|------------------------|---------------------------------------------------------------------|
-| Game            | PlaySingleGame() <br/> |                                                                     |
-| Player          |                        |                                                                     |
-| Question        |                        | Physical ? :: String. <br/>Choices: a, b ,c, d <br/> Correct Answer |
-| Response Record |                        |                                                                     |
-|                 |                        |                                                                     |
-|                 |                        |                                                                     |
-| Stats Record    |                        |                                                                     |   
 
-/* Have to think about a controller, one for answering questions and processing questions, and choosing/outputting questions*/
 ```plantuml
 title Class Diagram
 ' classes
