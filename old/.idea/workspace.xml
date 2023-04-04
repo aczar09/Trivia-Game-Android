@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ef8533af-ef14-49b0-b427-e245f60885e0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/team-2c.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/team-2c.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/androidTest/java/com/example/team_2c_android/ExampleInstrumentedTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/java/com/example/team_2c_android/Choice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/java/com/example/team_2c_android/FirstFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/java/com/example/team_2c_android/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/java/com/example/team_2c_android/IGameShow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/java/com/example/team_2c_android/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/java/com/example/team_2c_android/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/java/com/example/team_2c_android/Question.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/java/com/example/team_2c_android/RandMultiChoice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/java/com/example/team_2c_android/SecondFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/java/com/example/team_2c_android/TextUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/layout/content_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/layout/fragment_first.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/layout/fragment_second.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/mipmap-anydpi-v33/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/values-land/dimens.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/values-night/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/values-w1240dp/dimens.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/values-w600dp/dimens.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/values/dimens.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/values/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/xml/backup_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/main/res/xml/data_extraction_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/app/src/test/java/com/example/team_2c_android/ExampleUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team-2C-ANDROID/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/.idea/doc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/design.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/glossary.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/iteration-plan.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/nonfunctional-spec.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/test-report-elaboration-phase.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/test-report.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/use-cases/.Rhistory" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/use-cases/configure-game.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/use-cases/play-game-round-use-case.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/use-cases/play-multiple-rounds-use-case.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/use-cases/use-cases-brief.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/vision.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/Choice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/IGameShow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/Question.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/RandMultiChoice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/TextUI.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2NeijDPNd1IDGxMiK8rpNcKXrpt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;android-custom-view/home/aczarkowski/StudioProjects/team-2c/androidx/coordinatorlayout/widget/CoordinatorLayout.java_SELECTED&quot;: &quot;CoordinatorLayout&quot;,
+    &quot;android-custom-view/home/aczarkowski/StudioProjects/team-2c/com/google/android/material/appbar/AppBarLayout.java_SELECTED&quot;: &quot;AppBarLayout&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/aczarkowski/StudioProjects/team-2c/Team-2C-ANDROID&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.google.android.material.appbar" />
+      <recent name="androidx.coordinatorlayout.widget" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ef8533af-ef14-49b0-b427-e245f60885e0" name="Changes" comment="" />
+      <created>1680031082339</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680031082339</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
