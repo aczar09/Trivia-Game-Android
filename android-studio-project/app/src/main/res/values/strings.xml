@@ -2,4 +2,22 @@
     <string name="app_name">Trivia Game</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="game_name">Welcome to Trivia Time</string>
+
+    <string name="gm_option_ask">Please choose one of the following game-modes:</string>
+
+    <string name="to_be_millionaire">Who wants to be a Millionaire?</string>
+
+    <string name="rand_mode">Random</string>
+
+    <string name="more_info">More Information</string>
+
+    <string name="gm_info">Game-Mode Information</string>
+
+    <string name="go_back">Go Back</string>
+
+    <string name="millionaire_info">This is a game-show based on answering
+    5 consecutive questions correctly. If a player gets a question wrong at any time, then the game is over.
+    If a player is able to answer 5 consecutive questions, then they make it to the top!</string>
 </resources>
