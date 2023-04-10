@@ -1,4 +1,4 @@
-package edu.vassar.cmpu203.triviagame;
+package edu.vassar.cmpu203.triviagame.view;
 
 import android.view.View;
 

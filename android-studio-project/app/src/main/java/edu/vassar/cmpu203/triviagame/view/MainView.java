@@ -1,4 +1,4 @@
-package edu.vassar.cmpu203.triviagame;
+package edu.vassar.cmpu203.triviagame.view;
 
 import android.view.View;
 
@@ -12,7 +12,7 @@ import edu.vassar.cmpu203.triviagame.databinding.MainBinding;
 /**
  * An implementation of the application's screen template.
  */
-public class MainView implements IMainView{
+public class MainView implements IMainView {
 
     FragmentManager fmanager; // lets us perform fragment transactions
     MainBinding binding;  // gives us access to all the graphical components in res/layout/main.xml
