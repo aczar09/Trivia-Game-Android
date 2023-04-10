@@ -24,4 +24,6 @@
     <string name="q_title">QUESTION</string>
 
     <string name="of_count">OF 5</string>
+
+    <string name="g_won">CONGRATS! YOU WON THE GAME! YOU\'RE A TRIVIA MASTER!</string>
 </resources>
