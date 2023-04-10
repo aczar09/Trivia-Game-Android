@@ -36,4 +36,8 @@
     <string name="you_lost">Sorry! Game Over!</string>
 
     <string name="correct_ans">The correct answer was:</string>
+
+    <string name="right">CORRECT!!!</string>
+
+    <string name="next">NEXT</string>
 </resources>
