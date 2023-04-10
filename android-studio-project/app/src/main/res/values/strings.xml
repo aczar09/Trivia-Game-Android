@@ -26,4 +26,14 @@
     <string name="of_count">OF 5</string>
 
     <string name="g_won">CONGRATS! YOU WON THE GAME! YOU\'RE A TRIVIA MASTER!</string>
+
+    <string name="play_again">Would you like to play again?</string>
+
+    <string name="yes">Yes</string>
+
+    <string name="menu">Menu</string>
+
+    <string name="you_lost">Sorry! Game Over!</string>
+
+    <string name="correct_ans">The correct answer was:</string>
 </resources>
