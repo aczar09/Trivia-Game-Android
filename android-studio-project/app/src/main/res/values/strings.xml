@@ -17,9 +17,11 @@
 
     <string name="go_back">Go Back</string>
 
-    <string name="millionaire_info">This is a game-show based on answering
-    5 consecutive questions correctly. If a player gets a question wrong at any time, then the game is over.
-    If a player is able to answer 5 consecutive questions, then they make it to the top!</string>
+    <string name="millionaire_info">This is a game-show based on answering 5 consecutive questions correctly. If a player gets a question wrong at any time, then the game is over. If a player is able to answer 5 consecutive questions, then they make it to the top!</string>
 
     <string name="response">Please choose one of the following:</string>
+
+    <string name="q_title">QUESTION</string>
+
+    <string name="of_count">OF 5</string>
 </resources>
