@@ -40,4 +40,6 @@
     <string name="right">CORRECT!!!</string>
 
     <string name="next">NEXT</string>
+
+    <string name="submit">Submit</string>
 </resources>
