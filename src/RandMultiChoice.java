@@ -1,14 +1,13 @@
-package edu.vassar.cmpu203.triviagame.model;
+package src.src;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class RandMultiChoice implements IGameShow {
-    QuestionDatabase database = new QuestionDatabase();
-    ArrayList<Question> qp = database.questions;
-    public RandMultiChoice() throws Exception {
+    ArrayList<Question> qp = new ArrayList<>();
+    public RandMultiChoice(){
 
-        /*Question q1 = new Question("When was the first Call of Duty title released?", "hard","Entertainment","mcq",
+        Question q1 = new Question("When was the first Call of Duty title released?", "hard","Entertainment","mcq",
                 new Choice("December 1, 2003",false),new Choice("November 14, 2002",false),
                 new Choice("July 18, 2004",false),new Choice("October 29, 2003",true));
         qp.add(q1);
@@ -29,7 +28,7 @@ public class RandMultiChoice implements IGameShow {
         qp.add(q4);
 
         Question q5 = new Question("By definition, where does an abyssopelagic animal live?", "easy","Animals","mcq",
-                new Choice("On top of a mountain",false),new Choice("Inside a tree",false),
+        new Choice("On top of a mountain",false),new Choice("Inside a tree",false),
                 new Choice("In the desert",false),new Choice("At the bottom of the ocean",true));
         qp.add(q5);
 
@@ -122,10 +121,9 @@ public class RandMultiChoice implements IGameShow {
         qp.add(q22);
 
         Question q23 = new Question("How old was Muhammad Ali when he died?", "medium","Celebrities","mcq",
-                new Choice("N/A (Still alive)",false),new Choice("61",false),
-                new Choice("56",false),new Choice("74",true));
-        qp.add(q23);*/
-
+        new Choice("N/A (Still alive)",false),new Choice("61",false),
+        new Choice("56",false),new Choice("74",true));
+        qp.add(q23);
 
         Collections.shuffle(qp);
     }
