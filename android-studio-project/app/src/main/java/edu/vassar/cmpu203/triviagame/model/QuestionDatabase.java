@@ -24,7 +24,7 @@ public class QuestionDatabase {
         int added = 0;
 
         try {
-            while (s.hasNextLine() && added != 100) {
+            while (s.hasNextLine()) {
                 String q = s.nextLine();
                 if (q.length() > 0 && q.charAt(0) == '#') { //checks for start of a question
                     //System.out.println(q);
