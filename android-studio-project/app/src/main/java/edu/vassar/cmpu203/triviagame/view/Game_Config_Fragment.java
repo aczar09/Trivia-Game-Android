@@ -15,7 +15,7 @@ import edu.vassar.cmpu203.triviagame.R;
  * Use the {@link Game_Config_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Game_Config_Fragment extends Fragment {
+public class Game_Config_Fragment extends Fragment implements IGameConfig {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +28,10 @@ public class Game_Config_Fragment extends Fragment {
 
     public Game_Config_Fragment() {
         // Required empty public constructor
+    }
+
+    public Game_Config_Fragment(Listener listener){
+        this.listener = listener;
     }
 
     /**
