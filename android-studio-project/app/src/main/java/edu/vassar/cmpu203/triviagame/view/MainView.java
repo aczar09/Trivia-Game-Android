@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import edu.vassar.cmpu203.triviagame.databinding.MainBinding;
+import edu.vassar.cmpu203.triviagame.databinding.ActivityMainBinding;
 
 /**
  * An implementation of the application's screen template.
@@ -15,7 +15,7 @@ import edu.vassar.cmpu203.triviagame.databinding.MainBinding;
 public class MainView implements IMainView {
 
     FragmentManager fmanager; // lets us perform fragment transactions
-    MainBinding binding;  // gives us access to all the graphical components in res/layout/main.xml
+    ActivityMainBinding binding;  // gives us access to all the graphical components in res/layout/main.xml
 
     /**
      * Constructor method.
@@ -23,7 +23,7 @@ public class MainView implements IMainView {
      */
     public MainView(FragmentActivity activity){
         this.fmanager = activity.getSupportFragmentManager();
-        this.binding = MainBinding.inflate(activity.getLayoutInflater());
+        this.binding = ActivityMainBinding.inflate(activity.getLayoutInflater());
     }
 
     /**

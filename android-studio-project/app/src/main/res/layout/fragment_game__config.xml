@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.Game_Config_Fragment">
+    tools:context=".view.GameConfigFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -37,14 +37,16 @@
         app:layout_constraintTop_toBottomOf="@+id/game_name" />
 
     <LinearLayout
-        android:layout_width="416dp"
+        android:layout_width="match_parent"
         android:layout_height="391dp"
         android:layout_marginBottom="24dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/wwmbutton"
             android:layout_width="match_parent"
             android:layout_height="81dp"
             android:text="@string/to_be_millionaire"

@@ -101,10 +101,9 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/questiontext"
         android:layout_width="match_parent"
         android:layout_height="282dp"
-        android:text="Actual Question"
         app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
         tools:layout_editor_absoluteX="0dp" />
