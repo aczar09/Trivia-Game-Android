@@ -72,6 +72,18 @@ public class GameConfigFragment extends Fragment implements IGameConfigView {
                 //GameConfigFragment.this.listener.on
             }
         });
+        this.binding.randbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        this.binding.moreinfobutton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+
+            }
+        });
         //return View.inflate(R.layout.fragment_game__config, this, false);
     }
 }

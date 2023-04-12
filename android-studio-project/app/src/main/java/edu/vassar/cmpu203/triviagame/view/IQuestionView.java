@@ -7,7 +7,7 @@ public interface IQuestionView {
     interface Listener {
 
 
-        void onAnswerChoice();
+        //void onAnswerChoice();
 
         void onSubmit();
 
