@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import edu.vassar.cmpu203.triviagame.model.IGameShow;
+import edu.vassar.cmpu203.triviagame.model.RandMultiChoice;
 import edu.vassar.cmpu203.triviagame.view.GameConfigFragment;
 import edu.vassar.cmpu203.triviagame.view.Game_Lost_Fragment;
 import edu.vassar.cmpu203.triviagame.view.Game_Mode_Fragment;
@@ -23,6 +25,10 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
  IGameWonView.Listener, IQuestionView.Listener {
 
     private IMainView mainView; // a reference to the main screen template
+    private IGameShow questionBase = new RandMultiChoice();
+
+    public MainActivity() throws Exception {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
