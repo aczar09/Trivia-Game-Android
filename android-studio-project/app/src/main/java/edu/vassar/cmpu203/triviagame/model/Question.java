@@ -9,7 +9,7 @@ public class Question {
 
     String category;
     String questionType;
-    ArrayList<Choice> choices = new ArrayList<>();
+    List<Choice> choices = new ArrayList<>();
 
     public Question(String prompt, String category, String questionType, Choice c1, Choice c2, Choice c3, Choice c4){
         this.prompt = prompt;

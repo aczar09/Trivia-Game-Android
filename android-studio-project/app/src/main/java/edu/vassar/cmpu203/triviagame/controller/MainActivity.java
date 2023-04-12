@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import edu.vassar.cmpu203.triviagame.model.IGameShow;
+import edu.vassar.cmpu203.triviagame.model.Player;
+import edu.vassar.cmpu203.triviagame.model.QuestionDatabase;
 import edu.vassar.cmpu203.triviagame.model.RandMultiChoice;
 import edu.vassar.cmpu203.triviagame.view.GameConfigFragment;
 import edu.vassar.cmpu203.triviagame.view.Game_Lost_Fragment;
@@ -25,9 +27,29 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
  IGameWonView.Listener, IQuestionView.Listener {
 
     private IMainView mainView; // a reference to the main screen template
-    private IGameShow questionBase = new RandMultiChoice();
+    //private IGameShow questionBase = new RandMultiChoice();
 
-    public MainActivity() throws Exception {
+    private Player player = new Player();
+    public QuestionDatabase qb;
+
+    {
+        try {
+            qb = new QuestionDatabase();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private IGameShow database;
+
+    /**
+     * Method made to avoid the throw exception problem
+     * @throws Exception
+     */
+    private void registerDatabase() throws Exception {
+        this.database = new RandMultiChoice();
+    }
+    public MainActivity(){
     }
 
     @Override
