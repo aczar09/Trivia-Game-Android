@@ -2,10 +2,11 @@ package edu.vassar.cmpu203.triviagame.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class RandMultiChoice implements IGameShow {
     QuestionDatabase database = new QuestionDatabase();
-    ArrayList<Question> qp = database.questions;
+    List<Question> qp = database.questions;
     public RandMultiChoice() throws Exception {
 
         /*Question q1 = new Question("When was the first Call of Duty title released?", "hard","Entertainment","mcq",

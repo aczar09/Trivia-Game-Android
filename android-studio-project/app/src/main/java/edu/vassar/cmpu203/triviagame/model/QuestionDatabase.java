@@ -3,10 +3,11 @@ package edu.vassar.cmpu203.triviagame.model;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class QuestionDatabase {
-    ArrayList<Question> questions = new ArrayList<>();
+    List<Question> questions = new ArrayList<>();
     public QuestionDatabase() throws Exception{
         File[] fileList = new File("/home/pcrisostomosuarez/Desktop/cs203/team-2c/android-studio-project/app/src/main/java/edu/vassar/cmpu203/triviagame/model/question categories").listFiles();
         assert fileList != null;
