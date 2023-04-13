@@ -1,18 +1,16 @@
 package edu.vassar.cmpu203.triviagame.controller;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import edu.vassar.cmpu203.triviagame.model.IGameShow;
 import edu.vassar.cmpu203.triviagame.model.Player;
 import edu.vassar.cmpu203.triviagame.model.Question;
-import edu.vassar.cmpu203.triviagame.model.QuestionDatabase;
 import edu.vassar.cmpu203.triviagame.model.RandMultiChoice;
 import edu.vassar.cmpu203.triviagame.view.GameConfigFragment;
 import edu.vassar.cmpu203.triviagame.view.Game_Lost_Fragment;
 import edu.vassar.cmpu203.triviagame.view.Game_Mode_Fragment;
-import edu.vassar.cmpu203.triviagame.view.Game_Won_Fragment;
 import edu.vassar.cmpu203.triviagame.view.ICorrectAnsView;
 import edu.vassar.cmpu203.triviagame.view.IGameConfigView;
 import edu.vassar.cmpu203.triviagame.view.IGameLostView;
@@ -32,7 +30,15 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
     private Player player = new Player();
     private Question activeQuestion;
-    //public IGameShow questionBase = new RandMultiChoice();
+    public IGameShow questionBase;
+
+    {
+        try {
+            questionBase = new RandMultiChoice();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private IGameShow database;
 
@@ -59,6 +65,12 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onWWM(){
+       /* try {
+            registerDatabase();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }*/
+
         QuestionFragment questionFragment = new QuestionFragment();
         this.mainView.displayFragment(questionFragment, false, "first-question");
     }

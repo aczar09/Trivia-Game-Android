@@ -1,25 +1,25 @@
 package edu.vassar.cmpu203.triviagame.view;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import edu.vassar.cmpu203.triviagame.R;
 import edu.vassar.cmpu203.triviagame.databinding.FragmentQuestionBinding;
+import edu.vassar.cmpu203.triviagame.model.Question;
 
 
 public class QuestionFragment extends Fragment implements IQuestionView{
     private FragmentQuestionBinding binding;
 
-
+    private Question question;
 
     private Listener listener;
 
@@ -27,10 +27,12 @@ public class QuestionFragment extends Fragment implements IQuestionView{
 
     }
 
-    public QuestionFragment(Listener listener){
+    public QuestionFragment(Listener listener, Question question){
         this.listener = listener;
+        this.question = question;
         //questionPrompt = (TextView) getView().findViewById(R.id.questiontext);
     }
+
 
     @Nullable
     @Override

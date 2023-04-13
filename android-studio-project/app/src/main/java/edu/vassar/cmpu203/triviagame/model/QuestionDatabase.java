@@ -50,9 +50,9 @@ public class QuestionDatabase {
                         Choice cChoice = new Choice(c, c.equals(correct));
                         String d = s.nextLine().substring(2);//scans last answer choice
                         Choice dChoice = new Choice(d, d.equals(correct));
-                        Question ques = new Question(q, category, "mcq", aChoice, bChoice, cChoice, dChoice);
+                        //Question ques = new Question(q, category, "mcq", aChoice, bChoice, cChoice, dChoice);
                         added++;
-                        this.questions.add(ques);
+                        //this.questions.add(ques);
                         //System.out.println(ques);
                     }
 
