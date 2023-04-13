@@ -19,7 +19,7 @@ import edu.vassar.cmpu203.triviagame.model.Question;
 public class QuestionFragment extends Fragment implements IQuestionView{
     private FragmentQuestionBinding binding;
 
-    private Question question;
+    //private Question question;
 
     private Listener listener;
 
@@ -27,15 +27,15 @@ public class QuestionFragment extends Fragment implements IQuestionView{
 
     }
 
-    public QuestionFragment(Listener listener, Question question){
+    public QuestionFragment(Listener listener){
         this.listener = listener;
-        this.question = question;
+        //this.question = question;
         //questionPrompt = (TextView) getView().findViewById(R.id.questiontext);
     }
 
-    public void setQuestion(Question q){
-        this.question = q;
-    }
+    //public void setQuestion(Question q){
+       // this.question = q;
+    //}
 
     @Nullable
     @Override
@@ -52,15 +52,11 @@ public class QuestionFragment extends Fragment implements IQuestionView{
     }
 
 
-    public void setQuestionDisplay(){
+    public void setQuestionDisplay(Question question){
         this.binding.questiontext.setText(question.getPrompt());
-        RadioButton choice1 = this.binding.getRoot().findViewById(R.id.radioButton);
-        choice1.setText(question.getChoice(0).toString());
-        RadioButton choice2 = this.binding.getRoot().findViewById(R.id.radioButton2);
-        choice2.setText(question.getChoice(1).toString());
-        RadioButton choice3 = this.binding.getRoot().findViewById(R.id.radioButton3);
-        choice3.setText(question.getChoice(2).toString());
-        RadioButton choice4 = this.binding.getRoot().findViewById(R.id.radioButton4);
-        choice4.setText(question.getChoice(3).toString());
+        this.binding.radioButton.setText(question.getChoice(0).toString());
+        this.binding.radioButton2.setText(question.getChoice(1).toString());
+        this.binding.radioButton3.setText(question.getChoice(2).toString());
+        this.binding.radioButton4.setText(question.getChoice(3).toString());
     }
 }

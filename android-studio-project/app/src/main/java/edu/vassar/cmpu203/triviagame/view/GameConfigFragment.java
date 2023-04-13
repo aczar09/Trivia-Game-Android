@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.vassar.cmpu203.triviagame.R;
+//import edu.vassar.cmpu203.triviagame.R;
 import edu.vassar.cmpu203.triviagame.databinding.FragmentGameConfigBinding;
 
 
@@ -72,18 +72,8 @@ public class GameConfigFragment extends Fragment implements IGameConfigView {
                 GameConfigFragment.this.listener.onWWM();
             }
         });
-        this.binding.randbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GameConfigFragment.this.listener.onRandom();
-            }
-        });
-        this.binding.moreinfobutton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                GameConfigFragment.this.listener.onMoreInfo();
-            }
-        });
+        this.binding.randbutton.setOnClickListener(view1 -> GameConfigFragment.this.listener.onRandom());
+        this.binding.moreinfobutton.setOnClickListener(view12 -> GameConfigFragment.this.listener.onMoreInfo());
         //return View.inflate(R.layout.fragment_game__config, this, false);
     }
 }

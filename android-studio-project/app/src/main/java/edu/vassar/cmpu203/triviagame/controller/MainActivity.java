@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         this.setContentView(mainView.getRootView());
         this.mainView.displayFragment(new GameConfigFragment(this),true, "game-config");
     }
+    public void setCurQuestion(){
+        activeQuestion = this.questionBase.getQuestion();
+    }
 
     /**
      * Takes the user to the first question screen fragment
@@ -72,8 +75,10 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         }*/
 
         QuestionFragment questionFragment = new QuestionFragment();
-        questionFragment.setQuestion(questionBase.getQuestion());
-        questionFragment.setQuestionDisplay();
+        setCurQuestion();
+        questionFragment.setQuestionDisplay(this.activeQuestion);
+        //questionFragment.setQuestion(questionBase.getQuestion());
+        //questionFragment.setQuestionDisplay();
         this.mainView.displayFragment(questionFragment, false, "first-question");
     }
 
