@@ -107,7 +107,8 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
     @Override
     public void onGoBack(){
-        onMenu();
+        GameConfigFragment gameConfigFragment = new GameConfigFragment();
+        this.mainView.displayFragment(gameConfigFragment, false, "back-to-menu");
     }
 
     @Override

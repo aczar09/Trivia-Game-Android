@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import edu.vassar.cmpu203.triviagame.R;
@@ -35,6 +36,12 @@ public class Game_Mode_Fragment extends Fragment implements IGameModeView{
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        this.binding.gobackbutton.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Game_Mode_Fragment.this.listener.onGoBack();
+            }
 
+        });
     }
 }
