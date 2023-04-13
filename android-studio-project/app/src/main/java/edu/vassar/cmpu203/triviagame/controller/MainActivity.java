@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import edu.vassar.cmpu203.triviagame.model.IGameShow;
 import edu.vassar.cmpu203.triviagame.model.Player;
+import edu.vassar.cmpu203.triviagame.model.Question;
 import edu.vassar.cmpu203.triviagame.model.QuestionDatabase;
 import edu.vassar.cmpu203.triviagame.model.RandMultiChoice;
 import edu.vassar.cmpu203.triviagame.view.GameConfigFragment;
@@ -30,15 +31,8 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     //private IGameShow questionBase = new RandMultiChoice();
 
     private Player player = new Player();
-    public QuestionDatabase qb;
-
-    {
-        try {
-            qb = new QuestionDatabase();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+    private Question activeQuestion;
+    //public IGameShow questionBase = new RandMultiChoice();
 
     private IGameShow database;
 
