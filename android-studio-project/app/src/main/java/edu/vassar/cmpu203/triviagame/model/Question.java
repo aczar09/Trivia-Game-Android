@@ -34,7 +34,16 @@ public class Question {
         }
         return s;
     }
+    public String getPrompt(){
+        return prompt;
+    }
 
+    public Choice getChoice(int i){
+        if(i >= 0 && i < 4){
+            return choices.get(i);
+        }
+        return null;
+    }
     public boolean isCorrect(int selection){
         return choices.get(selection).getCorrect();
     }

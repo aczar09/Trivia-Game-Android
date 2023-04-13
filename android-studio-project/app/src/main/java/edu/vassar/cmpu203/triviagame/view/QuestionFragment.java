@@ -33,27 +33,34 @@ public class QuestionFragment extends Fragment implements IQuestionView{
         //questionPrompt = (TextView) getView().findViewById(R.id.questiontext);
     }
 
+    public void setQuestion(Question q){
+        this.question = q;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         this.binding = FragmentQuestionBinding.inflate(inflater);
         //questionPrompt
-        TextView questionPrompt = this.binding.getRoot().findViewById(R.id.questiontext);
-        questionPrompt.setText("This has changed");
-        RadioButton choice1 = this.binding.getRoot().findViewById(R.id.radioButton);
-        choice1.setText("choice1");
-        RadioButton choice2 = this.binding.getRoot().findViewById(R.id.radioButton2);
-        choice2.setText("choice2");
-        RadioButton choice3 = this.binding.getRoot().findViewById(R.id.radioButton3);
-        choice3.setText("choice3");
-        RadioButton choice4 = this.binding.getRoot().findViewById(R.id.radioButton4);
-        choice4.setText("choice4");
+
         return this.binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
 
+    }
+
+
+    public void setQuestionDisplay(){
+        this.binding.questiontext.setText(question.getPrompt());
+        RadioButton choice1 = this.binding.getRoot().findViewById(R.id.radioButton);
+        choice1.setText(question.getChoice(0).toString());
+        RadioButton choice2 = this.binding.getRoot().findViewById(R.id.radioButton2);
+        choice2.setText(question.getChoice(1).toString());
+        RadioButton choice3 = this.binding.getRoot().findViewById(R.id.radioButton3);
+        choice3.setText(question.getChoice(2).toString());
+        RadioButton choice4 = this.binding.getRoot().findViewById(R.id.radioButton4);
+        choice4.setText(question.getChoice(3).toString());
     }
 }

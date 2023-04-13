@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         }*/
 
         QuestionFragment questionFragment = new QuestionFragment();
+        questionFragment.setQuestion(questionBase.getQuestion());
+        questionFragment.setQuestionDisplay();
         this.mainView.displayFragment(questionFragment, false, "first-question");
     }
 
