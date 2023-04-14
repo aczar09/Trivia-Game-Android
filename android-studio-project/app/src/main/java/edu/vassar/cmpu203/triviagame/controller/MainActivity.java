@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onWWM(){
         QuestionFragment questionFragment = new QuestionFragment(this);
-        questionFragment.setQuestion(questionBase.getQuestion());
-
+        this.setCurQuestion(questionBase);
+        //questionFragment.setQuestionDisplay(activeQuestion);
         this.mainView.displayFragment(questionFragment, true, "first-question");
     }
 

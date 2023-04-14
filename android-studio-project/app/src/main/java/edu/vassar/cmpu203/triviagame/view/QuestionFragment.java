@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 import edu.vassar.cmpu203.triviagame.R;
 import edu.vassar.cmpu203.triviagame.databinding.FragmentQuestionBinding;
 import edu.vassar.cmpu203.triviagame.model.Question;
+import edu.vassar.cmpu203.triviagame.model.RandMultiChoice;
 
 
 public class QuestionFragment extends Fragment implements IQuestionView{
@@ -80,6 +81,8 @@ public class QuestionFragment extends Fragment implements IQuestionView{
 
 
     public void setQuestionDisplay(){
+        RandMultiChoice r = new RandMultiChoice();
+        Question question = r.getQuestion();
         this.binding.questiontext.setText(question.getPrompt());
         this.binding.radioButton.setText(question.getChoice(0).toString());
         this.binding.radioButton2.setText(question.getChoice(1).toString());
