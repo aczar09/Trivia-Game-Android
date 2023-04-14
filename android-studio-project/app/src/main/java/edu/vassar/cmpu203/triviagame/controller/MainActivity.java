@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
  IGameWonView.Listener, IQuestionView.Listener {
 
     private IMainView mainView; // a reference to the main screen template
-    private IGameShow questionBase;
+    //private IGameShow questionBase;
 
     private Player player;
     private Question activeQuestion;
-    //public IGameShow questionBase = new RandMultiChoice();
+    public IGameShow questionBase = new RandMultiChoice();
 
 
 
@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onWWM(){
         QuestionFragment questionFragment = new QuestionFragment(this);
-        this.setCurQuestion(questionBase);
-        questionFragment.setQuestionDisplay(activeQuestion);
+        questionFragment.setQuestion(questionBase.getQuestion());
+
         this.mainView.displayFragment(questionFragment, true, "first-question");
     }
 
