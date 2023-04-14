@@ -19,7 +19,7 @@ import edu.vassar.cmpu203.triviagame.model.Question;
 public class QuestionFragment extends Fragment implements IQuestionView{
     private FragmentQuestionBinding binding;
 
-    //private Question question;
+    private Question question;
 
     private Listener listener;
 
@@ -33,15 +33,18 @@ public class QuestionFragment extends Fragment implements IQuestionView{
         //questionPrompt = (TextView) getView().findViewById(R.id.questiontext);
     }
 
-    //public void setQuestion(Question q){
-       // this.question = q;
-    //}
+    public void setQuestion(Question q){
+        this.question = q;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         this.binding = FragmentQuestionBinding.inflate(inflater);
         //questionPrompt
+        TextView questionPrompt = this.binding.getRoot().findViewById(R.id.questiontext);
+
+        questionPrompt.setText(question.getPrompt());
 
         return this.binding.getRoot();
     }
@@ -53,10 +56,12 @@ public class QuestionFragment extends Fragment implements IQuestionView{
 
 
     public void setQuestionDisplay(Question question){
-        this.binding.questiontext.setText(question.getPrompt());
+
+
+        /*this.binding.questiontext.setText(question.getPrompt());
         this.binding.radioButton.setText(question.getChoice(0).toString());
         this.binding.radioButton2.setText(question.getChoice(1).toString());
         this.binding.radioButton3.setText(question.getChoice(2).toString());
-        this.binding.radioButton4.setText(question.getChoice(3).toString());
+        this.binding.radioButton4.setText(question.getChoice(3).toString());*/
     }
 }

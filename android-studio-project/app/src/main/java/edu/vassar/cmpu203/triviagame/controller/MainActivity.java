@@ -30,15 +30,8 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
     private Player player = new Player();
     private Question activeQuestion;
-    public IGameShow questionBase;
+    public IGameShow questionBase= new RandMultiChoice();
 
-    {
-        try {
-            questionBase = new RandMultiChoice();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     private IGameShow database;
 
@@ -75,10 +68,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         }*/
 
         QuestionFragment questionFragment = new QuestionFragment();
-        setCurQuestion();
-        questionFragment.setQuestionDisplay(this.activeQuestion);
-        //questionFragment.setQuestion(questionBase.getQuestion());
-        //questionFragment.setQuestionDisplay();
+        questionFragment.setQuestion(questionBase.getQuestion());
         this.mainView.displayFragment(questionFragment, false, "first-question");
     }
 
