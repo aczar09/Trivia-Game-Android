@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import edu.vassar.cmpu203.triviagame.R;
 import edu.vassar.cmpu203.triviagame.databinding.FragmentQuestionBinding;
 import edu.vassar.cmpu203.triviagame.model.Question;
@@ -19,7 +21,7 @@ import edu.vassar.cmpu203.triviagame.model.Question;
 public class QuestionFragment extends Fragment implements IQuestionView{
     private FragmentQuestionBinding binding;
 
-    private Question question;
+    //private Question question;
 
     private Listener listener;
 
@@ -33,35 +35,54 @@ public class QuestionFragment extends Fragment implements IQuestionView{
         //questionPrompt = (TextView) getView().findViewById(R.id.questiontext);
     }
 
-    public void setQuestion(Question q){
-        this.question = q;
-    }
+    //public void setQuestion(Question q){
+       // this.question = q;
+    //}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         this.binding = FragmentQuestionBinding.inflate(inflater);
         //questionPrompt
-        TextView questionPrompt = this.binding.getRoot().findViewById(R.id.questiontext);
-
-        questionPrompt.setText(question.getPrompt());
 
         return this.binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        this.binding.submitbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (QuestionFragment.this.binding.radioButton.isChecked()){
 
+                }
+                else if (QuestionFragment.this.binding.radioButton2.isChecked()){
+
+                }
+                else if (QuestionFragment.this.binding.radioButton3.isChecked()){
+
+                }
+                else if (QuestionFragment.this.binding.radioButton4.isChecked()){
+
+                }
+                else{
+                    Snackbar.make(view, R.string.need_ans, Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+
+            }
+        });
     }
 
 
+
+
     public void setQuestionDisplay(Question question){
-
-
-        /*this.binding.questiontext.setText(question.getPrompt());
-        this.binding.radioButton.setText(question.getChoice(0).toString());
-        this.binding.radioButton2.setText(question.getChoice(1).toString());
-        this.binding.radioButton3.setText(question.getChoice(2).toString());
-        this.binding.radioButton4.setText(question.getChoice(3).toString());*/
+        this.binding.questiontext.setText(R.string.g_won);
+        //this.binding.questiontext.setText(question.getPrompt());
+        this.binding.radioButton.setText(R.string.g_won);
+        this.binding.radioButton2.setText(R.string.g_won);
+        this.binding.radioButton3.setText(R.string.g_won);
+        this.binding.radioButton4.setText(R.string.g_won);
     }
 }
