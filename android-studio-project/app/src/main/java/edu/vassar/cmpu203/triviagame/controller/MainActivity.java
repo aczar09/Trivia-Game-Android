@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import edu.vassar.cmpu203.triviagame.model.Choice;
 import edu.vassar.cmpu203.triviagame.model.IGameShow;
 import edu.vassar.cmpu203.triviagame.model.Player;
 import edu.vassar.cmpu203.triviagame.model.Question;
@@ -26,29 +27,16 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
  IGameWonView.Listener, IQuestionView.Listener {
 
     private IMainView mainView; // a reference to the main screen template
-    //private IGameShow questionBase = new RandMultiChoice();
+    private IGameShow questionBase;
 
-    private Player player = new Player();
+    private Player player;
     private Question activeQuestion;
-    public IGameShow questionBase;
+    //public IGameShow questionBase = new RandMultiChoice();
 
-    {
-        try {
-            questionBase = new RandMultiChoice();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
-    private IGameShow database;
 
-    /**
-     * Method made to avoid the throw exception problem
-     * @throws Exception
-     */
-    private void registerDatabase() throws Exception {
-        this.database = new RandMultiChoice();
-    }
+    //private IGameShow database;
+
     public MainActivity(){
     }
 
@@ -56,11 +44,17 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mainView = new MainView(this);
+        questionBase = new RandMultiChoice();
+        player = new Player();
         this.setContentView(mainView.getRootView());
         this.mainView.displayFragment(new GameConfigFragment(this),true, "game-config");
     }
-    public void setCurQuestion(){
-        activeQuestion = this.questionBase.getQuestion();
+    public void setCurQuestion(IGameShow gameShow){
+        this.activeQuestion = gameShow.getQuestion();
+    }
+
+    public void checkPlayerAns(int index){
+        this.activeQuestion.isCorrect(index);
     }
 
     /**
@@ -68,18 +62,10 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onWWM(){
-       /* try {
-            registerDatabase();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }*/
-
-        QuestionFragment questionFragment = new QuestionFragment();
-        setCurQuestion();
-        questionFragment.setQuestionDisplay(this.activeQuestion);
-        //questionFragment.setQuestion(questionBase.getQuestion());
-        //questionFragment.setQuestionDisplay();
-        this.mainView.displayFragment(questionFragment, false, "first-question");
+        QuestionFragment questionFragment = new QuestionFragment(this);
+        this.setCurQuestion(questionBase);
+        questionFragment.setQuestionDisplay(activeQuestion);
+        this.mainView.displayFragment(questionFragment, true, "first-question");
     }
 
     /**
@@ -88,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onRandom(){
-        QuestionFragment questionFragment = new QuestionFragment();
-        this.mainView.displayFragment(questionFragment, false, "first-question");
+        QuestionFragment questionFragment = new QuestionFragment(this);
+        this.mainView.displayFragment(questionFragment, true, "first-question");
     }
 
     /**
@@ -97,8 +83,8 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onMoreInfo(){
-        Game_Mode_Fragment game_mode_fragment = new Game_Mode_Fragment();
-        this.mainView.displayFragment(game_mode_fragment, false, "info-slide");
+        Game_Mode_Fragment game_mode_fragment = new Game_Mode_Fragment(this);
+        this.mainView.displayFragment(game_mode_fragment, true, "info-slide");
     }
 
     /**
@@ -114,32 +100,32 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onMenu(){
-        GameConfigFragment gameConfigFragment = new GameConfigFragment();
-        this.mainView.displayFragment(gameConfigFragment, false, "restart");
+        GameConfigFragment gameConfigFragment = new GameConfigFragment(this);
+        this.mainView.displayFragment(gameConfigFragment, true, "restart");
     }
 
     @Override
     public void onNext(){
-        QuestionFragment questionFragment = new QuestionFragment();
-        this.mainView.displayFragment(questionFragment, false, "not-fin-next");
+        QuestionFragment questionFragment = new QuestionFragment(this);
+        this.mainView.displayFragment(questionFragment, true, "not-fin-next");
     }
 
     @Override
     public void onGoBack(){
-        GameConfigFragment gameConfigFragment = new GameConfigFragment();
-        this.mainView.displayFragment(gameConfigFragment, false, "back-to-menu");
+        GameConfigFragment gameConfigFragment = new GameConfigFragment(this);
+        this.mainView.displayFragment(gameConfigFragment, true, "back-to-menu");
     }
 
     @Override
     public void onSubmit(){
         boolean rightAns = true;
         if (rightAns){
-            correct_ans_Fragment correct_ans_fragment = new correct_ans_Fragment();
-            this.mainView.displayFragment(correct_ans_fragment, false, "right-ans");
+            correct_ans_Fragment correct_ans_fragment = new correct_ans_Fragment(this);
+            this.mainView.displayFragment(correct_ans_fragment, true, "right-ans");
         }
         else{
-            Game_Lost_Fragment game_lost_fragment = new Game_Lost_Fragment();
-            this.mainView.displayFragment(game_lost_fragment, false, "lost-game");
+            Game_Lost_Fragment game_lost_fragment = new Game_Lost_Fragment(this);
+            this.mainView.displayFragment(game_lost_fragment, true, "lost-game");
         }
     }
     //@Override
