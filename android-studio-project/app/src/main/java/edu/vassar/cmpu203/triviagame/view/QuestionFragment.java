@@ -51,6 +51,7 @@ public class QuestionFragment extends Fragment implements IQuestionView{
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+
         this.binding.submitbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
