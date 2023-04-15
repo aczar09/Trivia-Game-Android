@@ -1,8 +1,8 @@
 package edu.vassar.cmpu203.triviagame;
 
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test; // for the @Test annotation
+import static org.junit.jupiter.api.Assertions.*; // for the assert* methods
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -11,8 +11,8 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
 
-    @Test
+   /* @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
-    }
+    }*/
 }

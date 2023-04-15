@@ -8,5 +8,9 @@ class RandMultiChoiceTest {
 
     @Test
     void getQuestion() {
+        RandMultiChoice r = new RandMultiChoice();
+        int startLength = r.qp.size();
+        Question q = r.getQuestion();
+        assertEquals(startLength-1, r.qp.size());
     }
 }
