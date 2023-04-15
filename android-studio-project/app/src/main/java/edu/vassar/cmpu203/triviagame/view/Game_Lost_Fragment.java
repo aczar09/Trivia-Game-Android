@@ -36,6 +36,18 @@ public class Game_Lost_Fragment extends Fragment implements IGameLostView{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         Choice c = correctAnswerChoice();
         this.binding.rightAnswer.setText(c.toString());
+        this.binding.yesbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Game_Lost_Fragment.this.listener.onPlayAgain();
+            }
+        });
+        this.binding.menubutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Game_Lost_Fragment.this.listener.onMenu();
+            }
+        });
     }
     public Choice correctAnswerChoice(){
         return this.listener.rightAnswer();

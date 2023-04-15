@@ -33,6 +33,17 @@ public class Game_Won_Fragment extends Fragment implements IGameWonView {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-
+        this.binding.yeswonbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Game_Won_Fragment.this.listener.onPlayAgain();
+            }
+        });
+        this.binding.menuwonbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Game_Won_Fragment.this.listener.onMenu();
+            }
+        });
     }
 }

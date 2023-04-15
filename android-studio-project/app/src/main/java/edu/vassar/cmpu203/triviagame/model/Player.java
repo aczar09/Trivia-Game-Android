@@ -4,7 +4,7 @@ public class Player {
     String name;
     int wins = 0;
     public int answerStreak = 0;
-    public int questionNumber = answerStreak + 1;
+    public int questionNumber = 1;
 
     public Player(String name) {
         this.name = name;
@@ -16,9 +16,11 @@ public class Player {
 
     public void rightAns(){
         answerStreak++;
+        questionNumber++;
     }
     public void resetStreak(){
         answerStreak = 0;
+        questionNumber = 1;
     }
 
 }

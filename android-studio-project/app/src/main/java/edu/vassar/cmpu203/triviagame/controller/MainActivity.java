@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
     private Player player;
     private Question activeQuestion;
-    public IGameShow questionBase = new RandMultiChoice();
+    public IGameShow questionBase;
 
     boolean continueGame;
     //private int answerStreak = 0;
@@ -58,6 +58,10 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         this.mainView.displayFragment(new GameConfigFragment(this),true, "game-config");
     }
 
+    private void resetGame(){
+        this.player.resetStreak();
+        this.questionBase = new RandMultiChoice();
+    }
     @Override
     public Question getQuestion(){
         this.activeQuestion = questionBase.getQuestion();
@@ -109,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onPlayAgain(){
+        resetGame();
         onWWM();
     }
 
@@ -117,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onMenu(){
+        resetGame();
         GameConfigFragment gameConfigFragment = new GameConfigFragment(this);
         this.mainView.displayFragment(gameConfigFragment, true, "restart");
     }
