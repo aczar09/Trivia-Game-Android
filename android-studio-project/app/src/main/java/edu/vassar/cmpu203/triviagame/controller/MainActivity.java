@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     private Player player;
     private Question activeQuestion;
     public IGameShow questionBase = new RandMultiChoice();
+
+    boolean continueGame;
     //private int answerStreak = 0;
 
 
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         this.mainView = new MainView(this);
         questionBase = new RandMultiChoice();
         player = new Player();
+        continueGame = true;
         this.setContentView(mainView.getRootView());
         this.mainView.displayFragment(new GameConfigFragment(this),true, "game-config");
     }
@@ -62,12 +65,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     }
 
 
-    public void checkAnswer(Question q, int index){
-        boolean isCorrect = q.isCorrect(index);
-        activeQuestion = q;
-        player.rightAns();
-        onSubmit(isCorrect);
-    }
+
     @Override
     public Choice rightAnswer(){
         return activeQuestion.getCorrectChoice();
@@ -136,13 +134,16 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     }
 
     @Override
-    public void onSubmit(boolean rightAns){
-        //boolean rightAns = true;
+    public void onSubmit(int index){
+        continueGame = activeQuestion.isCorrect(index);
+        if (continueGame) {
+            player.rightAns(); // marks that player got right answer
+        }
         if (player.answerStreak == 5){
             Game_Won_Fragment game_won_fragment = new Game_Won_Fragment(this);
             this.mainView.displayFragment(game_won_fragment, true, "won-the-game");
         }
-        else if (rightAns){
+        else if (continueGame){
             correct_ans_Fragment correct_ans_fragment = new correct_ans_Fragment(this);
             this.mainView.displayFragment(correct_ans_fragment, true, "right-ans");
         }

@@ -6,11 +6,13 @@ public interface IActiveQuestionView {
 
 
     interface Listener{
-        void onSubmit(boolean rightAns);
+        void onSubmit(int index);
 
         int questionNumber();
 
         Question getQuestion();
+
+        //void checkAnswer(int i);
         //void setCurQuestion();
     }
 }
