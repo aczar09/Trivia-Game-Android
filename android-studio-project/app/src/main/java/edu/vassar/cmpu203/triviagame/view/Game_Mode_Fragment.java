@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 
 import edu.vassar.cmpu203.triviagame.R;
 import edu.vassar.cmpu203.triviagame.databinding.FragmentGameModeInfoBinding;
-import edu.vassar.cmpu203.triviagame.databinding.FragmentQuestionBinding;
+//import edu.vassar.cmpu203.triviagame.databinding.FragmentQuestionBinding;
 
 
 public class Game_Mode_Fragment extends Fragment implements IGameModeView{

@@ -34,10 +34,9 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/rightAnswer"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Correct Answer"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,10 +53,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/rightAnswer" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/yesbutton"
         android:layout_width="123dp"
         android:layout_height="82dp"
         android:layout_marginTop="24dp"
@@ -68,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/menubutton"
         android:layout_width="123dp"
         android:layout_height="82dp"
         android:layout_marginTop="64dp"
@@ -76,5 +75,5 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toBottomOf="@+id/yesbutton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

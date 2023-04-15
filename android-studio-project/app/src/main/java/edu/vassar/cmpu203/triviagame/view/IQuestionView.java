@@ -13,6 +13,8 @@ public interface IQuestionView {
 
         void checkAnswer(Question question, int i);
 
+        int questionNumber();
+
         //void setCurQuestion();
 
         //String getPrompt();

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import edu.vassar.cmpu203.triviagame.R;
 import edu.vassar.cmpu203.triviagame.databinding.FragmentCorrectAnsBinding;
-import edu.vassar.cmpu203.triviagame.databinding.FragmentQuestionBinding;
+//import edu.vassar.cmpu203.triviagame.databinding.FragmentQuestionBinding;
 
 
 public class correct_ans_Fragment extends Fragment implements ICorrectAnsView {
@@ -34,7 +34,12 @@ public class correct_ans_Fragment extends Fragment implements ICorrectAnsView {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-
+        this.binding.nextbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                correct_ans_Fragment.this.listener.onNext();
+            }
+        });
     }
 
 }

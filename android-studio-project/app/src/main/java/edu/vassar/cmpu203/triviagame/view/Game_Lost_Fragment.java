@@ -12,7 +12,8 @@ import android.view.ViewGroup;
 
 import edu.vassar.cmpu203.triviagame.R;
 import edu.vassar.cmpu203.triviagame.databinding.FragmentGameLostBinding;
-import edu.vassar.cmpu203.triviagame.databinding.FragmentQuestionBinding;
+//import edu.vassar.cmpu203.triviagame.databinding.FragmentQuestionBinding;
+import edu.vassar.cmpu203.triviagame.model.Choice;
 
 public class Game_Lost_Fragment extends Fragment implements IGameLostView{
     private FragmentGameLostBinding binding;
@@ -33,6 +34,10 @@ public class Game_Lost_Fragment extends Fragment implements IGameLostView{
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-
+        Choice c = correctAnswerChoice();
+        this.binding.rightAnswer.setText(c.toString());
+    }
+    public Choice correctAnswerChoice(){
+        return this.listener.rightAnswer();
     }
 }

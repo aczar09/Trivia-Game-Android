@@ -44,6 +44,15 @@ public class Question {
         }
         return null;
     }
+    public Choice getCorrectChoice(){
+        for (int i = 0; i < 4; i++){
+            Choice c = getChoice(i);
+            if (c.getCorrect()){
+                return c;
+            }
+        }
+        return null;
+    }
     public boolean isCorrect(int selection){
         return choices.get(selection).getCorrect();
     }

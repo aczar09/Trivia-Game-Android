@@ -3,8 +3,8 @@ package edu.vassar.cmpu203.triviagame.model;
 public class Player {
     String name;
     int wins = 0;
-    int answerStreak = 0;
-    int questionNumber = answerStreak + 1;
+    public int answerStreak = 0;
+    public int questionNumber = answerStreak + 1;
 
     public Player(String name) {
         this.name = name;

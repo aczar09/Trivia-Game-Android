@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import edu.vassar.cmpu203.triviagame.ActiveQuestion;
+import edu.vassar.cmpu203.triviagame.IActiveQuestionView;
+import edu.vassar.cmpu203.triviagame.model.Choice;
 import edu.vassar.cmpu203.triviagame.model.IGameShow;
 import edu.vassar.cmpu203.triviagame.model.Player;
 import edu.vassar.cmpu203.triviagame.model.Question;
@@ -11,6 +14,7 @@ import edu.vassar.cmpu203.triviagame.model.RandMultiChoice;
 import edu.vassar.cmpu203.triviagame.view.GameConfigFragment;
 import edu.vassar.cmpu203.triviagame.view.Game_Lost_Fragment;
 import edu.vassar.cmpu203.triviagame.view.Game_Mode_Fragment;
+import edu.vassar.cmpu203.triviagame.view.Game_Won_Fragment;
 import edu.vassar.cmpu203.triviagame.view.ICorrectAnsView;
 import edu.vassar.cmpu203.triviagame.view.IGameConfigView;
 import edu.vassar.cmpu203.triviagame.view.IGameLostView;
@@ -19,11 +23,11 @@ import edu.vassar.cmpu203.triviagame.view.IGameWonView;
 import edu.vassar.cmpu203.triviagame.view.IMainView;
 import edu.vassar.cmpu203.triviagame.view.IQuestionView;
 import edu.vassar.cmpu203.triviagame.view.MainView;
-import edu.vassar.cmpu203.triviagame.view.QuestionFragment;
+//import edu.vassar.cmpu203.triviagame.view.QuestionFragment;
 import edu.vassar.cmpu203.triviagame.view.correct_ans_Fragment;
 
 public class MainActivity extends AppCompatActivity implements IGameConfigView.Listener, IGameLostView.Listener, ICorrectAnsView.Listener, IGameModeView.Listener,
- IGameWonView.Listener, IQuestionView.Listener {
+        IGameWonView.Listener, /*IQuestionView.Listener,*/ IActiveQuestionView.Listener {
 
     private IMainView mainView; // a reference to the main screen template
     //private IGameShow questionBase;
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     private Player player;
     private Question activeQuestion;
     public IGameShow questionBase = new RandMultiChoice();
+    //private int answerStreak = 0;
 
 
 
@@ -39,11 +44,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     public MainActivity(){
     }
 
-    public void checkAnswer(Question q, int index){
-        boolean isCorrect = q.isCorrect(index);
-        onSubmit(isCorrect);
 
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,16 +60,29 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         //Viewbag.activeQuestion = this.activeQuestion;
     }
 
-    public void checkPlayerAns(int index){
-        this.activeQuestion.isCorrect(index);
+    //public void checkPlayerAns(int index){
+       // this.activeQuestion.isCorrect(index);
+    //}
+    public void checkAnswer(Question q, int index){
+        boolean isCorrect = q.isCorrect(index);
+        activeQuestion = q;
+        player.rightAns();
+        onSubmit(isCorrect);
+    }
+    @Override
+    public Choice rightAnswer(){
+        return activeQuestion.getCorrectChoice();
     }
 
+    public int questionNumber(){
+        return player.questionNumber;
+    }
     /**
      * Takes the user to the first question screen fragment
      */
     @Override
     public void onWWM(){
-        QuestionFragment questionFragment = new QuestionFragment(this);
+        ActiveQuestion questionFragment = new ActiveQuestion(this);
         this.setCurQuestion(questionBase);
         //questionFragment.setQuestionDisplay(activeQuestion);
         this.mainView.displayFragment(questionFragment, true, "first-question");
@@ -80,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onRandom(){
-        QuestionFragment questionFragment = new QuestionFragment(this);
+        ActiveQuestion questionFragment = new ActiveQuestion(this);
         this.mainView.displayFragment(questionFragment, true, "first-question");
     }
 
@@ -112,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
     @Override
     public void onNext(){
-        QuestionFragment questionFragment = new QuestionFragment(this);
+        ActiveQuestion questionFragment = new ActiveQuestion(this);
         this.mainView.displayFragment(questionFragment, true, "not-fin-next");
     }
 
@@ -125,7 +139,11 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onSubmit(boolean rightAns){
         //boolean rightAns = true;
-        if (rightAns){
+        if (player.answerStreak == 5){
+            Game_Won_Fragment game_won_fragment = new Game_Won_Fragment(this);
+            this.mainView.displayFragment(game_won_fragment, true, "won-the-game");
+        }
+        else if (rightAns){
             correct_ans_Fragment correct_ans_fragment = new correct_ans_Fragment(this);
             this.mainView.displayFragment(correct_ans_fragment, true, "right-ans");
         }
@@ -134,10 +152,6 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
             this.mainView.displayFragment(game_lost_fragment, true, "lost-game");
         }
     }
-    //@Override
-    //public void onPlayAgain(){
-        //Game_Won_Fragment game_won_fragment = new Game_Won_Fragment();
-        //this.mainView.displayFragment(game_won_fragment, false, );
-    //}
+
 
 }
