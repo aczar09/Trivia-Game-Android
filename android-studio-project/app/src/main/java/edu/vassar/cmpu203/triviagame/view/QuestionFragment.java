@@ -27,11 +27,14 @@ public class QuestionFragment extends Fragment implements IQuestionView{
     private Listener listener;
 
     public QuestionFragment(){
-
+        RandMultiChoice r = new RandMultiChoice();
+        question = r.getQuestion();
     }
 
     public QuestionFragment(Listener listener){
         this.listener = listener;
+        RandMultiChoice r = new RandMultiChoice();
+        question = r.getQuestion();
         //this.question = question;
         //questionPrompt = (TextView) getView().findViewById(R.id.questiontext);
     }
@@ -56,16 +59,16 @@ public class QuestionFragment extends Fragment implements IQuestionView{
             @Override
             public void onClick(View view) {
                 if (QuestionFragment.this.binding.radioButton.isChecked()){
-
+                    QuestionFragment.this.listener.checkAnswer(question, 0);
                 }
                 else if (QuestionFragment.this.binding.radioButton2.isChecked()){
-
+                    QuestionFragment.this.listener.checkAnswer(question, 1);
                 }
                 else if (QuestionFragment.this.binding.radioButton3.isChecked()){
-
+                    QuestionFragment.this.listener.checkAnswer(question, 2);
                 }
                 else if (QuestionFragment.this.binding.radioButton4.isChecked()){
-
+                    QuestionFragment.this.listener.checkAnswer(question, 3);
                 }
                 else{
                     Snackbar.make(view, R.string.need_ans, Snackbar.LENGTH_LONG).show();
@@ -82,8 +85,7 @@ public class QuestionFragment extends Fragment implements IQuestionView{
 
 
     public void setQuestionDisplay(){
-        RandMultiChoice r = new RandMultiChoice();
-        Question question = r.getQuestion();
+
         this.binding.questiontext.setText(question.getPrompt());
         this.binding.radioButton.setText(question.getChoice(0).toString());
         this.binding.radioButton2.setText(question.getChoice(1).toString());

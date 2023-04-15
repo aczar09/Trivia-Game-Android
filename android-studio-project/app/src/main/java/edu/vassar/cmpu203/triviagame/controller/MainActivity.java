@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import edu.vassar.cmpu203.triviagame.model.Choice;
 import edu.vassar.cmpu203.triviagame.model.IGameShow;
 import edu.vassar.cmpu203.triviagame.model.Player;
 import edu.vassar.cmpu203.triviagame.model.Question;
@@ -40,6 +39,12 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     public MainActivity(){
     }
 
+    public void checkAnswer(Question q, int index){
+        boolean isCorrect = q.isCorrect(index);
+        onSubmit(isCorrect);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     }
     public void setCurQuestion(IGameShow gameShow){
         this.activeQuestion = gameShow.getQuestion();
+        //Viewbag.activeQuestion = this.activeQuestion;
     }
 
     public void checkPlayerAns(int index){
@@ -117,8 +123,8 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     }
 
     @Override
-    public void onSubmit(){
-        boolean rightAns = true;
+    public void onSubmit(boolean rightAns){
+        //boolean rightAns = true;
         if (rightAns){
             correct_ans_Fragment correct_ans_fragment = new correct_ans_Fragment(this);
             this.mainView.displayFragment(correct_ans_fragment, true, "right-ans");

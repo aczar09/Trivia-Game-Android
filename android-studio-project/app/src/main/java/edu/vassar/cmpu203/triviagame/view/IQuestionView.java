@@ -1,6 +1,6 @@
 package edu.vassar.cmpu203.triviagame.view;
 
-import androidx.annotation.NonNull;
+import edu.vassar.cmpu203.triviagame.model.Question;
 
 public interface IQuestionView {
 
@@ -9,7 +9,14 @@ public interface IQuestionView {
 
         //void onAnswerChoice();
 
-        void onSubmit();
+        void onSubmit(boolean rightAns);
 
+        void checkAnswer(Question question, int i);
+
+        //void setCurQuestion();
+
+        //String getPrompt();
+
+        //String getChoice(int i);
     }
 }
