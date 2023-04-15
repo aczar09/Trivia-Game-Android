@@ -132,9 +132,13 @@ public class RandMultiChoice implements IGameShow {
     }
 
     public Question getQuestion(){
+        if(qp.size() == 0){
+            return null;
+        }
         int randInd = (int)(Math.random() * qp.size());
         Question q = qp.get(randInd);
         qp.remove(randInd);
+
         return q;
     }
 /*

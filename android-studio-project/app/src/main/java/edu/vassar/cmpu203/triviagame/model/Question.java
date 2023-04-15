@@ -53,6 +53,15 @@ public class Question {
         }
         return null;
     }
+    public int getCorrectChoiceInd(){
+        for (int i = 0; i < 4; i++){
+            Choice c = getChoice(i);
+            if (c.getCorrect()){
+                return i;
+            }
+        }
+        return -1;
+    }
     public boolean isCorrect(int selection){
         return choices.get(selection).getCorrect();
     }
