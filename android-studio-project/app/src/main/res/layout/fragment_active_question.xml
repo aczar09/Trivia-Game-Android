@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActiveQuestion">
+    tools:context=".view.ActiveQuestion">
 
     <RadioGroup
         android:id="@+id/radioGroup2"
@@ -16,28 +16,32 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
-            android:id="@+id/radioButton5"
+            android:id="@+id/choicea"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="RadioButton" />
+            android:text="RadioButton"
+            android:textSize="20sp" />
 
         <RadioButton
-            android:id="@+id/radioButton6"
+            android:id="@+id/choiceb"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="RadioButton" />
+            android:text="RadioButton"
+            android:textSize="20sp" />
 
         <RadioButton
-            android:id="@+id/radioButton7"
+            android:id="@+id/choicec"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="RadioButton" />
+            android:text="RadioButton"
+            android:textSize="20sp" />
 
         <RadioButton
-            android:id="@+id/radioButton8"
+            android:id="@+id/choiced"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="RadioButton" />
+            android:text="RadioButton"
+            android:textSize="20sp" />
     </RadioGroup>
 
     <TextView

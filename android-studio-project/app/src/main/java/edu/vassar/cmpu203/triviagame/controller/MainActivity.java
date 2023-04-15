@@ -4,8 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import edu.vassar.cmpu203.triviagame.ActiveQuestion;
-import edu.vassar.cmpu203.triviagame.IActiveQuestionView;
+import edu.vassar.cmpu203.triviagame.view.ActiveQuestion;
+import edu.vassar.cmpu203.triviagame.view.IActiveQuestionView;
 import edu.vassar.cmpu203.triviagame.model.Choice;
 import edu.vassar.cmpu203.triviagame.model.IGameShow;
 import edu.vassar.cmpu203.triviagame.model.Player;
@@ -21,7 +21,6 @@ import edu.vassar.cmpu203.triviagame.view.IGameLostView;
 import edu.vassar.cmpu203.triviagame.view.IGameModeView;
 import edu.vassar.cmpu203.triviagame.view.IGameWonView;
 import edu.vassar.cmpu203.triviagame.view.IMainView;
-import edu.vassar.cmpu203.triviagame.view.IQuestionView;
 import edu.vassar.cmpu203.triviagame.view.MainView;
 //import edu.vassar.cmpu203.triviagame.view.QuestionFragment;
 import edu.vassar.cmpu203.triviagame.view.correct_ans_Fragment;
@@ -55,14 +54,14 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         this.setContentView(mainView.getRootView());
         this.mainView.displayFragment(new GameConfigFragment(this),true, "game-config");
     }
-    public void setCurQuestion(IGameShow gameShow){
-        this.activeQuestion = gameShow.getQuestion();
-        //Viewbag.activeQuestion = this.activeQuestion;
+
+    @Override
+    public Question getQuestion(){
+        this.activeQuestion = questionBase.getQuestion();
+        return this.activeQuestion;
     }
 
-    //public void checkPlayerAns(int index){
-       // this.activeQuestion.isCorrect(index);
-    //}
+
     public void checkAnswer(Question q, int index){
         boolean isCorrect = q.isCorrect(index);
         activeQuestion = q;
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onWWM(){
         ActiveQuestion questionFragment = new ActiveQuestion(this);
-        this.setCurQuestion(questionBase);
+        //this.setCurQuestion(questionBase);
         //questionFragment.setQuestionDisplay(activeQuestion);
         this.mainView.displayFragment(questionFragment, true, "first-question");
     }
