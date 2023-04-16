@@ -128,7 +128,6 @@ participant RAV as "CorrectAnswerView"
 participant GWV as "GameWonView"
 participant GLV as "GameLostView"
 participant CLR as "MainActivity (Controller)"
-participant P1 as "p1: Player"
 
 
 ref over CLR
