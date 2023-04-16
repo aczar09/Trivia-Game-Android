@@ -92,32 +92,43 @@ public class QuestionAndroidTest {
         RandMultiChoice r = new RandMultiChoice();
         // Perform a click action on a view
         onView(ViewMatchers.withId(R.id.wwmbutton)).perform(ViewActions.click());
-        int count = 0;
-        while(count!=5) {
-            String prompt = getText(withId(R.id.aQuestion));
+        int countQ = 0;
+        int countR = 0;
+        while(countR !=2) {
+            while (countQ != 5) {
+                String prompt = getText(withId(R.id.aQuestion));
 
 
-            Question q = r.searchQuestion(prompt);
-            String correct = q.getCorrectChoice().toString();
-            String choiceA = getText(withId(R.id.choicea));
-            String choiceB = getText(withId(R.id.choiceb));
-            String choiceC = getText(withId(R.id.choicec));
-            String choiceD = getText(withId(R.id.choiced));
-            if (correct.equals(choiceA)) {
-                onView(ViewMatchers.withId(R.id.choicea)).perform(ViewActions.click());
-            } else if (correct.equals(choiceB)) {
-                onView(ViewMatchers.withId(R.id.choiceb)).perform(ViewActions.click());
-            } else if (correct.equals(choiceC)) {
-                onView(ViewMatchers.withId(R.id.choicec)).perform(ViewActions.click());
-            } else if (correct.equals(choiceD)) {
-                onView(ViewMatchers.withId(R.id.choiced)).perform(ViewActions.click());
+                Question q = r.searchQuestion(prompt);
+                String correct = q.getCorrectChoice().toString();
+                String choiceA = getText(withId(R.id.choicea));
+                String choiceB = getText(withId(R.id.choiceb));
+                String choiceC = getText(withId(R.id.choicec));
+                String choiceD = getText(withId(R.id.choiced));
+                if (correct.equals(choiceA)) {
+                    onView(ViewMatchers.withId(R.id.choicea)).perform(ViewActions.click());
+                } else if (correct.equals(choiceB)) {
+                    onView(ViewMatchers.withId(R.id.choiceb)).perform(ViewActions.click());
+                } else if (correct.equals(choiceC)) {
+                    onView(ViewMatchers.withId(R.id.choicec)).perform(ViewActions.click());
+                } else if (correct.equals(choiceD)) {
+                    onView(ViewMatchers.withId(R.id.choiced)).perform(ViewActions.click());
+                }
+
+                onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
+                countQ++;
+                if (countQ != 5) {
+                    onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
+                }
             }
-
-            onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
-            count++;
-            if(count!=5){
-                onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
+            switch(countR) {
+                case 0:
+                    onView(ViewMatchers.withId(R.id.yesbutton)).perform(ViewActions.click());
+                    break;
+                case 1:
+                    onView(ViewMatchers.withId(R.id.menubutton)).perform(ViewActions.click());
             }
+            countR++;
         }
 
     }
