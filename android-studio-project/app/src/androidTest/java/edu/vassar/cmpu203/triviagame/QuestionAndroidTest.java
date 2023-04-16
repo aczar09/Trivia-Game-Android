@@ -44,7 +44,6 @@ public class QuestionAndroidTest {
         int count = 0;
         while(count!=5) {
             String prompt = getText(withId(R.id.aQuestion));
-            Log.d("prompt", prompt);
             int selection  = (int) Math.random() * 4;
 
             Question q = r.searchQuestion(prompt);
@@ -96,7 +95,6 @@ public class QuestionAndroidTest {
         int count = 0;
         while(count!=5) {
             String prompt = getText(withId(R.id.aQuestion));
-            Log.d("prompt", prompt);
 
 
             Question q = r.searchQuestion(prompt);
@@ -123,6 +121,65 @@ public class QuestionAndroidTest {
         }
 
     }
+
+    @Test
+    public void RunningThroughQuestionsLoseAndReplay(){
+        RandMultiChoice r = new RandMultiChoice();
+        // Perform a click action on a view
+        onView(ViewMatchers.withId(R.id.wwmbutton)).perform(ViewActions.click());
+
+        int count = 0;
+        while(count!=2) {
+            String prompt = getText(withId(R.id.aQuestion));
+
+
+            Question q = r.searchQuestion(prompt);
+            String correct = q.getCorrectChoice().toString();
+            String choiceA = getText(withId(R.id.choicea));
+            String choiceB = getText(withId(R.id.choiceb));
+            String choiceC = getText(withId(R.id.choicec));
+            String choiceD = getText(withId(R.id.choiced));
+            boolean isCorrect = true;
+
+            while (isCorrect) { //runs until false answer is selected
+                int selection = (int) Math.random() * 4;
+                switch (selection) {
+                    case 0:
+                        onView(ViewMatchers.withId(R.id.choicea)).perform(ViewActions.click());
+                        isCorrect = choiceA.equals(correct);
+                        break;
+                    case 1:
+                        onView(ViewMatchers.withId(R.id.choiceb)).perform(ViewActions.click());
+                        isCorrect = choiceB.equals(correct);
+                        break;
+                    case 2:
+                        onView(ViewMatchers.withId(R.id.choicec)).perform(ViewActions.click());
+                        isCorrect = choiceC.equals(correct);
+                        break;
+                    case 3:
+                        onView(ViewMatchers.withId(R.id.choiced)).perform(ViewActions.click());
+                        isCorrect = choiceD.equals(correct);
+                        break;
+                }
+            }
+            onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
+
+            switch(count) {
+                case 0:
+                    onView(ViewMatchers.withId(R.id.yesbutton)).perform(ViewActions.click());
+                    break;
+                case 1:
+                    onView(ViewMatchers.withId(R.id.menubutton)).perform(ViewActions.click());
+            }
+            count++;
+            }
+        }
+
+
+
+
+
+
 
     String getText(final Matcher<View> matcher) {
         final String[] stringHolder = { null };
