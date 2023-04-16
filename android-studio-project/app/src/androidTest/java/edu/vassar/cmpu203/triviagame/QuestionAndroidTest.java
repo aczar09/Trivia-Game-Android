@@ -142,7 +142,8 @@ public class QuestionAndroidTest {
             boolean isCorrect = true;
 
             while (isCorrect) { //runs until false answer is selected
-                int selection = (int) Math.random() * 4;
+                int selection = (int) (Math.random() * 4);
+                Log.d("selection", String.valueOf(selection));
                 switch (selection) {
                     case 0:
                         onView(ViewMatchers.withId(R.id.choicea)).perform(ViewActions.click());
