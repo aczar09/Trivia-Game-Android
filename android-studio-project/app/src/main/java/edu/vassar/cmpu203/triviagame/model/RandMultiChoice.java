@@ -141,6 +141,15 @@ public class RandMultiChoice implements IGameShow {
 
         return q;
     }
+
+    public Question searchQuestion(String search){
+        for(Question q: qp){
+            if(q.getPrompt().equals(search)){
+                return q;
+            }
+        }
+        return null;
+    }
 /*
     public Question getQuestion(String category, String difficulty, String questionType){
         Collections.shuffle(qp);

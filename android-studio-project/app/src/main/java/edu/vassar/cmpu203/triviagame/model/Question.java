@@ -1,5 +1,7 @@
 package edu.vassar.cmpu203.triviagame.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.*;
 
@@ -24,6 +26,7 @@ public class Question {
         Collections.shuffle(choices);
     }
 
+    @NonNull
     public String toString(){
         String s = this.category + ": \n";
         s += prompt +" \n";
@@ -62,6 +65,7 @@ public class Question {
         }
         return -1;
     }
+
     public boolean isCorrect(int selection){
         return choices.get(selection).getCorrect();
     }
