@@ -42,7 +42,7 @@ public class MoreInfoTest {
         matcher = ViewMatchers.withId(R.id.gobackbutton); // goingBack to GameConfig Screen
         Espresso.onView(matcher).perform(ViewActions.click()); // clicks goBack
         ViewInteraction gameName = Espresso.onView(ViewMatchers.withId(R.id.game_name)); // saves game name text
-        gameName.check(
+        gameName.check( // used to check if we are back on Game Config screen
                 ViewAssertions.matches(
                         ViewMatchers.withSubstring(
                                 "Welcome to Trivia Time"
