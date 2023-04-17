@@ -31,3 +31,20 @@ pulling questions from a database. In this iteration, we have only manually inpu
 like to expand further and create a simpler way of pulling questions. Thi will shift our
 attention away from the multiplayer setting for now. 
 
+# Iteration 3 Plan
+| Rank   | Requirements                         | Comments                                                                                                                                                |
+|--------|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| High   | Question Database                    | Need to switch over to a format that is more scalable than manually inputting every question into the program, and that runs properly on Android studio |
+| High   | Choosing questions based on criteria | Depending on the game mode, access specific questions based on category, difficulty, etc; Main way game modes feel different from each other            |
+| High   | Multiple Game Modes                  | Expanding on the existing structure of the game                                                                                                         |
+| Medium | Choosing a game modes                | Structure is there to have buttons for different modes                                                                                                  |
+| Low    | Multiplayer Game Mode                | Not as important, as ot os riskier to implement                                                                                                         |
+| Low    | Choosing a Random Game Mode          | Not important, but a cool add-on                                                                                                                        |
+| Low    | Post Results                         | Not required to function, but nice added feature                                                                                                        |
+
+### Requirements Update
+While working on iteration 2, most of our time was spent transferring existing functionality of our game to the Android
+platform. As well, while in the text-based game we were able to come up with a way to get a large database of questions,
+when trying to implement it into Android, it provided many errors, and thus we decided to revert back to our hard coded
+Questions for now so we could focus on basic functionality. In the next iteration, we will focus on getting
+that database working, and then thinking how we could our existing structure to create new Game Mode variants.
