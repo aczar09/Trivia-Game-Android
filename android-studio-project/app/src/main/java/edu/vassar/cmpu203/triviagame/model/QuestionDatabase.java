@@ -8,6 +8,10 @@ import java.util.Scanner;
 public class QuestionDatabase {
     ArrayList<Question> questions = new ArrayList<>();
 
+    /**
+     * Parses through a txt file and adds Questions to questions List
+     * @param file
+     */
     public void parseFile(File file) {
 
         String category = file.getName().toUpperCase();
@@ -63,7 +67,11 @@ public class QuestionDatabase {
     }
 
     public QuestionDatabase() {
+        File[] fileList = new File("/home/pcrisostomosuarez/Desktop/cs203/team-2c/intellij-project/src/src/question categories").listFiles();
 
+        for (File f : fileList) {
+            parseFile(f);
+        }
 
     }
 }

@@ -131,6 +131,10 @@ public class RandMultiChoice implements IGameShow {
         Collections.shuffle(qp);
     }
 
+    /**
+     * Returns a random Question from the list of Questions and removes from the list
+     * @return Question
+     */
     public Question getQuestion(){
         if(qp.size() == 0){
             return null;
@@ -142,6 +146,11 @@ public class RandMultiChoice implements IGameShow {
         return q;
     }
 
+    /**
+     * Searches for a Question based on String search, and returns Question if found in list
+     * @param search
+     * @return Question
+     */
     public Question searchQuestion(String search){
         for(Question q: qp){
             if(q.getPrompt().equals(search)){

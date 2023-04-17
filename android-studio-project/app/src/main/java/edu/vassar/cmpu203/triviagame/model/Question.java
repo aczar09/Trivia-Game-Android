@@ -41,12 +41,23 @@ public class Question {
         return prompt;
     }
 
-    public Choice getChoice(int i){
+    /**
+     * Returns the choice at a given index
+     * @param i
+     * @return Choice
+     */
+     public Choice getChoice(int i){
         if(i >= 0 && i < 4){
             return choices.get(i);
         }
         return null;
     }
+
+    /**
+     * Returns the correct Choice
+     * @return Choice
+     */
+
     public Choice getCorrectChoice(){
         for (int i = 0; i < 4; i++){
             Choice c = getChoice(i);
@@ -56,6 +67,12 @@ public class Question {
         }
         return null;
     }
+
+    /**
+     * Returns index of correct Choice in a Question
+     * @return int
+     */
+
     public int getCorrectChoiceInd(){
         for (int i = 0; i < 4; i++){
             Choice c = getChoice(i);
@@ -66,6 +83,11 @@ public class Question {
         return -1;
     }
 
+    /**
+     * Returns if the Choice at the given index is correct or not
+     * @param selection
+     * @return boolean
+     */
     public boolean isCorrect(int selection){
         return choices.get(selection).getCorrect();
     }
