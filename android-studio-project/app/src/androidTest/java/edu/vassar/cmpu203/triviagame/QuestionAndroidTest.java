@@ -127,16 +127,19 @@ public class QuestionAndroidTest {
                 countQ++;
                 if (countQ != 5) {
                     onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
+                }else{
+                    switch(countR) {
+                        case 0:
+                            onView(ViewMatchers.withId(R.id.yeswonbutton)).perform(ViewActions.click());
+                            break;
+                        case 1:
+                            onView(ViewMatchers.withId(R.id.menuwonbutton)).perform(ViewActions.click());
+                            break;
+                    }
                 }
             }
-            switch(countR) {
-                case 0:
-                    onView(ViewMatchers.withId(R.id.yesbutton)).perform(ViewActions.click());
-                    break;
-                case 1:
-                    onView(ViewMatchers.withId(R.id.menubutton)).perform(ViewActions.click());
-            }
             countR++;
+            countQ = 0;
         }
 
     }
