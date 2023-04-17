@@ -10,7 +10,7 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/correctText"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:text="@string/right"
@@ -31,6 +31,6 @@
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintTop_toBottomOf="@+id/correctText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class RandMultiChoice implements IGameShow {
-    ArrayList<Question> qp = new ArrayList<>();
+
+    QuestionDatabase q  = new QuestionDatabase();
+    ArrayList<Question> qp = q.questions;
+
     public RandMultiChoice(){
 
         Question q1 = new Question("When was the first Call of Duty title released?", "hard","Entertainment","mcq",
