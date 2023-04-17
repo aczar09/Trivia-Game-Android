@@ -48,7 +48,7 @@ public class QuestionAndroidTest {
         int count = 0;
         while(count!=5) {
             String prompt = getText(withId(R.id.aQuestion));
-            int selection  = (int) Math.random() * 4;
+            int selection  = (int) (Math.random() * 4);
 
             Question q = r.searchQuestion(prompt);
             String correct = q.getCorrectChoice().toString();
@@ -84,6 +84,7 @@ public class QuestionAndroidTest {
                 onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
             }
             if(!isCorrect){
+
                 break;
             }
         }
@@ -102,6 +103,15 @@ public class QuestionAndroidTest {
         onView(ViewMatchers.withId(R.id.wwmbutton)).perform(ViewActions.click());
         int countQ = 0;
         int countR = 0;
+        ViewInteraction submit = Espresso.onView(ViewMatchers.withId(R.id.submitbutton));
+        submit.check( // used to check if we are back on Active Question screen
+                ViewAssertions.matches(
+                        ViewMatchers.withSubstring(
+                                "SUBMIT"
+                        )
+                )
+        );
+
         while(countR !=2) {
             while (countQ != 5) {
                 String prompt = getText(withId(R.id.aQuestion));
@@ -126,14 +136,47 @@ public class QuestionAndroidTest {
                 onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
                 countQ++;
                 if (countQ != 5) {
+                    ViewInteraction correctText = Espresso.onView(ViewMatchers.withId(R.id.correctText));
+                    correctText.check( // used to check if we are back on Game Won screen
+                            ViewAssertions.matches(
+                                    ViewMatchers.withSubstring(
+                                            "CORRECT!!!"
+                                    )
+                            )
+                    );
                     onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
                 }else{
+                    ViewInteraction congrats = Espresso.onView(ViewMatchers.withId(R.id.congratsText));
+                    congrats.check( // used to check if we are back on Game Won screen
+                            ViewAssertions.matches(
+                                    ViewMatchers.withSubstring(
+                                            "CONGRATS! YOU WON THE GAME! YOU'RE A TRIVIA MASTER!"
+                                    )
+                            )
+                    );
+
                     switch(countR) {
                         case 0:
                             onView(ViewMatchers.withId(R.id.yeswonbutton)).perform(ViewActions.click());
+                            ViewInteraction submitB = Espresso.onView(ViewMatchers.withId(R.id.submitbutton));
+                            submitB.check( // used to check if we are back on Active Question screen
+                                    ViewAssertions.matches(
+                                            ViewMatchers.withSubstring(
+                                                    "SUBMIT"
+                                            )
+                                    )
+                            );
                             break;
                         case 1:
                             onView(ViewMatchers.withId(R.id.menuwonbutton)).perform(ViewActions.click());
+                            ViewInteraction gameName = Espresso.onView(ViewMatchers.withId(R.id.game_name)); // saves game name text
+                            gameName.check( // used to check if we are back on Game Config screen
+                                    ViewAssertions.matches(
+                                            ViewMatchers.withSubstring(
+                                                    "Welcome to Trivia Time"
+                                            )
+                                    )
+                            );
                             break;
                     }
                 }
@@ -194,9 +237,26 @@ public class QuestionAndroidTest {
             switch(count) {
                 case 0:
                     onView(ViewMatchers.withId(R.id.yesbutton)).perform(ViewActions.click());
+                    ViewInteraction submitB = Espresso.onView(ViewMatchers.withId(R.id.submitbutton));
+                    submitB.check( // used to check if we are back on Active Question screen
+                            ViewAssertions.matches(
+                                    ViewMatchers.withSubstring(
+                                            "SUBMIT"
+                                    )
+                            )
+                    );
                     break;
                 case 1:
                     onView(ViewMatchers.withId(R.id.menubutton)).perform(ViewActions.click());
+                    ViewInteraction gameName = Espresso.onView(ViewMatchers.withId(R.id.game_name)); // saves game name text
+                    gameName.check( // used to check if we are back on Game Config screen
+                            ViewAssertions.matches(
+                                    ViewMatchers.withSubstring(
+                                            "Welcome to Trivia Time"
+                                    )
+                            )
+                    );
+                    break;
             }
             count++;
             }
