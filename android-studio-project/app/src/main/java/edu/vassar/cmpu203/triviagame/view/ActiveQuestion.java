@@ -74,10 +74,18 @@ public class ActiveQuestion extends Fragment implements IActiveQuestionView {
         });
     }
 
+    /**
+     *
+     * @return the integer number question the player is on
+     */
     public int numQuestion(){
         return this.listener.questionNumber();
     }
 
+    /**
+     * Pulls activeQuestion from MainActivity
+     * @return the current question
+     */
     public Question curQuestion() {
         return this.listener.getQuestion();
     }

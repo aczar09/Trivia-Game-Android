@@ -40,7 +40,7 @@ public class Game_Mode_Fragment extends Fragment implements IGameModeView{
             @Override
             public void onClick(View view) {
                 Game_Mode_Fragment.this.listener.onGoBack();
-            }
+            } // calls onGoBack() in MainActivity
 
         });
     }

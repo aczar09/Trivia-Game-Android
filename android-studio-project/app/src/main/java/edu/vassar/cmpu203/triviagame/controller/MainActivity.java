@@ -31,50 +31,70 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     private IMainView mainView; // a reference to the main screen template
     //private IGameShow questionBase;
 
-    private Player player;
-    private Question activeQuestion;
-    public IGameShow questionBase;
+    private Player player; // player object in charge of tracking object
+    private Question activeQuestion; // the question being asked, used to store its info
+    public IGameShow questionBase; // where we pull questions from
 
-    boolean continueGame;
+    boolean continueGame; // whether a player gets a question right
     //private int answerStreak = 0;
 
 
 
     //private IGameShow database;
 
-    public MainActivity(){
+    public MainActivity(){ // constructor
     }
 
 
-
+    /**
+     * Called by the Android framework whenever the activity is (re)created.
+     * @param savedInstanceState saved data from prior instantiation (ignore for now)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mainView = new MainView(this);
-        questionBase = new RandMultiChoice();
-        player = new Player();
-        continueGame = true;
+        questionBase = new RandMultiChoice(); // sets questionBase
+        player = new Player(); // sets player object
+        continueGame = true; // sets to true as player hasn't gotten question wrong yet
         this.setContentView(mainView.getRootView());
         this.mainView.displayFragment(new GameConfigFragment(this),true, "game-config");
     }
 
+    /**
+     * Resets player's answerStreak along with QuestionNumber. Creates new database as well
+     */
     private void resetGame(){
-        this.player.resetStreak();
-        this.questionBase = new RandMultiChoice();
+        this.player.resetStreak(); // player reset
+        this.questionBase = new RandMultiChoice(); // database reset
     }
+
+    /**
+     * Sets activeQuestion to a random unused question from questionBase
+     * @return a random question from database
+     */
     @Override
     public Question getQuestion(){
-        this.activeQuestion = questionBase.getQuestion();
-        return this.activeQuestion;
+        this.activeQuestion = questionBase.getQuestion(); // pulls the question and removes
+        return this.activeQuestion; // returns so can be taken into account
     }
 
 
-
+    /**
+     * gets the right Answer Choice from the question.
+     * To be called when player gets question wrong
+     * and we want to print correct answer.
+     * @return the correct answer choice
+     */
     @Override
     public Choice rightAnswer(){
         return activeQuestion.getCorrectChoice();
     }
 
+    /**
+     * Gives us the current questionNumber that the player is on
+     * @return the integer number of which question player is onm
+     */
     public int questionNumber(){
         return player.questionNumber;
     }
@@ -109,53 +129,65 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     }
 
     /**
-     * WIll take user to a brand new game, starting with question one
+     * WIll take user to a brand new game, starting with question one.
+     * Implements resets as well to start from question 1 again.
      */
     @Override
     public void onPlayAgain(){
-        resetGame();
-        onWWM();
+        resetGame(); // reset of stats
+        onWWM(); // performs same action as previous method
     }
 
     /**
-     * WIll take user back to Game Configuration, where they can choose mode
+     * WIll take user back to Game Configuration, where they can choose mode.
+     * Resets the stats as well to start from question 1 again
      */
     @Override
     public void onMenu(){
-        resetGame();
+        resetGame(); // reset of stats
         GameConfigFragment gameConfigFragment = new GameConfigFragment(this);
         this.mainView.displayFragment(gameConfigFragment, true, "restart");
     }
 
+    /**
+     * Used on CorrectAns Screen. Will go to next question that needs to be implemented
+     */
     @Override
     public void onNext(){
         ActiveQuestion questionFragment = new ActiveQuestion(this);
         this.mainView.displayFragment(questionFragment, true, "not-fin-next");
     }
 
+    /**
+     * Used in Game Info screen, allows user to get back to GameConfig Screen
+     */
     @Override
     public void onGoBack(){
         GameConfigFragment gameConfigFragment = new GameConfigFragment(this);
         this.mainView.displayFragment(gameConfigFragment, true, "back-to-menu");
     }
 
+    /**
+     * Will check whether player got right answer and whether to continue game further
+     * @param index the index of which answer choice the user selected
+     */
     @Override
     public void onSubmit(int index){
         continueGame = activeQuestion.isCorrect(index);
         if (continueGame) {
             player.rightAns(); // marks that player got right answer
         }
-        if (player.answerStreak == 5){
+        if (player.answerStreak == 5){ // activated if player won the game
             Game_Won_Fragment game_won_fragment = new Game_Won_Fragment(this);
-            this.mainView.displayFragment(game_won_fragment, true, "won-the-game");
+            this.mainView.displayFragment(game_won_fragment, true, "won-the-game"); // game won screen displayed
         }
-        else if (continueGame){
+        else if (continueGame){ // activated if player got answer right and needs to keep going
             correct_ans_Fragment correct_ans_fragment = new correct_ans_Fragment(this);
-            this.mainView.displayFragment(correct_ans_fragment, true, "right-ans");
+            this.mainView.displayFragment(correct_ans_fragment, true, "right-ans"); // correct ans screen displayed
         }
-        else{
+        else{ // activated if player gets question wrong and loses
             Game_Lost_Fragment game_lost_fragment = new Game_Lost_Fragment(this);
-            this.mainView.displayFragment(game_lost_fragment, true, "lost-game");
+            this.mainView.displayFragment(game_lost_fragment, true, "lost-game"); // game lost screen displayed
         }
     }
 

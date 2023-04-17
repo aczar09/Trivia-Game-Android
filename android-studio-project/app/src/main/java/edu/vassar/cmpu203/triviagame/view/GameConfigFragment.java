@@ -70,10 +70,10 @@ public class GameConfigFragment extends Fragment implements IGameConfigView {
             @Override
             public void onClick(View view) {
                 GameConfigFragment.this.listener.onWWM();
-            }
+            } // calls onWWM() in MainActivity
         });
-        this.binding.randbutton.setOnClickListener(view1 -> GameConfigFragment.this.listener.onRandom());
-        this.binding.moreinfobutton.setOnClickListener(view12 -> GameConfigFragment.this.listener.onMoreInfo());
+        this.binding.randbutton.setOnClickListener(view1 -> GameConfigFragment.this.listener.onRandom()); // calls onRandom() in MainActivity
+        this.binding.moreinfobutton.setOnClickListener(view12 -> GameConfigFragment.this.listener.onMoreInfo()); // calls onMoreInfo() in MainActivity
         //return View.inflate(R.layout.fragment_game__config, this, false);
     }
 }

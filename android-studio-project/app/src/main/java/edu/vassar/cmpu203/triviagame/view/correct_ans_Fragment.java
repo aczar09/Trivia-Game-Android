@@ -34,11 +34,11 @@ public class correct_ans_Fragment extends Fragment implements ICorrectAnsView {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-        this.binding.nextbutton.setOnClickListener(new View.OnClickListener() {
+        this.binding.nextbutton.setOnClickListener(new View.OnClickListener() { // actives listener on next button
             @Override
             public void onClick(View view) {
                 correct_ans_Fragment.this.listener.onNext();
-            }
+            } // performs onNext() when user clicks nextbutton
         });
     }
 

@@ -37,13 +37,13 @@ public class Game_Won_Fragment extends Fragment implements IGameWonView {
             @Override
             public void onClick(View view) {
                 Game_Won_Fragment.this.listener.onPlayAgain();
-            }
+            } // calls onPlayAgain() in MainActivity
         });
         this.binding.menuwonbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Game_Won_Fragment.this.listener.onMenu();
-            }
+            } // calls onMenu() in MainActivity
         });
     }
 }

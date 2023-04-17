@@ -34,22 +34,27 @@ public class Game_Lost_Fragment extends Fragment implements IGameLostView{
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-        Choice c = correctAnswerChoice();
-        this.binding.rightAnswer.setText(c.toString());
-        this.binding.yesbutton.setOnClickListener(new View.OnClickListener() {
+        Choice c = correctAnswerChoice(); // calls helper method
+        this.binding.rightAnswer.setText(c.toString()); // sets rightAnswer text to the actual right answer
+        this.binding.yesbutton.setOnClickListener(new View.OnClickListener() { // sets listener on yes button to play again
             @Override
             public void onClick(View view) {
                 Game_Lost_Fragment.this.listener.onPlayAgain();
-            }
+            } // calls onPlayAgain() in MainActivity
         });
         this.binding.menubutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Game_Lost_Fragment.this.listener.onMenu();
-            }
+            } // calls onMenu() in MainActivity
         });
     }
+
+    /**
+     * Pulls the correct Answer choice from MainActivity
+     * @return the correct Answer Choice
+     */
     public Choice correctAnswerChoice(){
-        return this.listener.rightAnswer();
+        return this.listener.rightAnswer(); // calls rightAnswer() in MainActivity
     }
 }
