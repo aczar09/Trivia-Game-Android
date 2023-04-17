@@ -47,6 +47,14 @@ public class QuestionAndroidTest {
         onView(ViewMatchers.withId(R.id.wwmbutton)).perform(ViewActions.click());
         int count = 0;
         while(count!=5) {
+            ViewInteraction submit = Espresso.onView(ViewMatchers.withId(R.id.submitbutton));
+            submit.check( // used to check if we are back on Active Question screen
+                    ViewAssertions.matches(
+                            ViewMatchers.withSubstring(
+                                    "SUBMIT"
+                            )
+                    )
+            );
             String prompt = getText(withId(R.id.aQuestion));
             int selection  = (int) (Math.random() * 4);
 
@@ -81,10 +89,25 @@ public class QuestionAndroidTest {
             onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
             count++;
             if(count!=5&&isCorrect){
+                ViewInteraction correctText = Espresso.onView(ViewMatchers.withId(R.id.correctText));
+                correctText.check( // used to check if we are back on Correct Answer screen
+                        ViewAssertions.matches(
+                                ViewMatchers.withSubstring(
+                                        "CORRECT!!!"
+                                )
+                        )
+                );
                 onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
             }
             if(!isCorrect){
-
+                ViewInteraction gameOver = Espresso.onView(ViewMatchers.withId(R.id.gameOverText));
+                gameOver.check( // used to check if we are back on Active Question screen
+                        ViewAssertions.matches(
+                                ViewMatchers.withSubstring(
+                                        "Sorry! Game Over!"
+                                )
+                        )
+                );
                 break;
             }
         }
@@ -137,7 +160,7 @@ public class QuestionAndroidTest {
                 countQ++;
                 if (countQ != 5) {
                     ViewInteraction correctText = Espresso.onView(ViewMatchers.withId(R.id.correctText));
-                    correctText.check( // used to check if we are back on Game Won screen
+                    correctText.check( // used to check if we are back on Correct Answer screen
                             ViewAssertions.matches(
                                     ViewMatchers.withSubstring(
                                             "CORRECT!!!"
@@ -233,6 +256,15 @@ public class QuestionAndroidTest {
                 }
             }
             onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
+
+            ViewInteraction gameOver = Espresso.onView(ViewMatchers.withId(R.id.gameOverText));
+            gameOver.check( // used to check if we are back on Active Question screen
+                    ViewAssertions.matches(
+                            ViewMatchers.withSubstring(
+                                    "Sorry! Game Over!"
+                            )
+                    )
+            );
 
             switch(count) {
                 case 0:
