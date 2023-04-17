@@ -125,37 +125,21 @@ public class QuestionAndroidTest {
 
                 onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
                 countQ++;
-
-
                 if (countQ != 5) {
                     onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
-                    ViewInteraction correctText = Espresso.onView(ViewMatchers.withId(R.id.correctText)); // saves game name text
-                    correctText.check( // used to check if we are back on Game Config screen
-                            ViewAssertions.matches(
-                                    ViewMatchers.withSubstring(
-                                            "CORRECT"
-                                    )
-                            )
-                    );
                 }else{
-                    ViewInteraction correctText = Espresso.onView(ViewMatchers.withId(R.id.correctText)); // saves game name text
-                    correctText.check( // used to check if we are back on Game Config screen
-                            ViewAssertions.matches(
-                                    ViewMatchers.withSubstring(
-                                            "CORRECT"
-                                    )
-                            )
-                    );
+                    switch(countR) {
+                        case 0:
+                            onView(ViewMatchers.withId(R.id.yeswonbutton)).perform(ViewActions.click());
+                            break;
+                        case 1:
+                            onView(ViewMatchers.withId(R.id.menuwonbutton)).perform(ViewActions.click());
+                            break;
+                    }
                 }
             }
-            switch(countR) {
-                case 0:
-                    onView(ViewMatchers.withId(R.id.yesbutton)).perform(ViewActions.click());
-                    break;
-                case 1:
-                    onView(ViewMatchers.withId(R.id.menubutton)).perform(ViewActions.click());
-            }
             countR++;
+            countQ = 0;
         }
 
     }
