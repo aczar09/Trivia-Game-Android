@@ -47,4 +47,6 @@ While working on iteration 2, most of our time was spent transferring existing f
 platform. As well, while in the text-based game we were able to come up with a way to get a large database of questions,
 when trying to implement it into Android, it provided many errors, and thus we decided to revert back to our hard coded
 Questions for now so we could focus on basic functionality. In the next iteration, we will focus on getting
-that database working, and then thinking how we could our existing structure to create new Game Mode variants.
+that database working, and then thinking how we could our existing structure to create new Game Mode variants. As well, we
+will also work to change the structure of Question so the category is an Enum, difficulty is no longer a variable, since
+the database we are pulling from doesn't have indication of difficulty.
