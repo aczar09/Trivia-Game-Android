@@ -1,5 +1,4 @@
-package edu.vassar.cmpu203.triviagame.model;
-
+package src.src;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -7,7 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 public class QuestionDatabase {
     ArrayList<Question> questions = new ArrayList<>();
-
     public void parseFile(File file) {
 
         String category = file.getName().toUpperCase();
@@ -63,7 +61,13 @@ public class QuestionDatabase {
     }
 
     public QuestionDatabase() {
+        File[] fileList = new File("/home/pcrisostomosuarez/Desktop/cs203/team-2c/intellij-project/src/src/question categories").listFiles();
 
+        for (File f : fileList) {
+            parseFile(f);
+        }
 
     }
 }
+
+

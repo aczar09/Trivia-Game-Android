@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 class QuestionTest {
 
+    /**
+     * Tests that calling getCorrectAnswerChoice on a Question will return a choice that is true
+     */
     @Test
     void getCorrectChoice() {
         Question q1 = new Question("When was the first Call of Duty title released?", "hard","Entertainment","mcq",
@@ -15,6 +18,9 @@ class QuestionTest {
         assertTrue(correctChoice.correct);
     }
 
+    /**
+     * Tests that isCorrect returns true when the correct index is passed in and false otherwise
+     */
     @Test
     void isCorrect() {
         Question q1 = new Question("When was the first Call of Duty title released?", "hard","Entertainment","mcq",

@@ -36,6 +36,10 @@ public class QuestionAndroidTest {
     @org.junit.Rule
     public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
 
+    /**
+     * Tests randomly the different screens, to account for different combinations/pathways in the game.
+     * For example, the user may input 3 correct answers and 1 incorrect, all correct answers, etc.
+     */
     @Test
     public void RunningThroughQuestionsRandom(){
         RandMultiChoice r = new RandMultiChoice();
@@ -87,6 +91,10 @@ public class QuestionAndroidTest {
     }
 
 
+    /**
+     * Tests the screens for when the user gets every question right, and then when they choose to
+     * play again or go back to the menu
+     */
     @Test
     public void RunningThroughQuestionsAllCorrect(){
         RandMultiChoice r = new RandMultiChoice();
@@ -133,6 +141,10 @@ public class QuestionAndroidTest {
 
     }
 
+    /**
+     * Tests the screens for when the user loses on a question, and then when they choose to
+     * play again or go back to the menu
+     */
     @Test
     public void RunningThroughQuestionsLoseAndReplay(){
         RandMultiChoice r = new RandMultiChoice();

@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 class PlayerTest {
 
+    /**
+     * Tests that Player's answerStreak and questionNumber get updated by one everytime rightAns() is called
+     */
     @Test
     void rightAns() {
         Player p = new Player();
@@ -17,6 +20,9 @@ class PlayerTest {
 
     }
 
+    /**
+     * Tests that Player's answerStreak and questionNumber is reset whenever resetStreak() is called
+     */
     @Test
     void resetStreak() {
         Player p = new Player();
