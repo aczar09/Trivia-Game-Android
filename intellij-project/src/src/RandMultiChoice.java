@@ -10,7 +10,7 @@ public class RandMultiChoice implements IGameShow {
 
     public RandMultiChoice(){
 
-        Question q1 = new Question("When was the first Call of Duty title released?", "hard","Entertainment","mcq",
+        /*Question q1 = new Question("When was the first Call of Duty title released?", "hard","Entertainment","mcq",
                 new Choice("December 1, 2003",false),new Choice("November 14, 2002",false),
                 new Choice("July 18, 2004",false),new Choice("October 29, 2003",true));
         qp.add(q1);
@@ -127,7 +127,7 @@ public class RandMultiChoice implements IGameShow {
         new Choice("N/A (Still alive)",false),new Choice("61",false),
         new Choice("56",false),new Choice("74",true));
         qp.add(q23);
-
+*/
         Collections.shuffle(qp);
     }
 

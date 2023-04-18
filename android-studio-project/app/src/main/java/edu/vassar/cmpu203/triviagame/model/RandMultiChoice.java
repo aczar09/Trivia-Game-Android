@@ -8,6 +8,8 @@ public class RandMultiChoice implements IGameShow {
     List<Question> qp = new ArrayList<>();
     public RandMultiChoice() /*throws Exception*/ {
 
+        QuestionDatabase qd = new QuestionDatabase();
+        qp = qd.questions;
 
         Question q1 = new Question("When was the first Call of Duty title released?", "hard","Entertainment","mcq",
                 new Choice("December 1, 2003",false),new Choice("November 14, 2002",false),

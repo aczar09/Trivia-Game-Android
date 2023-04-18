@@ -2,11 +2,29 @@ package edu.vassar.cmpu203.triviagame.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 public class QuestionDatabase {
     ArrayList<Question> questions = new ArrayList<>();
+
+    public QuestionDatabase() {
+
+        try {
+            File fileDir;
+            fileDir = new File(ClassLoader.getSystemResource("questions").toURI());
+             File[] fileList = fileDir.listFiles();
+            for (File f : fileList) {
+                parseFile(f);
+            }
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
 
     /**
      * Parses through a txt file and adds Questions to questions List
@@ -49,7 +67,7 @@ public class QuestionDatabase {
                         Choice cChoice = new Choice(c, c.equals(correct));
                         String d = s.nextLine().substring(2);//scans last answer choice
                         Choice dChoice = new Choice(d, d.equals(correct));
-                        Question ques = new Question(q, "normal", category, "mcq", aChoice, bChoice, cChoice, dChoice);
+                        Question ques = new Question(q, "medium", category, "mcq", aChoice, bChoice, cChoice, dChoice);
                         added++;
                         this.questions.add(ques);
                         //System.out.println(ques);
@@ -66,12 +84,5 @@ public class QuestionDatabase {
 
     }
 
-    public QuestionDatabase() {
-        File[] fileList = new File("/home/pcrisostomosuarez/Desktop/cs203/team-2c/intellij-project/src/src/question categories").listFiles();
 
-        for (File f : fileList) {
-            parseFile(f);
-        }
-
-    }
 }
