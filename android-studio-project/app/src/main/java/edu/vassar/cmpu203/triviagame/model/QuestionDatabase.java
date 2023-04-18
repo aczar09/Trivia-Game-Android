@@ -1,44 +1,39 @@
 package edu.vassar.cmpu203.triviagame.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
+import android.content.res.AssetManager;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 public class QuestionDatabase {
     ArrayList<Question> questions = new ArrayList<>();
 
-    public QuestionDatabase() {
 
+    public QuestionDatabase(AssetManager assetManager){
         try {
-            File fileDir;
-            fileDir = new File(ClassLoader.getSystemResource("questions").toURI());
-             File[] fileList = fileDir.listFiles();
-            for (File f : fileList) {
-                parseFile(f);
+            String[] questionFilenames = assetManager.list("questions");
+            for (String questionFilename : questionFilenames) {
+                InputStream inputStream = assetManager.open("questions/" + questionFilename);
+                readQuestions(questionFilename, inputStream);
             }
-        } catch (URISyntaxException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
 
-
-
+    public QuestionDatabase() {
     }
 
     /**
      * Parses through a txt file and adds Questions to questions List
-     * @param file
+     * @param category the name of the category of questions
+     * @param inputStream the input stream to read from
      */
-    public void parseFile(File file) {
+    public void readQuestions(String category, InputStream inputStream) {
 
-        String category = file.getName().toUpperCase();
-        Scanner s = null;
-        try {
-            s = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            return;
-        }
+        Scanner s = new Scanner(inputStream);
+
         int added = 0;
 
         try {

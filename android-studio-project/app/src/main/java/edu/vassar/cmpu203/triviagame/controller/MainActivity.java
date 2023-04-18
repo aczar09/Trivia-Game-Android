@@ -1,9 +1,15 @@
 package edu.vassar.cmpu203.triviagame.controller;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import edu.vassar.cmpu203.triviagame.R;
+import edu.vassar.cmpu203.triviagame.model.QuestionDatabase;
 import edu.vassar.cmpu203.triviagame.view.ActiveQuestion;
 import edu.vassar.cmpu203.triviagame.view.IActiveQuestionView;
 import edu.vassar.cmpu203.triviagame.model.Choice;
@@ -53,12 +59,19 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        new QuestionDatabase(this.getAssets()); // rui example read question database
+
+
         this.mainView = new MainView(this);
         questionBase = new RandMultiChoice(); // sets questionBase
         player = new Player(); // sets player object
         continueGame = true; // sets to true as player hasn't gotten question wrong yet
         this.setContentView(mainView.getRootView());
         this.mainView.displayFragment(new GameConfigFragment(this),true, "game-config");
+
+
+
     }
 
     /**
