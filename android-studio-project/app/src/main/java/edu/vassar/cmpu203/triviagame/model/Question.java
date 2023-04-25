@@ -53,6 +53,9 @@ public class Question {
         return null;
     }
 
+    public String getCategory(){
+         return category;
+    }
     /**
      * Returns the correct Choice
      * @return Choice

@@ -60,11 +60,11 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new QuestionDatabase(this.getAssets()); // rui example read question database
+        //new QuestionDatabase(this.getAssets()); // rui example read question database
 
 
         this.mainView = new MainView(this);
-        questionBase = new RandMultiChoice(); // sets questionBase
+        questionBase = new RandMultiChoice(this.getAssets()); // sets questionBase
         player = new Player(); // sets player object
         continueGame = true; // sets to true as player hasn't gotten question wrong yet
         this.setContentView(mainView.getRootView());
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     private void resetGame(){
         this.player.resetStreak(); // player reset
-        this.questionBase = new RandMultiChoice(); // database reset
+        this.questionBase = new RandMultiChoice(this.getAssets()); // database reset
     }
 
     /**

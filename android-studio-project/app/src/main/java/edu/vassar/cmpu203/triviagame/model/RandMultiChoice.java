@@ -1,14 +1,16 @@
 package edu.vassar.cmpu203.triviagame.model;
 
+import android.content.res.AssetManager;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class RandMultiChoice implements IGameShow {
     List<Question> qp = new ArrayList<>();
-    public RandMultiChoice() /*throws Exception*/ {
+    public RandMultiChoice(AssetManager assets) /*throws Exception*/ {
 
-        QuestionDatabase qd = new QuestionDatabase();
+        QuestionDatabase qd = new QuestionDatabase(assets);
         qp = qd.questions;
 
         Question q1 = new Question("When was the first Call of Duty title released?", "hard","Entertainment","mcq",
@@ -148,6 +150,21 @@ public class RandMultiChoice implements IGameShow {
         return q;
     }
 
+    public Question getQuestion(String category){
+        if(qp.size() == 0){
+            return null;
+        }
+        while(true){
+            int randInd = (int)(Math.random() * qp.size());
+            if(qp.get(randInd).getCategory().equals(category)){
+                Question q = qp.get(randInd);
+                qp.remove(randInd);
+                return q;
+            }
+
+
+        }
+    }
     /**
      * Searches for a Question based on String search, and returns Question if found in list
      * @param search
