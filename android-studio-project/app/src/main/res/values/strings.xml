@@ -44,4 +44,12 @@
     <string name="submit">Submit</string>
 
     <string name="need_ans">Please select an answer choice</string>
+
+    <string name="make_sel">Please choose your wanted category:</string>
+
+    <string name="geo">Geography</string>
+
+    <string name="tv">Television</string>
+
+    <string name="categories">Categories Mode</string>
 </resources>
