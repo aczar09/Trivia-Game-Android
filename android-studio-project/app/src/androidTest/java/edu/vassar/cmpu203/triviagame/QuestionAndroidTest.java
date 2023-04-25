@@ -42,7 +42,7 @@ public class QuestionAndroidTest {
      */
     @Test
     public void RunningThroughQuestionsRandom(){
-        RandMultiChoice r = new RandMultiChoice();
+        RandMultiChoice r = new RandMultiChoice(this.getAssets());
         // Perform a click action on a view
         onView(ViewMatchers.withId(R.id.wwmbutton)).perform(ViewActions.click());
         int count = 0;

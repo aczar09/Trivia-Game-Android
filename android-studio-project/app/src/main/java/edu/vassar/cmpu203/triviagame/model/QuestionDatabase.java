@@ -5,11 +5,12 @@ import android.content.res.AssetManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 public class QuestionDatabase {
-    List<Question> questions = new ArrayList<>();
-
+    //List<Question> questions = new ArrayList<>();
+    HashMap<String, List<Question>> database = new HashMap<>();
 
     public QuestionDatabase(AssetManager assetManager){
         try {
@@ -34,7 +35,7 @@ public class QuestionDatabase {
     public void readQuestions(String category, InputStream inputStream) {
 
         Scanner s = new Scanner(inputStream);
-
+        List<Question>  categoryQ = new ArrayList<>();
         int added = 0;
 
         try {
@@ -65,7 +66,7 @@ public class QuestionDatabase {
                         Choice dChoice = new Choice(d, d.equals(correct));
                         Question ques = new Question(q, "medium", category, "mcq", aChoice, bChoice, cChoice, dChoice);
                         added++;
-                        this.questions.add(ques);
+                        categoryQ.add(ques);
                         //System.out.println(ques);
                     }
 
@@ -75,8 +76,9 @@ public class QuestionDatabase {
         } catch (Exception e) {
             //System.out.println(added);
         }
-        //System.out.println("Added " + added);
 
+        //System.out.println("Added " + added);
+        database.put(category,categoryQ);
 
     }
 

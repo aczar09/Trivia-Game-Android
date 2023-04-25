@@ -1,19 +1,23 @@
 package edu.vassar.cmpu203.triviagame.model;
 
 import android.content.res.AssetManager;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class RandMultiChoice implements IGameShow {
-    List<Question> qp = new ArrayList<>();
+    Map<String,List<Question>> qp = new HashMap<>();
     public RandMultiChoice(AssetManager assets) /*throws Exception*/ {
 
         QuestionDatabase qd = new QuestionDatabase(assets);
-        qp = qd.questions;
+        qp = qd.database;
 
-        Question q1 = new Question("When was the first Call of Duty title released?", "hard","Entertainment","mcq",
+        /*Question q1 = new Question("When was the first Call of Duty title released?", "hard","Entertainment","mcq",
                 new Choice("December 1, 2003",false),new Choice("November 14, 2002",false),
                 new Choice("July 18, 2004",false),new Choice("October 29, 2003",true));
         qp.add(q1);
@@ -130,9 +134,9 @@ public class RandMultiChoice implements IGameShow {
                 new Choice("N/A (Still alive)",false),new Choice("61",false),
                 new Choice("56",false),new Choice("74",true));
         qp.add(q23);
+*/
 
-
-        Collections.shuffle(qp);
+        //Collections.shuffle(database);
     }
 
     /**
@@ -143,15 +147,15 @@ public class RandMultiChoice implements IGameShow {
         if(qp.size() == 0){
             return null;
         }
-        int randInd = (int)(Math.random() * qp.size());
-        Question q = qp.get(randInd);
-        qp.remove(randInd);
-
-        return q;
+        List<String> keysAsArray = new ArrayList<>(qp.keySet());
+        Random r = new Random();
+        List<Question> categoryQ = qp.get(keysAsArray.get(r.nextInt(keysAsArray.size())));
+        Collections.shuffle(categoryQ);
+        return categoryQ.get(0);
     }
 
     public Question getQuestion(String category){
-        if(qp.size() == 0){
+        /*if(qp.size() == 0){
             return null;
         }
         while(true){
@@ -163,7 +167,19 @@ public class RandMultiChoice implements IGameShow {
             }
 
 
+        }*/
+
+        try{
+            List<Question> categoryQ = qp.get(category);
+            Collections.shuffle(categoryQ);
+            Question q = categoryQ.get(0);
+            categoryQ.remove(0);
+            return q;
+        }catch (Exception e){
+            Log.d("invalid category", "Invalid/Empty category");
         }
+
+
     }
     /**
      * Searches for a Question based on String search, and returns Question if found in list
