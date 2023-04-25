@@ -5,9 +5,10 @@ import android.content.res.AssetManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 public class QuestionDatabase {
-    ArrayList<Question> questions = new ArrayList<>();
+    List<Question> questions = new ArrayList<>();
 
 
     public QuestionDatabase(AssetManager assetManager){
