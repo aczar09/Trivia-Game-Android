@@ -21,6 +21,7 @@ import edu.vassar.cmpu203.triviagame.view.GameConfigFragment;
 import edu.vassar.cmpu203.triviagame.view.Game_Lost_Fragment;
 import edu.vassar.cmpu203.triviagame.view.Game_Mode_Fragment;
 import edu.vassar.cmpu203.triviagame.view.Game_Won_Fragment;
+import edu.vassar.cmpu203.triviagame.view.ICategoriesView;
 import edu.vassar.cmpu203.triviagame.view.ICorrectAnsView;
 import edu.vassar.cmpu203.triviagame.view.IGameConfigView;
 import edu.vassar.cmpu203.triviagame.view.IGameLostView;
@@ -32,7 +33,7 @@ import edu.vassar.cmpu203.triviagame.view.MainView;
 import edu.vassar.cmpu203.triviagame.view.correct_ans_Fragment;
 
 public class MainActivity extends AppCompatActivity implements IGameConfigView.Listener, IGameLostView.Listener, ICorrectAnsView.Listener, IGameModeView.Listener,
-        IGameWonView.Listener, /*IQuestionView.Listener,*/ IActiveQuestionView.Listener {
+        IGameWonView.Listener, /*IQuestionView.Listener,*/ IActiveQuestionView.Listener, ICategoriesView.Listener {
 
     private IMainView mainView; // a reference to the main screen template
     //private IGameShow questionBase;
@@ -202,6 +203,22 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
             Game_Lost_Fragment game_lost_fragment = new Game_Lost_Fragment(this);
             this.mainView.displayFragment(game_lost_fragment, true, "lost-game"); // game lost screen displayed
         }
+    }
+
+    /**
+     * Used in Categories Mode screen. Player chooses to play Geography questions only.
+     */
+    @Override
+    public void onGeo(){
+
+    }
+
+    /**
+     * Used in Categories Mode screen. Player chooses to play TV questions only.
+     */
+    @Override
+    public void onTV(){
+
     }
 
 
