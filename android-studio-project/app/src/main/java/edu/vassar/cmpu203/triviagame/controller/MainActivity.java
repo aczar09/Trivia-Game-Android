@@ -11,6 +11,7 @@ import java.io.InputStream;
 import edu.vassar.cmpu203.triviagame.R;
 import edu.vassar.cmpu203.triviagame.model.QuestionDatabase;
 import edu.vassar.cmpu203.triviagame.view.ActiveQuestion;
+import edu.vassar.cmpu203.triviagame.view.CategoriesModeFragment;
 import edu.vassar.cmpu203.triviagame.view.IActiveQuestionView;
 import edu.vassar.cmpu203.triviagame.model.Choice;
 import edu.vassar.cmpu203.triviagame.model.IGameShow;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     private void resetGame(){
         this.player.resetStreak(); // player reset
-        this.questionBase = new RandMultiChoice(this.getAssets()); // database reset
+        //this.questionBase = new RandMultiChoice(this.getAssets()); // database reset
     }
 
     /**
@@ -122,6 +123,10 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         this.mainView.displayFragment(questionFragment, true, "first-question");
     }
 
+    public void onCategoriesMode(){
+        CategoriesModeFragment categoriesModeFragment = new CategoriesModeFragment(this);
+        this.mainView.displayFragment(categoriesModeFragment,true,"category-mode");
+    }
     /**
      * This currently will only do the same as onWMM, but next iteration, when we add an additional
      * game mode it should be implemented
