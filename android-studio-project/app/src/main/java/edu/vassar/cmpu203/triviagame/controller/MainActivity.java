@@ -151,6 +151,22 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         ActiveQuestion questionFragment = new ActiveQuestion(this);
         this.mainView.displayFragment(questionFragment, true, "first-question");
     }
+    @Override
+    public void onHobbies(){
+        curCategory = "hobbies";
+        Log.d("curCategory", curCategory);
+        ActiveQuestion questionFragment = new ActiveQuestion(this);
+        this.mainView.displayFragment(questionFragment, true, "first-question");
+    }
+
+    @Override
+    public void onSports(){
+        curCategory = "sports";
+        Log.d("curCategory", curCategory);
+        ActiveQuestion questionFragment = new ActiveQuestion(this);
+        this.mainView.displayFragment(questionFragment, true, "first-question");
+    }
+
     /**
      * This currently will only do the same as onWMM, but next iteration, when we add an additional
      * game mode it should be implemented
@@ -190,6 +206,12 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
                 break;
             case "geography":
                 onGeo();
+                break;
+            case "hobbies":
+                onHobbies();
+                break;
+            case "sports":
+                onSports();
                 break;
         }
 

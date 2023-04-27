@@ -6,6 +6,10 @@ public interface ICategoriesModeView {
         void onGeo();
 
         void onTV();
+
+        void onHobbies();
+
+        void onSports();
         void onGoBack();
     }
 }

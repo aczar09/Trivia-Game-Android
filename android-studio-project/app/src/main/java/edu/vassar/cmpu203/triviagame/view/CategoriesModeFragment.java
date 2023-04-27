@@ -42,6 +42,8 @@ public class CategoriesModeFragment extends Fragment implements ICategoriesModeV
         this.binding.geobutton.setOnClickListener(view1 -> CategoriesModeFragment.this.listener.onGeo()); // calls onRandom() in MainActivity
         this.binding.tvbutton.setOnClickListener(view12 -> CategoriesModeFragment.this.listener.onTV()); // calls onMoreInfo() in MainActivity
         this.binding.gbbutton.setOnClickListener(view1 -> CategoriesModeFragment.this.listener.onGoBack());
+        this.binding.hobbiesbutton.setOnClickListener(view1 -> CategoriesModeFragment.this.listener.onHobbies());
+        this.binding.sportsbutton.setOnClickListener(view1 -> CategoriesModeFragment.this.listener.onSports());
         //return View.inflate(R.layout.fragment_game__config, this, false);
     }
 
