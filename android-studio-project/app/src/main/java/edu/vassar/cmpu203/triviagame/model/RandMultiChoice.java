@@ -170,7 +170,7 @@ public class RandMultiChoice implements IGameShow {
         }*/
 
         try{
-            List<Question> categoryQ = qp.get(category);
+            List<Question> categoryQ = qp.get(category.toUpperCase());
             Collections.shuffle(categoryQ);
             Question q = categoryQ.get(0);
             categoryQ.remove(0);
@@ -180,18 +180,20 @@ public class RandMultiChoice implements IGameShow {
         }
 
 
+        return null;
     }
     /**
      * Searches for a Question based on String search, and returns Question if found in list
      * @param search
      * @return Question
      */
-    public Question searchQuestion(String search){
-        for(Question q: qp){
+    public Question searchQuestion(String search, String category){
+
+        /*for(Question q: qp){
             if(q.getPrompt().equals(search)){
                 return q;
             }
-        }
+        }*/
         return null;
     }
 /*

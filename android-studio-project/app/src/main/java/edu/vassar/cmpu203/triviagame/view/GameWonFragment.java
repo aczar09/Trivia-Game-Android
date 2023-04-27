@@ -10,17 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.vassar.cmpu203.triviagame.R;
 import edu.vassar.cmpu203.triviagame.databinding.FragmentGameWonBinding;
 
 
-public class Game_Won_Fragment extends Fragment implements IGameWonView {
+public class GameWonFragment extends Fragment implements IGameWonView {
     private FragmentGameWonBinding binding;
     private Listener listener;
 
-    public Game_Won_Fragment(){}
+    public GameWonFragment(){}
 
-    public Game_Won_Fragment(Listener listener){
+    public GameWonFragment(Listener listener){
         this.listener = listener;
     }
 
@@ -36,13 +35,13 @@ public class Game_Won_Fragment extends Fragment implements IGameWonView {
         this.binding.yeswonbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Game_Won_Fragment.this.listener.onPlayAgain();
+                GameWonFragment.this.listener.onPlayAgain();
             } // calls onPlayAgain() in MainActivity
         });
         this.binding.menuwonbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Game_Won_Fragment.this.listener.onMenu();
+                GameWonFragment.this.listener.onMenu();
             } // calls onMenu() in MainActivity
         });
     }

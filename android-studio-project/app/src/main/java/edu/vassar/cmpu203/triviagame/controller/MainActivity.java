@@ -5,11 +5,6 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import edu.vassar.cmpu203.triviagame.R;
-import edu.vassar.cmpu203.triviagame.model.QuestionDatabase;
 import edu.vassar.cmpu203.triviagame.view.ActiveQuestion;
 import edu.vassar.cmpu203.triviagame.view.CategoriesModeFragment;
 import edu.vassar.cmpu203.triviagame.view.IActiveQuestionView;
@@ -19,9 +14,10 @@ import edu.vassar.cmpu203.triviagame.model.Player;
 import edu.vassar.cmpu203.triviagame.model.Question;
 import edu.vassar.cmpu203.triviagame.model.RandMultiChoice;
 import edu.vassar.cmpu203.triviagame.view.GameConfigFragment;
-import edu.vassar.cmpu203.triviagame.view.Game_Lost_Fragment;
-import edu.vassar.cmpu203.triviagame.view.Game_Mode_Fragment;
-import edu.vassar.cmpu203.triviagame.view.Game_Won_Fragment;
+import edu.vassar.cmpu203.triviagame.view.GameLostFragment;
+import edu.vassar.cmpu203.triviagame.view.GameModeFragment;
+import edu.vassar.cmpu203.triviagame.view.GameWonFragment;
+import edu.vassar.cmpu203.triviagame.view.ICategoriesModeView;
 import edu.vassar.cmpu203.triviagame.view.ICorrectAnsView;
 import edu.vassar.cmpu203.triviagame.view.IGameConfigView;
 import edu.vassar.cmpu203.triviagame.view.IGameLostView;
@@ -30,10 +26,10 @@ import edu.vassar.cmpu203.triviagame.view.IGameWonView;
 import edu.vassar.cmpu203.triviagame.view.IMainView;
 import edu.vassar.cmpu203.triviagame.view.MainView;
 //import edu.vassar.cmpu203.triviagame.view.QuestionFragment;
-import edu.vassar.cmpu203.triviagame.view.correct_ans_Fragment;
+import edu.vassar.cmpu203.triviagame.view.CorrectAnsFragment;
 
 public class MainActivity extends AppCompatActivity implements IGameConfigView.Listener, IGameLostView.Listener, ICorrectAnsView.Listener, IGameModeView.Listener,
-        IGameWonView.Listener, /*IQuestionView.Listener,*/ IActiveQuestionView.Listener {
+        IGameWonView.Listener, /*IQuestionView.Listener,*/ IActiveQuestionView.Listener, ICategoriesModeView.Listener {
 
     private IMainView mainView; // a reference to the main screen template
     //private IGameShow questionBase;
@@ -45,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     boolean continueGame; // whether a player gets a question right
     //private int answerStreak = 0;
 
-
+    String curCategory;
 
     //private IGameShow database;
 
@@ -89,9 +85,15 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public Question getQuestion(){
+        if(curCategory.length()>0){
+            this.activeQuestion = questionBase.getQuestion(curCategory); // pulls the question and removes
+            return this.activeQuestion;
+        }
         this.activeQuestion = questionBase.getQuestion(); // pulls the question and removes
         return this.activeQuestion; // returns so can be taken into account
     }
+
+
 
 
     /**
@@ -112,20 +114,42 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     public int questionNumber(){
         return player.questionNumber;
     }
+    public String getCategory(){
+        return curCategory;
+    }
     /**
      * Takes the user to the first question screen fragment
      */
     @Override
     public void onWWM(){
         ActiveQuestion questionFragment = new ActiveQuestion(this);
+        curCategory = "";
         //this.setCurQuestion(questionBase);
         //questionFragment.setQuestionDisplay(activeQuestion);
         this.mainView.displayFragment(questionFragment, true, "first-question");
     }
 
+    @Override
     public void onCategoriesMode(){
         CategoriesModeFragment categoriesModeFragment = new CategoriesModeFragment(this);
         this.mainView.displayFragment(categoriesModeFragment,true,"category-mode");
+    }
+
+
+    @Override
+    public void onGeo(){
+        curCategory = "geography";
+        Log.d("curCategory", curCategory);
+        ActiveQuestion questionFragment = new ActiveQuestion(this);
+        this.mainView.displayFragment(questionFragment, true, "first-question");
+    }
+
+    @Override
+    public void onTV(){
+        curCategory = "television";
+        Log.d("curCategory", curCategory);
+        ActiveQuestion questionFragment = new ActiveQuestion(this);
+        this.mainView.displayFragment(questionFragment, true, "first-question");
     }
     /**
      * This currently will only do the same as onWMM, but next iteration, when we add an additional
@@ -133,6 +157,8 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onRandom(){
+        curCategory = "";
+        Log.d("curCategory", curCategory);
         ActiveQuestion questionFragment = new ActiveQuestion(this);
         this.mainView.displayFragment(questionFragment, true, "first-question");
     }
@@ -142,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onMoreInfo(){
-        Game_Mode_Fragment game_mode_fragment = new Game_Mode_Fragment(this);
+        GameModeFragment game_mode_fragment = new GameModeFragment(this);
         this.mainView.displayFragment(game_mode_fragment, true, "info-slide");
     }
 
@@ -152,8 +178,23 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onPlayAgain(){
+
         resetGame(); // reset of stats
-        onWWM(); // performs same action as previous method
+        Log.d("curCategoryPlayAgain", curCategory);
+        switch(curCategory){
+            case "":
+                onWWM();
+                break;
+            case "television":
+                onTV();
+                break;
+            case "geography":
+                onGeo();
+                break;
+        }
+
+        //onWWM(); // performs same action as previous method
+
     }
 
     /**
@@ -172,6 +213,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onNext(){
+        Log.d("curCategory", curCategory);
         ActiveQuestion questionFragment = new ActiveQuestion(this);
         this.mainView.displayFragment(questionFragment, true, "not-fin-next");
     }
@@ -196,15 +238,15 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
             player.rightAns(); // marks that player got right answer
         }
         if (player.answerStreak == 5){ // activated if player won the game
-            Game_Won_Fragment game_won_fragment = new Game_Won_Fragment(this);
+            GameWonFragment game_won_fragment = new GameWonFragment(this);
             this.mainView.displayFragment(game_won_fragment, true, "won-the-game"); // game won screen displayed
         }
         else if (continueGame){ // activated if player got answer right and needs to keep going
-            correct_ans_Fragment correct_ans_fragment = new correct_ans_Fragment(this);
+            CorrectAnsFragment correct_ans_fragment = new CorrectAnsFragment(this);
             this.mainView.displayFragment(correct_ans_fragment, true, "right-ans"); // correct ans screen displayed
         }
         else{ // activated if player gets question wrong and loses
-            Game_Lost_Fragment game_lost_fragment = new Game_Lost_Fragment(this);
+            GameLostFragment game_lost_fragment = new GameLostFragment(this);
             this.mainView.displayFragment(game_lost_fragment, true, "lost-game"); // game lost screen displayed
         }
     }

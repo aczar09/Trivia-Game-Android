@@ -8,21 +8,19 @@ import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import edu.vassar.cmpu203.triviagame.R;
 import edu.vassar.cmpu203.triviagame.databinding.FragmentGameModeInfoBinding;
 //import edu.vassar.cmpu203.triviagame.databinding.FragmentQuestionBinding;
 
 
-public class Game_Mode_Fragment extends Fragment implements IGameModeView{
+public class GameModeFragment extends Fragment implements IGameModeView{
     private FragmentGameModeInfoBinding binding;
     private Listener listener;
 
-    public Game_Mode_Fragment(){}
+    public GameModeFragment(){}
 
-    public Game_Mode_Fragment(Listener listener){
+    public GameModeFragment(Listener listener){
         this.listener = listener;
     }
 
@@ -39,7 +37,7 @@ public class Game_Mode_Fragment extends Fragment implements IGameModeView{
         this.binding.gobackbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Game_Mode_Fragment.this.listener.onGoBack();
+                GameModeFragment.this.listener.onGoBack();
             } // calls onGoBack() in MainActivity
 
         });

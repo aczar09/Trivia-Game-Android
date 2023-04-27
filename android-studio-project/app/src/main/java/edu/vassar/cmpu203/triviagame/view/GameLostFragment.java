@@ -10,18 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.vassar.cmpu203.triviagame.R;
 import edu.vassar.cmpu203.triviagame.databinding.FragmentGameLostBinding;
 //import edu.vassar.cmpu203.triviagame.databinding.FragmentQuestionBinding;
 import edu.vassar.cmpu203.triviagame.model.Choice;
 
-public class Game_Lost_Fragment extends Fragment implements IGameLostView{
+public class GameLostFragment extends Fragment implements IGameLostView{
     private FragmentGameLostBinding binding;
     private Listener listener;
 
-    public Game_Lost_Fragment(){}
+    public GameLostFragment(){}
 
-    public Game_Lost_Fragment(Listener listener){
+    public GameLostFragment(Listener listener){
         this.listener = listener;
     }
 
@@ -39,13 +38,13 @@ public class Game_Lost_Fragment extends Fragment implements IGameLostView{
         this.binding.yesbutton.setOnClickListener(new View.OnClickListener() { // sets listener on yes button to play again
             @Override
             public void onClick(View view) {
-                Game_Lost_Fragment.this.listener.onPlayAgain();
+                GameLostFragment.this.listener.onPlayAgain();
             } // calls onPlayAgain() in MainActivity
         });
         this.binding.menubutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Game_Lost_Fragment.this.listener.onMenu();
+                GameLostFragment.this.listener.onMenu();
             } // calls onMenu() in MainActivity
         });
     }

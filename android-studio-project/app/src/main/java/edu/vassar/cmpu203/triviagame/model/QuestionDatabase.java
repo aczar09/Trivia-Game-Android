@@ -78,7 +78,7 @@ public class QuestionDatabase {
         }
 
         //System.out.println("Added " + added);
-        database.put(category,categoryQ);
+        database.put(category.toUpperCase(),categoryQ);
 
     }
 

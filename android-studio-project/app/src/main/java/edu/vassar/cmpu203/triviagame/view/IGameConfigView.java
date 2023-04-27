@@ -16,7 +16,7 @@ public interface IGameConfigView {
         void onRandom(); // call when user requests random mode
 
         void onMoreInfo(); // called when user asks for more info
-
+        void onCategoriesMode();
     }
 
 

@@ -40,7 +40,7 @@ public class ActiveQuestion extends Fragment implements IActiveQuestionView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         int qNumber = numQuestion();
         this.binding.numCount.setText("" + qNumber); //sets the questionNumber
-        Question q = curQuestion();
+        Question q = q = curQuestion();
         this.binding.aQuestion.setText(q.getPrompt()); // sets question text
         this.binding.choicea.setText(q.getChoice(0).toString()); // set
         this.binding.choiceb.setText(q.getChoice(1).toString()); // text
@@ -89,6 +89,7 @@ public class ActiveQuestion extends Fragment implements IActiveQuestionView {
     public Question curQuestion() {
         return this.listener.getQuestion();
     }
+
 }
 
 

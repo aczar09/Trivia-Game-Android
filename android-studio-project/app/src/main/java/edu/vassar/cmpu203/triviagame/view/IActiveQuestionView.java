@@ -12,6 +12,9 @@ public interface IActiveQuestionView {
 
         Question getQuestion();
 
+
+
+        String getCategory();
         //void checkAnswer(int i);
         //void setCurQuestion();
     }

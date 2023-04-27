@@ -10,19 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.vassar.cmpu203.triviagame.R;
 import edu.vassar.cmpu203.triviagame.databinding.FragmentCorrectAnsBinding;
 //import edu.vassar.cmpu203.triviagame.databinding.FragmentQuestionBinding;
 
 
-public class correct_ans_Fragment extends Fragment implements ICorrectAnsView {
+public class CorrectAnsFragment extends Fragment implements ICorrectAnsView {
 
     private FragmentCorrectAnsBinding binding;
     private Listener listener;
 
-    public correct_ans_Fragment(){}
+    public CorrectAnsFragment(){}
 
-    public correct_ans_Fragment(Listener listener){
+    public CorrectAnsFragment(Listener listener){
         this.listener = listener;
     }
     @Nullable
@@ -37,7 +36,7 @@ public class correct_ans_Fragment extends Fragment implements ICorrectAnsView {
         this.binding.nextbutton.setOnClickListener(new View.OnClickListener() { // actives listener on next button
             @Override
             public void onClick(View view) {
-                correct_ans_Fragment.this.listener.onNext();
+                CorrectAnsFragment.this.listener.onNext();
             } // performs onNext() when user clicks nextbutton
         });
     }
