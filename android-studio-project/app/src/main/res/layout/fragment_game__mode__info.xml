@@ -42,7 +42,7 @@
         <TextView
             android:id="@+id/wwminfo"
             android:layout_width="match_parent"
-            android:layout_height="233dp"
+            android:layout_height="wrap_content"
             android:text="@string/millionaire_info"
             android:textSize="24sp" />
 
@@ -60,6 +60,22 @@
             android:layout_height="wrap_content"
             android:text="@string/categories_mode_info"
             android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tpText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Trivial Pursuit"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tpinfo"
+            android:layout_width="match_parent"
+            android:layout_height="233dp"
+            android:text="This is a game show where every question you pick a different category!"
+            android:textSize="18sp" />
 
     </LinearLayout>
 

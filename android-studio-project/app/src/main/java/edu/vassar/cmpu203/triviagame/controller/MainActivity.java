@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
     String curCategory;
 
-    String curMode = "";
+    String curMode;
     //private IGameShow database;
 
     public MainActivity(){ // constructor
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     private void resetGame(){
         this.player.resetStreak(); // player reset
+        //this.curMode = "";
         //this.questionBase = new RandMultiChoice(this.getAssets()); // database reset
     }
 
@@ -126,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onWWM(){
         ActiveQuestion questionFragment = new ActiveQuestion(this);
-        curCategory = "";
+        curMode = "";
         //this.setCurQuestion(questionBase);
         //questionFragment.setQuestionDisplay(activeQuestion);
         this.mainView.displayFragment(questionFragment, true, "first-question");
@@ -134,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
     @Override
     public void onCategoriesMode(){
+        curMode = "cat";
         CategoriesModeFragment categoriesModeFragment = new CategoriesModeFragment(this);
         this.mainView.displayFragment(categoriesModeFragment,true,"category-mode");
     }
@@ -179,12 +181,18 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         curCategory = "";
         Log.d("curCategory", curCategory);
         Random r = new Random();
-        if(r.nextBoolean()){
-            onCategoriesMode();
-        }else{
-            onWWM();
+        int i = r.nextInt(3);
+        switch(i){
+            case 0:
+                onCategoriesMode();
+                break;
+            case 1:
+                onWWM();
+                break;
+            case 2:
+                onTrivialPursuit();
+                break;
         }
-
         /*ActiveQuestion questionFragment = new ActiveQuestion(this);
         this.mainView.displayFragment(questionFragment, true, "first-question");*/
     }
@@ -237,22 +245,16 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     public void onPlayAgain(){
 
         resetGame(); // reset of stats
-        Log.d("curCategoryPlayAgain", curCategory);
-        switch(curCategory){
+        Log.d("curMode", curMode);
+        switch(curMode){
             case "":
                 onWWM();
                 break;
-            case "television":
-                onTV();
+            case "tp":
+                onTrivialPursuit();
                 break;
-            case "geography":
-                onGeo();
-                break;
-            case "hobbies":
-                onHobbies();
-                break;
-            case "sports":
-                onSports();
+            case "cat":
+                onCategoriesMode();
                 break;
         }
 
