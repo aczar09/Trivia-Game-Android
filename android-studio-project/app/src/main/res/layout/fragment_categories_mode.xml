@@ -49,6 +49,11 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:text="Sports" />
+        <Button
+            android:id="@+id/randomcatbutton"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="Random" />
     </LinearLayout>
 
     <Button

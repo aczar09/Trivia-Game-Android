@@ -55,7 +55,7 @@ public class QuestionDatabase {
         } catch (Exception e) {
             //System.out.println(added);
         }
-        //System.out.println("Added " + added);
+        System.out.println("Added "  + category + "  " + added);
 
 
     }

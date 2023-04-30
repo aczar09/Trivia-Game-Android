@@ -44,6 +44,7 @@ public class CategoriesModeFragment extends Fragment implements ICategoriesModeV
         this.binding.gbbutton.setOnClickListener(view1 -> CategoriesModeFragment.this.listener.onGoBack());
         this.binding.hobbiesbutton.setOnClickListener(view1 -> CategoriesModeFragment.this.listener.onHobbies());
         this.binding.sportsbutton.setOnClickListener(view1 -> CategoriesModeFragment.this.listener.onSports());
+        this.binding.randomcatbutton.setOnClickListener(view1 -> CategoriesModeFragment.this.listener.onRandomCat());
         //return View.inflate(R.layout.fragment_game__config, this, false);
     }
 

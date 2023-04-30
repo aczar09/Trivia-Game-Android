@@ -41,6 +41,7 @@ public class ActiveQuestion extends Fragment implements IActiveQuestionView {
         int qNumber = numQuestion();
         this.binding.numCount.setText("" + qNumber); //sets the questionNumber
         Question q = q = curQuestion();
+        this.binding.categoryText.setText(q.getCategory());
         this.binding.aQuestion.setText(q.getPrompt()); // sets question text
         this.binding.choicea.setText(q.getChoice(0).toString()); // set
         this.binding.choiceb.setText(q.getChoice(1).toString()); // text

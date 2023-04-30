@@ -10,6 +10,7 @@ public interface ICategoriesModeView {
         void onHobbies();
 
         void onSports();
+        void onRandomCat();
         void onGoBack();
     }
 }

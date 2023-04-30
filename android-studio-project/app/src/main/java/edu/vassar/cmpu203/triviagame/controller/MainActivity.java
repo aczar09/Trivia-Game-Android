@@ -5,6 +5,8 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Random;
+
 import edu.vassar.cmpu203.triviagame.view.ActiveQuestion;
 import edu.vassar.cmpu203.triviagame.view.CategoriesModeFragment;
 import edu.vassar.cmpu203.triviagame.view.IActiveQuestionView;
@@ -175,8 +177,39 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     public void onRandom(){
         curCategory = "";
         Log.d("curCategory", curCategory);
-        ActiveQuestion questionFragment = new ActiveQuestion(this);
-        this.mainView.displayFragment(questionFragment, true, "first-question");
+        Random r = new Random();
+        if(r.nextBoolean()){
+            onCategoriesMode();
+        }else{
+            onWWM();
+        }
+
+        /*ActiveQuestion questionFragment = new ActiveQuestion(this);
+        this.mainView.displayFragment(questionFragment, true, "first-question");*/
+    }
+
+    @Override
+    public void onRandomCat(){
+
+        Random r = new Random();
+        int i = r.nextInt(4);
+        switch(i){
+            case 0:
+                onTV();
+                break;
+            case 1:
+                onGeo();
+                break;
+            case 2:
+                onHobbies();
+                break;
+            case 3:
+                onSports();
+                break;
+        }
+
+        //onWWM(); // performs same action as previous method
+
     }
 
     /**
