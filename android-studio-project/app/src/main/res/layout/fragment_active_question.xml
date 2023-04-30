@@ -46,8 +46,8 @@
 
     <TextView
         android:id="@+id/aQuestion"
-        android:layout_width="409dp"
-        android:layout_height="303dp"
+        android:layout_width="406dp"
+        android:layout_height="321dp"
         android:layout_marginTop="76dp"
         android:textAlignment="center"
         android:textSize="34sp"
@@ -104,13 +104,13 @@
     <TextView
         android:id="@+id/categoryText"
         android:layout_width="406dp"
-        android:layout_height="77dp"
+        android:layout_height="65dp"
         android:textAlignment="center"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="63dp"
+        android:textAllCaps="true"
+        android:textSize="34sp"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numCount"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/numCount" />
 </androidx.constraintlayout.widget.ConstraintLayout>
