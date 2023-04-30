@@ -72,6 +72,7 @@ public class GameConfigFragment extends Fragment implements IGameConfigView {
                 GameConfigFragment.this.listener.onWWM();
             } // calls onWWM() in MainActivity
         });
+        this.binding.trivpursuitbutton.setOnClickListener(view1 -> GameConfigFragment.this.listener.onTrivialPursuit());
         this.binding.randbutton.setOnClickListener(view1 -> GameConfigFragment.this.listener.onRandom()); // calls onRandom() in MainActivity
         this.binding.moreinfobutton.setOnClickListener(view12 -> GameConfigFragment.this.listener.onMoreInfo()); // calls onMoreInfo() in MainActivity
         this.binding.categoriesbutton.setOnClickListener(view1 -> GameConfigFragment.this.listener.onCategoriesMode());

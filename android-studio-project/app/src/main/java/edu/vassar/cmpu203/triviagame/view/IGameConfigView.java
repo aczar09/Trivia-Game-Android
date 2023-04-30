@@ -17,6 +17,8 @@ public interface IGameConfigView {
 
         void onMoreInfo(); // called when user asks for more info
         void onCategoriesMode();
+
+        void onTrivialPursuit();
     }
 
 

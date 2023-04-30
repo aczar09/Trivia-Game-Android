@@ -50,7 +50,9 @@
             android:layout_width="match_parent"
             android:layout_height="81dp"
             android:text="@string/to_be_millionaire"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="2dp"
+            tools:layout_editor_absoluteY="227dp" />
 
         <Button
             android:id="@+id/categoriesbutton"
@@ -60,11 +62,20 @@
             android:textSize="20sp" />
 
         <Button
+            android:id="@+id/trivpursuitbutton"
+            android:layout_width="match_parent"
+            android:layout_height="81dp"
+            android:text="Trivial Pursuit"
+            android:textSize="20sp" />
+
+        <Button
             android:id="@+id/randbutton"
             android:layout_width="match_parent"
             android:layout_height="81dp"
             android:text="@string/rand_mode"
             android:textSize="20sp" />
+
+
 
         <Button
             android:id="@+id/moreinfobutton"
@@ -73,5 +84,7 @@
             android:text="@string/more_info"
             android:textSize="20sp" />
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

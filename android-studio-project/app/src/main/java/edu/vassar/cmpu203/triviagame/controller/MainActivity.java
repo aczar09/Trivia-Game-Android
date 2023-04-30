@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
     String curCategory;
 
+    String curMode = "";
     //private IGameShow database;
 
     public MainActivity(){ // constructor
@@ -212,6 +213,13 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
     }
 
+    //@Override
+    public void onTrivialPursuit(){
+        curMode = "tp";
+        CategoriesModeFragment categoriesModeFragment = new CategoriesModeFragment(this);
+        this.mainView.displayFragment(categoriesModeFragment,true,"category-mode");
+
+    }
     /**
      * Takes user to the more_info slide
      */
@@ -269,8 +277,14 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onNext(){
         Log.d("curCategory", curCategory);
-        ActiveQuestion questionFragment = new ActiveQuestion(this);
-        this.mainView.displayFragment(questionFragment, true, "not-fin-next");
+        if(curMode.equals("tp")){
+            CategoriesModeFragment categoriesModeFragment = new CategoriesModeFragment(this);
+            this.mainView.displayFragment(categoriesModeFragment,true,"category-mode");
+        }else{
+            ActiveQuestion questionFragment = new ActiveQuestion(this);
+            this.mainView.displayFragment(questionFragment, true, "not-fin-next");
+        }
+
     }
 
     /**
