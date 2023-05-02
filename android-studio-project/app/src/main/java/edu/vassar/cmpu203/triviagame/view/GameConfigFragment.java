@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class GameConfigFragment extends Fragment implements IGameConfigView {
      */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+
         this.binding.wwmbutton.setOnClickListener(new View.OnClickListener() {
             /**
              * Listener method to be called when the add item button is clicked
@@ -72,10 +74,18 @@ public class GameConfigFragment extends Fragment implements IGameConfigView {
                 GameConfigFragment.this.listener.onWWM();
             } // calls onWWM() in MainActivity
         });
+        if(this.listener != null){
+            String cat = this.topCategory();
+            //this.binding.bestCategory.setText(cat +"");
+        }
         this.binding.trivpursuitbutton.setOnClickListener(view1 -> GameConfigFragment.this.listener.onTrivialPursuit());
         this.binding.randbutton.setOnClickListener(view1 -> GameConfigFragment.this.listener.onRandom()); // calls onRandom() in MainActivity
         this.binding.moreinfobutton.setOnClickListener(view12 -> GameConfigFragment.this.listener.onMoreInfo()); // calls onMoreInfo() in MainActivity
         this.binding.categoriesbutton.setOnClickListener(view1 -> GameConfigFragment.this.listener.onCategoriesMode());
         //return View.inflate(R.layout.fragment_game__config, this, false);
+    }
+
+    public String topCategory(){
+        return this.listener.getBestCategory();
     }
 }

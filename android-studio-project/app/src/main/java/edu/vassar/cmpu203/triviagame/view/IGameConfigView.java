@@ -19,6 +19,8 @@ public interface IGameConfigView {
         void onCategoriesMode();
 
         void onTrivialPursuit();
+
+        String getBestCategory();
     }
 
 
