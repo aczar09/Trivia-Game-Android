@@ -46,22 +46,21 @@
 
     <TextView
         android:id="@+id/aQuestion"
-        android:layout_width="406dp"
+        android:layout_width="match_parent"
         android:layout_height="321dp"
-        android:layout_marginTop="76dp"
         android:textAlignment="center"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numCount" />
+        app:layout_constraintTop_toBottomOf="@+id/categoryText" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="137dp"
         android:layout_height="64dp"
         android:text="@string/q_title"
-        android:textAlignment="textEnd"
+        android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +81,7 @@
         android:layout_width="137dp"
         android:layout_height="64dp"
         android:text="@string/of_count"
-        android:textAlignment="viewStart"
+        android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

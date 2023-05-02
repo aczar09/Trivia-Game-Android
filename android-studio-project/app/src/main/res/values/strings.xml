@@ -52,5 +52,8 @@
     <string name="tv">Television</string>
 
     <string name="categories">Categories Mode</string>
+
     <string name="categories_mode_info">This is a game show where you get to pick from a series of categories and show your expertise!</string>
+
+    <string name="NAME">name</string>
 </resources>

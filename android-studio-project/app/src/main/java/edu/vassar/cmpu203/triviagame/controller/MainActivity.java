@@ -296,6 +296,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     public void onGoBack(){
         GameConfigFragment gameConfigFragment = new GameConfigFragment(this);
         this.mainView.displayFragment(gameConfigFragment, true, "back-to-menu");
+        resetGame();
     }
 
     /**
