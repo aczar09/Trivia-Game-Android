@@ -5,6 +5,9 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Map;
 import java.util.Random;
 
 import edu.vassar.cmpu203.triviagame.view.ActiveQuestion;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     String curCategory = "";
 
     String curMode;
+    String bestCategory = "";
     //private IGameShow database;
 
     public MainActivity(){ // constructor
@@ -122,6 +126,15 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     }
     public String getCategory(){
         return curCategory;
+    }
+
+    public String getBestCategory(){
+        bestCategory = "None";
+        if(player.categoryScores.size()>0){
+            bestCategory = Collections.max(player.categoryScores.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
+        }
+
+        return bestCategory;
     }
     /**
      * Takes the user to the first question screen fragment
