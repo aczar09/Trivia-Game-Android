@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     boolean continueGame; // whether a player gets a question right
     //private int answerStreak = 0;
 
-    String curCategory;
+    String curCategory = "";
 
     String curMode;
     //private IGameShow database;
