@@ -89,11 +89,13 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public Question getQuestion(){
-        if(curCategory.length()>0){
+        if(curMode.length()>0){
             this.activeQuestion = questionBase.getQuestion(curCategory); // pulls the question and removes
+            curCategory = activeQuestion.getCategory();
             return this.activeQuestion;
         }
         this.activeQuestion = questionBase.getQuestion(); // pulls the question and removes
+        curCategory = activeQuestion.getCategory();
         return this.activeQuestion; // returns so can be taken into account
     }
 
@@ -279,6 +281,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onNext(){
         Log.d("curCategory", curCategory);
+
         if(curMode.equals("tp")){
             CategoriesModeFragment categoriesModeFragment = new CategoriesModeFragment(this);
             this.mainView.displayFragment(categoriesModeFragment,true,"category-mode");
@@ -294,6 +297,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onGoBack(){
+        resetGame();
         GameConfigFragment gameConfigFragment = new GameConfigFragment(this);
         this.mainView.displayFragment(gameConfigFragment, true, "back-to-menu");
         resetGame();
@@ -308,6 +312,12 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         continueGame = activeQuestion.isCorrect(index);
         if (continueGame) {
             player.rightAns(); // marks that player got right answer
+            if(player.categoryScores.containsKey(curCategory)){
+                player.addCategoryWin(curCategory);
+            }else{
+                player.categoryScores.put(curCategory, 1);
+            }
+            Log.d("Category and score", curCategory+ " :" + player.categoryScores.get(curCategory));
         }
         if (player.answerStreak == 5){ // activated if player won the game
             GameWonFragment game_won_fragment = new GameWonFragment(this);

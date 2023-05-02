@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import java.util.HashMap;
+
 public class Player {
     private static final String NAME = "name";
     private static final String WINS = "wins";
@@ -13,6 +15,8 @@ public class Player {
     public int answerStreak = 0;
     public int questionNumber = 1;
 
+    public HashMap<String, Integer> categoryScores = new HashMap<>();
+
     public Player(String name) {
         this.name = name;
     }
@@ -20,7 +24,6 @@ public class Player {
     public Player() {
         this.name = "Player 1";
     }
-
 
     /**
      * Increments the answerStreak and questionNumber by 1
@@ -36,6 +39,11 @@ public class Player {
     public void resetStreak(){
         answerStreak = 0;
         questionNumber = 1;
+    }
+
+    public void addCategoryWin(String category){
+        Integer score = categoryScores.get(category);
+        categoryScores.put(category,score + 1);
     }
 
     public String getName(){
@@ -67,4 +75,3 @@ public class Player {
     }
 
 }
-
