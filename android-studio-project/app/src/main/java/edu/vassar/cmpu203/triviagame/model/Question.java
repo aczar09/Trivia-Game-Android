@@ -5,10 +5,11 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.*;
 
-public class Question {
+public class Question implements Serializable {
     private static final String PROMPT = "prompt";
 
     private static final String DIFFICULTY = "difficulty";

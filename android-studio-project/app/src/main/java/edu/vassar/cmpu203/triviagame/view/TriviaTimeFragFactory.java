@@ -33,7 +33,7 @@ public class TriviaTimeFragFactory extends FragmentFactory {
             }catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
                 final String emsg = String.format("Can't instantiate %s: ensure it's concrete and " +
                         "has a public constructor with a ControllerActivity parameter", fragClass);
-                Log.e("NextGenPos", emsg);
+                Log.e("TRIVIA TIME", emsg);
                 e.printStackTrace();
             }
 

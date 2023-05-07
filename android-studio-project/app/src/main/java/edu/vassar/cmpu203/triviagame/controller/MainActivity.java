@@ -3,6 +3,7 @@ package edu.vassar.cmpu203.triviagame.controller;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Collections;
@@ -32,10 +33,13 @@ import edu.vassar.cmpu203.triviagame.view.IMainView;
 import edu.vassar.cmpu203.triviagame.view.MainView;
 //import edu.vassar.cmpu203.triviagame.view.QuestionFragment;
 import edu.vassar.cmpu203.triviagame.view.CorrectAnsFragment;
+import edu.vassar.cmpu203.triviagame.view.TriviaTimeFragFactory;
 
 public class MainActivity extends AppCompatActivity implements IGameConfigView.Listener, IGameLostView.Listener, ICorrectAnsView.Listener, IGameModeView.Listener,
         IGameWonView.Listener, /*IQuestionView.Listener,*/ IActiveQuestionView.Listener, ICategoriesModeView.Listener {
 
+    private static final String PLAYER = "player";
+    private static final String AQUESTION = "activequestion";
     private IMainView mainView; // a reference to the main screen template
     //private IGameShow questionBase;
 
@@ -48,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
     String curCategory = "";
 
-    String curMode;
+    String curMode = "";
     String bestCategory = "";
     //private IGameShow database;
 
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportFragmentManager().setFragmentFactory(new TriviaTimeFragFactory(this));
         super.onCreate(savedInstanceState);
 
         //new QuestionDatabase(this.getAssets()); // rui example read question database
@@ -72,10 +77,22 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         player = new Player(); // sets player object
         continueGame = true; // sets to true as player hasn't gotten question wrong yet
         this.setContentView(mainView.getRootView());
-        this.mainView.displayFragment(new GameConfigFragment(this),true, "game-config");
+        if (savedInstanceState == null) {
+            this.mainView.displayFragment(new GameConfigFragment(this), false, "game-config");
+        }
+        else{
+            this.player = (Player) savedInstanceState.getSerializable(PLAYER);
+            this.activeQuestion = (Question) savedInstanceState.getSerializable(AQUESTION);
+        }
 
 
+    }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outstate){
+        super.onSaveInstanceState(outstate);
+        outstate.putSerializable(PLAYER, this.player);
+        outstate.putSerializable(AQUESTION, this.activeQuestion);
     }
 
     /**
@@ -85,6 +102,10 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         this.player.resetStreak(); // player reset
         //this.curMode = "";
         //this.questionBase = new RandMultiChoice(this.getAssets()); // database reset
+    }
+
+    public Question getActiveQuestion(){
+        return this.activeQuestion;
     }
 
     /**
@@ -143,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     public void onWWM(){
         ActiveQuestion questionFragment = new ActiveQuestion(this);
         curMode = "";
+        getQuestion();
         //this.setCurQuestion(questionBase);
         //questionFragment.setQuestionDisplay(activeQuestion);
         this.mainView.displayFragment(questionFragment, true, "first-question");
@@ -151,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onCategoriesMode(){
         curMode = "cat";
+        //getQuestion();
         CategoriesModeFragment categoriesModeFragment = new CategoriesModeFragment(this);
         this.mainView.displayFragment(categoriesModeFragment,true,"category-mode");
     }
@@ -159,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onGeo(){
         curCategory = "geography";
+        getQuestion();
         Log.d("curCategory", curCategory);
         ActiveQuestion questionFragment = new ActiveQuestion(this);
         this.mainView.displayFragment(questionFragment, true, "first-question");
@@ -167,6 +191,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onTV(){
         curCategory = "television";
+        getQuestion();
         Log.d("curCategory", curCategory);
         ActiveQuestion questionFragment = new ActiveQuestion(this);
         this.mainView.displayFragment(questionFragment, true, "first-question");
@@ -174,6 +199,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onHobbies(){
         curCategory = "hobbies";
+        getQuestion();
         Log.d("curCategory", curCategory);
         ActiveQuestion questionFragment = new ActiveQuestion(this);
         this.mainView.displayFragment(questionFragment, true, "first-question");
@@ -182,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onSports(){
         curCategory = "sports";
+        getQuestion();
         Log.d("curCategory", curCategory);
         ActiveQuestion questionFragment = new ActiveQuestion(this);
         this.mainView.displayFragment(questionFragment, true, "first-question");
@@ -194,6 +221,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onRandom(){
         curCategory = "";
+        //getQuestion();
         Log.d("curCategory", curCategory);
         Random r = new Random();
         int i = r.nextInt(3);
@@ -299,6 +327,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
             CategoriesModeFragment categoriesModeFragment = new CategoriesModeFragment(this);
             this.mainView.displayFragment(categoriesModeFragment,true,"category-mode");
         }else{
+            getQuestion();
             ActiveQuestion questionFragment = new ActiveQuestion(this);
             this.mainView.displayFragment(questionFragment, true, "not-fin-next");
         }
@@ -313,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         resetGame();
         GameConfigFragment gameConfigFragment = new GameConfigFragment(this);
         this.mainView.displayFragment(gameConfigFragment, true, "back-to-menu");
-        resetGame();
+        //resetGame();
     }
 
     /**

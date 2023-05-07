@@ -20,9 +20,7 @@ public class GameConfigFragment extends Fragment implements IGameConfigView {
     private FragmentGameConfigBinding binding;
     private Listener listener;
 
-    public GameConfigFragment() {
-        // Required empty public constructor
-    }
+
 
     /**
      *

@@ -19,7 +19,7 @@ public class CorrectAnsFragment extends Fragment implements ICorrectAnsView {
     private FragmentCorrectAnsBinding binding;
     private Listener listener;
 
-    public CorrectAnsFragment(){}
+
 
     public CorrectAnsFragment(Listener listener){
         this.listener = listener;

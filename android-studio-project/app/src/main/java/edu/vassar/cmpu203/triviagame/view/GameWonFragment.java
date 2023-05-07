@@ -17,7 +17,7 @@ public class GameWonFragment extends Fragment implements IGameWonView {
     private FragmentGameWonBinding binding;
     private Listener listener;
 
-    public GameWonFragment(){}
+
 
     public GameWonFragment(Listener listener){
         this.listener = listener;

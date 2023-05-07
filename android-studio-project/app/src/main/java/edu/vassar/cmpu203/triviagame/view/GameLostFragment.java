@@ -18,7 +18,7 @@ public class GameLostFragment extends Fragment implements IGameLostView{
     private FragmentGameLostBinding binding;
     private Listener listener;
 
-    public GameLostFragment(){}
+
 
     public GameLostFragment(Listener listener){
         this.listener = listener;

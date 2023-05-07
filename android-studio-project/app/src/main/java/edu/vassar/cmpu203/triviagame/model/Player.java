@@ -4,9 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Player {
+public class Player implements Serializable {
     private static final String NAME = "name";
     private static final String WINS = "wins";
     private static final String ANSTREAK = "anstreak";

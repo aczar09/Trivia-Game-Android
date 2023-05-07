@@ -22,7 +22,7 @@ public class ActiveQuestion extends Fragment implements IActiveQuestionView {
     private FragmentActiveQuestionBinding binding;
     private Listener listener;
 
-    public ActiveQuestion(){}
+    //public ActiveQuestion(){}
 
     public ActiveQuestion(Listener listener){
         this.listener = listener;
@@ -93,7 +93,7 @@ public class ActiveQuestion extends Fragment implements IActiveQuestionView {
      * @return the current question
      */
     public Question curQuestion() {
-        return this.listener.getQuestion();
+        return this.listener.getActiveQuestion();
     }
 
 }

@@ -24,9 +24,7 @@ public class CategoriesModeFragment extends Fragment implements ICategoriesModeV
     private FragmentCategoriesModeBinding binding;
     private Listener listener;
 
-    public CategoriesModeFragment() {
-        // Required empty public constructor
-    }
+
 
     public CategoriesModeFragment(Listener listener){ this.listener = listener;}
 

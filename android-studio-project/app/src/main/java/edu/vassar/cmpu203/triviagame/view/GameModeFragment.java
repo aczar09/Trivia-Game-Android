@@ -18,7 +18,7 @@ public class GameModeFragment extends Fragment implements IGameModeView{
     private FragmentGameModeInfoBinding binding;
     private Listener listener;
 
-    public GameModeFragment(){}
+
 
     public GameModeFragment(Listener listener){
         this.listener = listener;
