@@ -56,4 +56,8 @@
     <string name="categories_mode_info">This is a game show where you get to pick from a series of categories and show your expertise!</string>
 
     <string name="NAME">name</string>
+
+    <string name="TP">Trivial Pursuit</string>
+
+    <string name="tpinfo">This is a game show where every question you pick a different category!</string>
 </resources>

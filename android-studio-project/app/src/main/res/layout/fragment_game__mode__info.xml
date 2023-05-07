@@ -66,15 +66,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Trivial Pursuit"
+            android:text="@string/TP"
             android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tpinfo"
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            android:text="This is a game show where every question you pick a different category!"
+            android:text="@string/tpinfo"
             android:textSize="24sp" />
 
     </LinearLayout>
