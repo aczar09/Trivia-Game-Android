@@ -6,11 +6,20 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Random;
 
+import edu.vassar.cmpu203.triviagame.persistence.IPersistenceFacade;
+import edu.vassar.cmpu203.triviagame.persistence.LocalStorageFacade;
 import edu.vassar.cmpu203.triviagame.view.ActiveQuestion;
 import edu.vassar.cmpu203.triviagame.view.CategoriesModeFragment;
 import edu.vassar.cmpu203.triviagame.view.IActiveQuestionView;
@@ -36,7 +45,7 @@ import edu.vassar.cmpu203.triviagame.view.CorrectAnsFragment;
 import edu.vassar.cmpu203.triviagame.view.TriviaTimeFragFactory;
 
 public class MainActivity extends AppCompatActivity implements IGameConfigView.Listener, IGameLostView.Listener, ICorrectAnsView.Listener, IGameModeView.Listener,
-        IGameWonView.Listener, /*IQuestionView.Listener,*/ IActiveQuestionView.Listener, ICategoriesModeView.Listener {
+        IGameWonView.Listener, /*IQuestionView.Listener,*/ IActiveQuestionView.Listener, ICategoriesModeView.Listener, IPersistenceFacade.Listener {
 
     private static final String PLAYER = "player";
     private static final String AQUESTION = "activequestion";
@@ -46,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     private Player player; // player object in charge of tracking object
     private Question activeQuestion; // the question being asked, used to store its info
     public IGameShow questionBase; // where we pull questions from
+
+    private IPersistenceFacade persistenceFacade;
 
     boolean continueGame; // whether a player gets a question right
     //private int answerStreak = 0;
@@ -73,11 +84,20 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
 
         this.mainView = new MainView(this);
-        questionBase = new RandMultiChoice(this.getAssets()); // sets questionBase
+        //questionBase = new RandMultiChoice(this.getAssets()); // sets questionBase
         player = new Player(); // sets player object
         continueGame = true; // sets to true as player hasn't gotten question wrong yet
         this.setContentView(mainView.getRootView());
+
+        this.persistenceFacade = new LocalStorageFacade(this.getFilesDir()); // instantiate persistence facade
+
+
         if (savedInstanceState == null) {
+            this.persistenceFacade.retrieveDatabase(this);
+            if (this.questionBase == null){
+                this.questionBase = new RandMultiChoice(this.getAssets());
+            }
+
             this.mainView.displayFragment(new GameConfigFragment(this), false, "game-config");
         }
         else{
@@ -93,6 +113,11 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         super.onSaveInstanceState(outstate);
         outstate.putSerializable(PLAYER, this.player);
         outstate.putSerializable(AQUESTION, this.activeQuestion);
+        this.persistenceFacade.saveDatabase(this.questionBase);
+    }
+
+    public void onDatabaseReceived(IGameShow database){
+        this.questionBase = database;
     }
 
     /**
