@@ -20,7 +20,7 @@ public interface IGameConfigView {
 
         void onTrivialPursuit();
 
-        String getBestCategory();
+        void onStats();
     }
 
 

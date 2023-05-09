@@ -16,8 +16,11 @@ public class Player implements Serializable {
     public int answerStreak = 0;
     public int questionNumber = 1;
 
+    public int totalQuestionsCorrect = 0;
+    public int totalWins = 0;
     public HashMap<String, Integer> categoryScores = new HashMap<>();
 
+    public HashMap<String, Integer> modeScores = new HashMap<>();
     public Player(String name) {
         this.name = name;
     }
@@ -31,9 +34,13 @@ public class Player implements Serializable {
      */
     public void rightAns(){
         answerStreak++;
+        totalQuestionsCorrect++;
         questionNumber++;
     }
 
+    public void addWin(){
+        totalWins++;
+    }
     /**
      * Sets the answerStreak to 0 and questionNumber to 1, their original values
      */
@@ -47,6 +54,10 @@ public class Player implements Serializable {
         categoryScores.put(category,score + 1);
     }
 
+    public void addModeWin(String mode){
+        Integer score = categoryScores.get(mode);
+        categoryScores.put(mode,score + 1);
+    }
     public String getName(){
         return this.name;
     }

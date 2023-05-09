@@ -62,6 +62,12 @@
     <string name="hobby">Hobbies</string>
 
     <string name="sport">Sports</string>
-
+    <string name="bestcategory">Best Category:</string>>
     <string name="tpinfo">This is a game show where every question you pick a different category!</string>
+    <string name="totalwins">Total Wins:</string>
+    <string name="totalquestionscorrect">Total Questions Correct:</string>
+    <string name="bestgamemode">Best Game Mode:</string>
+    <string name="stats">Game Stats</string>
+    <string name="trivpursuit">Trivial Pursuit</string>
+
 </resources>

@@ -28,10 +28,16 @@ import edu.vassar.cmpu203.triviagame.model.IGameShow;
 import edu.vassar.cmpu203.triviagame.model.Player;
 import edu.vassar.cmpu203.triviagame.model.Question;
 import edu.vassar.cmpu203.triviagame.model.RandMultiChoice;
+import edu.vassar.cmpu203.triviagame.persistence.IPersistenceFacade;
+import edu.vassar.cmpu203.triviagame.persistence.LocalStorageFacade;
+import edu.vassar.cmpu203.triviagame.view.ActiveQuestion;
+import edu.vassar.cmpu203.triviagame.view.CategoriesModeFragment;
+import edu.vassar.cmpu203.triviagame.view.CorrectAnsFragment;
 import edu.vassar.cmpu203.triviagame.view.GameConfigFragment;
 import edu.vassar.cmpu203.triviagame.view.GameLostFragment;
 import edu.vassar.cmpu203.triviagame.view.GameModeFragment;
 import edu.vassar.cmpu203.triviagame.view.GameWonFragment;
+import edu.vassar.cmpu203.triviagame.view.IActiveQuestionView;
 import edu.vassar.cmpu203.triviagame.view.ICategoriesModeView;
 import edu.vassar.cmpu203.triviagame.view.ICorrectAnsView;
 import edu.vassar.cmpu203.triviagame.view.IGameConfigView;
@@ -39,13 +45,13 @@ import edu.vassar.cmpu203.triviagame.view.IGameLostView;
 import edu.vassar.cmpu203.triviagame.view.IGameModeView;
 import edu.vassar.cmpu203.triviagame.view.IGameWonView;
 import edu.vassar.cmpu203.triviagame.view.IMainView;
+import edu.vassar.cmpu203.triviagame.view.IStatsView;
 import edu.vassar.cmpu203.triviagame.view.MainView;
-//import edu.vassar.cmpu203.triviagame.view.QuestionFragment;
-import edu.vassar.cmpu203.triviagame.view.CorrectAnsFragment;
+import edu.vassar.cmpu203.triviagame.view.StatsFragment;
 import edu.vassar.cmpu203.triviagame.view.TriviaTimeFragFactory;
 
 public class MainActivity extends AppCompatActivity implements IGameConfigView.Listener, IGameLostView.Listener, ICorrectAnsView.Listener, IGameModeView.Listener,
-        IGameWonView.Listener, /*IQuestionView.Listener,*/ IActiveQuestionView.Listener, ICategoriesModeView.Listener, IPersistenceFacade.Listener {
+        IGameWonView.Listener, /*IQuestionView.Listener,*/ IActiveQuestionView.Listener, ICategoriesModeView.Listener, IPersistenceFacade.Listener, IStatsView.Listener {
 
     private static final String PLAYER = "player";
     private static final String AQUESTION = "activequestion";
@@ -61,10 +67,11 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     boolean continueGame; // whether a player gets a question right
     //private int answerStreak = 0;
 
-    private String curCategory = "";
+    String curCategory = "";
 
-    private String curMode = "";
-    private String bestCategory = "";
+    String curMode = "";
+    String bestCategory = "";
+    String bestMode = "";
     //private IGameShow database;
 
     public MainActivity(){ // constructor
@@ -94,7 +101,6 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
         if (savedInstanceState == null) {
             this.persistenceFacade.retrieveDatabase(this);
-            this.persistenceFacade.retrievePlayer(this);
             if (this.questionBase == null){
                 this.questionBase = new RandMultiChoice(this.getAssets());
             }
@@ -115,12 +121,13 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         outstate.putSerializable(PLAYER, this.player);
         outstate.putSerializable(AQUESTION, this.activeQuestion);
         this.persistenceFacade.saveDatabase(this.questionBase);
-        this.persistenceFacade.savePlayer(this.player);
     }
     public void onPlayerReceived(Player player){
         this.player = player;
     }
     public void onDatabaseReceived(IGameShow database){
+
+    public void onDatabaseReceived(@NonNull IGameShow database){
         this.questionBase = database;
     }
 
@@ -143,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public Question getQuestion(){
-        if(curMode.length()>0){
+        if(!curMode.equals("Who Wants To Be A Millionaire?")){
             this.activeQuestion = questionBase.getQuestion(curCategory); // pulls the question and removes
             curCategory = activeQuestion.getCategory();
             return this.activeQuestion;
@@ -185,6 +192,29 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         }
 
         return bestCategory;
+    }
+
+    public String getBestMode(){
+        bestMode = "None";
+        if(player.modeScores.size()>0){
+            bestMode = Collections.max(player.modeScores.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
+        }
+
+        return bestMode;
+    }
+
+    public String getNumberWins(){
+        return String.valueOf(player.totalWins);
+    }
+
+    public String getNumberQuestionsCorrect(){
+        return String.valueOf(player.totalQuestionsCorrect);
+    }
+
+    @Override
+    public void onStats(){
+        StatsFragment statsFragment = new StatsFragment(this);
+        this.mainView.displayFragment(statsFragment,true,"stats-mode");
     }
     /**
      * Takes the user to the first question screen fragment
@@ -300,7 +330,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      * Takes user to Trivial Pursuit game mode, where every question is a new category selected by the player
      */
     public void onTrivialPursuit(){
-        curMode = "tp";
+        curMode = "Trivial Pursuit";
         CategoriesModeFragment categoriesModeFragment = new CategoriesModeFragment(this);
         this.mainView.displayFragment(categoriesModeFragment,true,"category-mode");
 
@@ -324,13 +354,13 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         resetGame(); // reset of stats
         Log.d("curMode", curMode);
         switch(curMode){
-            case "":
+            case "Who Wants To Be A Millionaire?":
                 onWWM();
                 break;
-            case "tp":
+            case "Trivial Pursuit":
                 onTrivialPursuit();
                 break;
-            case "cat":
+            case "Categories":
                 onCategoriesMode();
                 break;
         }
@@ -396,6 +426,13 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
             Log.d("Category and score", curCategory+ " :" + player.categoryScores.get(curCategory));
         }
         if (player.answerStreak == 5){ // activated if player won the game
+            if(player.modeScores.containsKey(curMode)){
+                player.addModeWin(curMode);
+            }else{
+                player.modeScores.put(curMode, 1);
+            }
+
+            player.addWin();
             GameWonFragment game_won_fragment = new GameWonFragment(this);
             this.mainView.displayFragment(game_won_fragment, true, "won-the-game"); // game won screen displayed
         }
