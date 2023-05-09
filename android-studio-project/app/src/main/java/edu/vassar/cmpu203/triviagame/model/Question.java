@@ -10,20 +10,20 @@ import java.util.ArrayList;
 import java.util.*;
 
 public class Question implements Serializable {
-    private static final String PROMPT = "prompt";
+    //private static final String PROMPT = "prompt";
 
 
-    private static final String CATEGORY = "category";
+    //private static final String CATEGORY = "category";
 
-    private static final String CHOICES = "choices";
-
-
-    String prompt;
+    //private static final String CHOICES = "choices";
 
 
-    String category;
+    private String prompt;
 
-    List<Choice> choices = new ArrayList<>();
+
+    private String category;
+
+    private List<Choice> choices = new ArrayList<>();
     public Question(){}
 
     public Question(String prompt, String category, Choice c1, Choice c2, Choice c3, Choice c4){
@@ -104,7 +104,7 @@ public class Question implements Serializable {
     public boolean isCorrect(int selection){
         return choices.get(selection).getCorrect();
     }
-
+/*
     public Bundle toBundle(){
         final Bundle b = new Bundle();
         b.putString(PROMPT, this.prompt);
@@ -126,6 +126,7 @@ public class Question implements Serializable {
         question.category = b.getString(CATEGORY);
         return question;
     }
+    */
 
 
 }
