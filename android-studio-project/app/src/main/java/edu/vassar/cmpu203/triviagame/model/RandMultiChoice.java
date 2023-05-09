@@ -156,7 +156,13 @@ public class RandMultiChoice implements IGameShow {
         Random r = new Random();
         List<Question> categoryQ = qp.get(keysAsArray.get(r.nextInt(keysAsArray.size())));
         Collections.shuffle(categoryQ);
-        return categoryQ.get(0);
+        Question aQuest = categoryQ.get(0);
+        categoryQ.remove(aQuest);
+        if (categoryQ.size() == 0){
+            qp.remove(aQuest.getCategory());
+        }
+        return aQuest;
+
     }
 
     public Question getQuestion(String category){
