@@ -6,32 +6,26 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Random;
 
-import edu.vassar.cmpu203.triviagame.persistence.IPersistenceFacade;
-import edu.vassar.cmpu203.triviagame.persistence.LocalStorageFacade;
-import edu.vassar.cmpu203.triviagame.view.ActiveQuestion;
-import edu.vassar.cmpu203.triviagame.view.CategoriesModeFragment;
-import edu.vassar.cmpu203.triviagame.view.IActiveQuestionView;
 import edu.vassar.cmpu203.triviagame.model.Choice;
 import edu.vassar.cmpu203.triviagame.model.IGameShow;
 import edu.vassar.cmpu203.triviagame.model.Player;
 import edu.vassar.cmpu203.triviagame.model.Question;
 import edu.vassar.cmpu203.triviagame.model.RandMultiChoice;
+import edu.vassar.cmpu203.triviagame.persistence.IPersistenceFacade;
+import edu.vassar.cmpu203.triviagame.persistence.LocalStorageFacade;
+import edu.vassar.cmpu203.triviagame.view.ActiveQuestion;
+import edu.vassar.cmpu203.triviagame.view.CategoriesModeFragment;
+import edu.vassar.cmpu203.triviagame.view.CorrectAnsFragment;
 import edu.vassar.cmpu203.triviagame.view.GameConfigFragment;
 import edu.vassar.cmpu203.triviagame.view.GameLostFragment;
 import edu.vassar.cmpu203.triviagame.view.GameModeFragment;
 import edu.vassar.cmpu203.triviagame.view.GameWonFragment;
+import edu.vassar.cmpu203.triviagame.view.IActiveQuestionView;
 import edu.vassar.cmpu203.triviagame.view.ICategoriesModeView;
 import edu.vassar.cmpu203.triviagame.view.ICorrectAnsView;
 import edu.vassar.cmpu203.triviagame.view.IGameConfigView;
@@ -41,8 +35,6 @@ import edu.vassar.cmpu203.triviagame.view.IGameWonView;
 import edu.vassar.cmpu203.triviagame.view.IMainView;
 import edu.vassar.cmpu203.triviagame.view.IStatsView;
 import edu.vassar.cmpu203.triviagame.view.MainView;
-//import edu.vassar.cmpu203.triviagame.view.QuestionFragment;
-import edu.vassar.cmpu203.triviagame.view.CorrectAnsFragment;
 import edu.vassar.cmpu203.triviagame.view.StatsFragment;
 import edu.vassar.cmpu203.triviagame.view.TriviaTimeFragFactory;
 
@@ -119,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         this.persistenceFacade.saveDatabase(this.questionBase);
     }
 
-    public void onDatabaseReceived(IGameShow database){
+    public void onDatabaseReceived(@NonNull IGameShow database){
         this.questionBase = database;
     }
 
@@ -316,9 +308,6 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     }
 
     @Override
-    /**
-     * Takes user to Trivial Pursuit game mode, where every question is a new category selected by the player
-     */
     public void onTrivialPursuit(){
         curMode = "Trivial Pursuit";
         CategoriesModeFragment categoriesModeFragment = new CategoriesModeFragment(this);

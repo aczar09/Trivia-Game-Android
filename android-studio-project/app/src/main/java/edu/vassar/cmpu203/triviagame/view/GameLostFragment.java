@@ -1,17 +1,15 @@
 package edu.vassar.cmpu203.triviagame.view;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import edu.vassar.cmpu203.triviagame.databinding.FragmentGameLostBinding;
-//import edu.vassar.cmpu203.triviagame.databinding.FragmentQuestionBinding;
 import edu.vassar.cmpu203.triviagame.model.Choice;
 
 public class GameLostFragment extends Fragment implements IGameLostView{
