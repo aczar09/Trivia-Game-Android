@@ -29,6 +29,8 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.ArrayList;
+
 import edu.vassar.cmpu203.triviagame.controller.MainActivity;
 import edu.vassar.cmpu203.triviagame.model.Choice;
 import edu.vassar.cmpu203.triviagame.model.Question;
@@ -131,8 +133,10 @@ public class QuestionAndroidTest {
      * play again or go back to the menu
      */
     @Test
-    public void RunningThroughQuestionsAllCorrect(){
-        RandMultiChoice r = new RandMultiChoice();
+    public void RunningThroughQuestionsAllCorrectWMM(){
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        AssetManager assetManager = appContext.getAssets();
+        RandMultiChoice r = new RandMultiChoice(assetManager);
         // Perform a click action on a view
         onView(ViewMatchers.withId(R.id.wwmbutton)).perform(ViewActions.click());
         int countQ = 0;
@@ -229,7 +233,9 @@ public class QuestionAndroidTest {
      */
     @Test
     public void RunningThroughQuestionsLoseAndReplay(){
-        RandMultiChoice r = new RandMultiChoice();
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        AssetManager assetManager = appContext.getAssets();
+        RandMultiChoice r = new RandMultiChoice(assetManager);
         // Perform a click action on a view
         onView(ViewMatchers.withId(R.id.wwmbutton)).perform(ViewActions.click());
 
@@ -308,8 +314,134 @@ public class QuestionAndroidTest {
             }
         }
 
+    @Test
+    public void RunningThroughQuestionsAllCorrectCategories(){
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        AssetManager assetManager = appContext.getAssets();
+        RandMultiChoice r = new RandMultiChoice(assetManager);
+        String[] categories = {"GEOGRAPHY","TELEVISION","HOBBIES","SPORTS", "RANDOM"};
+        // Perform a click action on a view
+        onView(ViewMatchers.withId(R.id.categoriesbutton)).perform(ViewActions.click());
+        ViewInteraction catPromptText = Espresso.onView(ViewMatchers.withId(R.id.categoryModeText)); // saves game name text
+        catPromptText.check( // used to check if we are back on Game Config screen
+                ViewAssertions.matches(
+                        ViewMatchers.withSubstring(
+                                "Please choose your wanted category:"
+                        )
+                )
+        );
+        int countQ = 0;
+        for(String c: categories){
+            switch(c){
+                case "GEOGRAPHY":
+                    onView(ViewMatchers.withId(R.id.geobutton)).perform(ViewActions.click());
+                    break;
+                case "TELEVISION":
+                    onView(ViewMatchers.withId(R.id.tvbutton)).perform(ViewActions.click());
+                    break;
+                case "HOBBIES":
+                    onView(ViewMatchers.withId(R.id.hobbiesbutton)).perform(ViewActions.click());
+                    break;
+                case "SPORTS":
+                    onView(ViewMatchers.withId(R.id.sportsbutton)).perform(ViewActions.click());
+                    break;
+                case "RANDOM":
+                    onView(ViewMatchers.withId(R.id.randomcatbutton)).perform(ViewActions.click());
+                    c = getText(withId(R.id.categoryText));
+                    break;
+            }
+            while (countQ != 5) {
+                String category = getText(withId(R.id.categoryText));
+                ViewInteraction catText = Espresso.onView(ViewMatchers.withId(R.id.categoryText)); // saves game name text
+                catText.check( // used to check if we are back on Game Config screen
+                        ViewAssertions.matches(
+                                ViewMatchers.withSubstring(c)
+                        )
+                );
+                String prompt = getText(withId(R.id.aQuestion));
 
 
+
+                Question q = r.searchQuestion(prompt,category);
+                String correct = q.getCorrectChoice().toString();
+                String choiceA = getText(withId(R.id.choicea));
+                String choiceB = getText(withId(R.id.choiceb));
+                String choiceC = getText(withId(R.id.choicec));
+                String choiceD = getText(withId(R.id.choiced));
+
+                if (correct.equals(choiceA)) {
+                    onView(ViewMatchers.withId(R.id.choicea)).perform(ViewActions.click());
+                } else if (correct.equals(choiceB)) {
+                    onView(ViewMatchers.withId(R.id.choiceb)).perform(ViewActions.click());
+                } else if (correct.equals(choiceC)) {
+                    onView(ViewMatchers.withId(R.id.choicec)).perform(ViewActions.click());
+                } else if (correct.equals(choiceD)) {
+                    onView(ViewMatchers.withId(R.id.choiced)).perform(ViewActions.click());
+                }
+
+                onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
+                countQ++;
+                if (countQ != 5) {
+                    ViewInteraction correctText = Espresso.onView(ViewMatchers.withId(R.id.correctText));
+                    correctText.check( // used to check if we are back on Correct Answer screen
+                            ViewAssertions.matches(
+                                    ViewMatchers.withSubstring(
+                                            "CORRECT!!!"
+                                    )
+                            )
+                    );
+                    onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
+                }else{
+                    ViewInteraction congrats = Espresso.onView(ViewMatchers.withId(R.id.congratsText));
+                    congrats.check( // used to check if we are back on Game Won screen
+                            ViewAssertions.matches(
+                                    ViewMatchers.withSubstring(
+                                            "CONGRATS! YOU WON THE GAME! YOU'RE A TRIVIA MASTER!"
+                                    )
+                            )
+                    );
+
+                    switch(c) {
+                        case "RANDOM":
+                            onView(ViewMatchers.withId(R.id.menuwonbutton)).perform(ViewActions.click());
+                            ViewInteraction gameName = Espresso.onView(ViewMatchers.withId(R.id.game_name)); // saves game name text
+                            gameName.check( // used to check if we are back on Game Config screen
+                                    ViewAssertions.matches(
+                                            ViewMatchers.withSubstring(
+                                                    "Welcome to Trivia Time"
+                                            )
+                                    )
+                            );
+                            break;
+
+
+                        default:
+                            onView(ViewMatchers.withId(R.id.yeswonbutton)).perform(ViewActions.click());
+                            ViewInteraction submitB = Espresso.onView(ViewMatchers.withId(R.id.submitbutton));
+                            submitB.check( // used to check if we are back on Active Question screen
+                                    ViewAssertions.matches(
+                                            ViewMatchers.withSubstring(
+                                                    "SUBMIT"
+                                            )
+                                    )
+                            );
+                            break;
+
+                    }
+                }
+            }
+        }
+
+    }
+
+    @Test
+    public void RunningThroughQuestionsAllCorrectTrivialPursuit(){
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        AssetManager assetManager = appContext.getAssets();
+        RandMultiChoice r = new RandMultiChoice(assetManager);
+        // Perform a click action on a view
+        onView(ViewMatchers.withId(R.id.trivpursuitbutton)).perform(ViewActions.click());
+    }
 
 
 
