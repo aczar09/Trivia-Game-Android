@@ -61,10 +61,10 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     boolean continueGame; // whether a player gets a question right
     //private int answerStreak = 0;
 
-    String curCategory = "";
+    private String curCategory = "";
 
-    String curMode = "";
-    String bestCategory = "";
+    private String curMode = "";
+    private String bestCategory = "";
     //private IGameShow database;
 
     public MainActivity(){ // constructor

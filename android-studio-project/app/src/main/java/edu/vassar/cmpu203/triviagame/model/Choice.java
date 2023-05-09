@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 import java.io.Serializable;
 
 public class Choice implements Serializable {
-    private static final String NAME = "name";
-    private static final String CORRECT = "correct";
+    //private static final String NAME = "name";
+    //private static final String CORRECT = "correct";
     String name;
     boolean correct;
 
@@ -26,7 +26,7 @@ public class Choice implements Serializable {
     public boolean getCorrect(){
         return correct;
     }
-
+/*
     public Bundle toBundle(){
         final Bundle b = new Bundle();
         b.putString(NAME, this.name);
@@ -40,4 +40,6 @@ public class Choice implements Serializable {
         c.correct = b.getBoolean(CORRECT);
         return c;
     }
+    */
+
 }
