@@ -21,26 +21,24 @@ public class GameConfigFragment extends Fragment implements IGameConfigView {
     private Listener listener;
 
 
-
     /**
-     *
      * @param listener observer to be notified of events of interest
      */
-    public GameConfigFragment(Listener listener){
+    public GameConfigFragment(Listener listener) {
         this.listener = listener;
     }
 
 
     /**
      * onCreateView() overrides method of the same name from superclass
-     * @param inflater The LayoutInflater object that can be used to inflate
-     * any views in the fragment,
-     * @param container If non-null, this is the parent view that the fragment's
-     * UI should be attached to.  The fragment should not add the view itself,
-     * but this can be used to generate the LayoutParams of the view.
-     * @param savedInstanceState If non-null, this fragment is being re-constructed
-     * from a previous saved state as given here.
      *
+     * @param inflater           The LayoutInflater object that can be used to inflate
+     *                           any views in the fragment,
+     * @param container          If non-null, this is the parent view that the fragment's
+     *                           UI should be attached to.  The fragment should not add the view itself,
+     *                           but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     *                           from a previous saved state as given here.
      * @return the root of the layout that has just been inflated
      */
     @Nullable
@@ -55,12 +53,13 @@ public class GameConfigFragment extends Fragment implements IGameConfigView {
     /**
      * onViewCreated() overrides method of the same name from superclass. Called by android platform
      * after the layout has been inflated, and before the view transitions to the created state
-     * @param view The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     *
+     * @param view               The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
      * @param savedInstanceState If non-null, this fragment is being re-constructed
-     * from a previous saved state as given here.
+     *                           from a previous saved state as given here.
      */
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         this.binding.wwmbutton.setOnClickListener(new View.OnClickListener() {
             /**
@@ -72,18 +71,12 @@ public class GameConfigFragment extends Fragment implements IGameConfigView {
                 GameConfigFragment.this.listener.onWWM();
             } // calls onWWM() in MainActivity
         });
-        if(this.listener != null){
-            String cat = this.topCategory();
-            //this.binding.bestCategory.setText(cat +"");
-        }
         this.binding.trivpursuitbutton.setOnClickListener(view1 -> GameConfigFragment.this.listener.onTrivialPursuit());
         this.binding.randbutton.setOnClickListener(view1 -> GameConfigFragment.this.listener.onRandom()); // calls onRandom() in MainActivity
         this.binding.moreinfobutton.setOnClickListener(view12 -> GameConfigFragment.this.listener.onMoreInfo()); // calls onMoreInfo() in MainActivity
         this.binding.categoriesbutton.setOnClickListener(view1 -> GameConfigFragment.this.listener.onCategoriesMode());
+        this.binding.statsbutton.setOnClickListener(view1 -> GameConfigFragment.this.listener.onStats());
         //return View.inflate(R.layout.fragment_game__config, this, false);
     }
 
-    public String topCategory(){
-        return this.listener.getBestCategory();
-    }
 }
