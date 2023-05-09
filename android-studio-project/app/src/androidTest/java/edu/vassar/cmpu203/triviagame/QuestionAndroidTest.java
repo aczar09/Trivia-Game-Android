@@ -2,10 +2,8 @@ package edu.vassar.cmpu203.triviagame;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static java.util.regex.Pattern.matches;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -25,14 +23,13 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.vassar.cmpu203.triviagame.controller.MainActivity;
-import edu.vassar.cmpu203.triviagame.model.Choice;
 import edu.vassar.cmpu203.triviagame.model.Question;
 import edu.vassar.cmpu203.triviagame.model.RandMultiChoice;
 
@@ -49,8 +46,6 @@ public class QuestionAndroidTest {
     public void RunningThroughQuestionsRandom(){
         // Obtain the Context of the application under test
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-
-// Get an instance of the AssetManager
         AssetManager assetManager = appContext.getAssets();
 
 
@@ -59,68 +54,24 @@ public class QuestionAndroidTest {
         onView(ViewMatchers.withId(R.id.wwmbutton)).perform(ViewActions.click());
         int count = 0;
         while(count!=5) {
-            ViewInteraction submit = Espresso.onView(ViewMatchers.withId(R.id.submitbutton));
-            submit.check( // used to check if we are back on Active Question screen
-                    ViewAssertions.matches(
-                            ViewMatchers.withSubstring(
-                                    "SUBMIT"
-                            )
-                    )
-            );
+            checkSubmitButton();
             String category = getText(withId(R.id.categoryText));
             String prompt = getText(withId(R.id.aQuestion));
             int selection  = (int) (Math.random() * 4);
 
             Question q = r.searchQuestion(prompt,category);
+            List<String> choices = getChoiceText();
             String correct = q.getCorrectChoice().toString();
-            String choiceA = getText(withId(R.id.choicea));
-            String choiceB = getText(withId(R.id.choiceb));
-            String choiceC = getText(withId(R.id.choicec));
-            String choiceD = getText(withId(R.id.choiced));
-            boolean isCorrect = false;
-
-            switch(selection){
-                case 0:
-                    onView(ViewMatchers.withId(R.id.choicea)).perform(ViewActions.click());
-                    isCorrect = choiceA.equals(correct);
-                    break;
-                case 1:
-                    onView(ViewMatchers.withId(R.id.choiceb)).perform(ViewActions.click());
-                    isCorrect = choiceB.equals(correct);
-                    break;
-                case 2:
-                    onView(ViewMatchers.withId(R.id.choicec)).perform(ViewActions.click());
-                    isCorrect = choiceC.equals(correct);
-                    break;
-                case 3:
-                    onView(ViewMatchers.withId(R.id.choiced)).perform(ViewActions.click());
-                    isCorrect = choiceD.equals(correct);
-                    break;
-            }
-
+            boolean isCorrect = makeSelectionSwitch(selection,choices.get(0), choices.get(1), choices.get(2), choices.get(3),correct);
 
             onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
             count++;
             if(count!=5&&isCorrect){
-                ViewInteraction correctText = Espresso.onView(ViewMatchers.withId(R.id.correctText));
-                correctText.check( // used to check if we are back on Correct Answer screen
-                        ViewAssertions.matches(
-                                ViewMatchers.withSubstring(
-                                        "CORRECT!!!"
-                                )
-                        )
-                );
+                checkCorrectScreen();
                 onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
             }
             if(!isCorrect){
-                ViewInteraction gameOver = Espresso.onView(ViewMatchers.withId(R.id.gameOverText));
-                gameOver.check( // used to check if we are back on Active Question screen
-                        ViewAssertions.matches(
-                                ViewMatchers.withSubstring(
-                                        "Sorry! Game Over!"
-                                )
-                        )
-                );
+                checkGameOver();
                 break;
             }
         }
@@ -129,7 +80,7 @@ public class QuestionAndroidTest {
 
 
     /**
-     * Tests the screens for when the user gets every question right, and then when they choose to
+     * Tests the screens for when the user choose WMM mode and gets every question right, and then when they choose to
      * play again or go back to the menu
      */
     @Test
@@ -141,14 +92,7 @@ public class QuestionAndroidTest {
         onView(ViewMatchers.withId(R.id.wwmbutton)).perform(ViewActions.click());
         int countQ = 0;
         int countR = 0;
-        ViewInteraction submit = Espresso.onView(ViewMatchers.withId(R.id.submitbutton));
-        submit.check( // used to check if we are back on Active Question screen
-                ViewAssertions.matches(
-                        ViewMatchers.withSubstring(
-                                "SUBMIT"
-                        )
-                )
-        );
+        checkSubmitButton();
 
         while(countR !=2) {
             while (countQ != 5) {
@@ -159,64 +103,24 @@ public class QuestionAndroidTest {
 
                 Question q = r.searchQuestion(prompt,category);
                 String correct = q.getCorrectChoice().toString();
-                String choiceA = getText(withId(R.id.choicea));
-                String choiceB = getText(withId(R.id.choiceb));
-                String choiceC = getText(withId(R.id.choicec));
-                String choiceD = getText(withId(R.id.choiced));
-                if (correct.equals(choiceA)) {
-                    onView(ViewMatchers.withId(R.id.choicea)).perform(ViewActions.click());
-                } else if (correct.equals(choiceB)) {
-                    onView(ViewMatchers.withId(R.id.choiceb)).perform(ViewActions.click());
-                } else if (correct.equals(choiceC)) {
-                    onView(ViewMatchers.withId(R.id.choicec)).perform(ViewActions.click());
-                } else if (correct.equals(choiceD)) {
-                    onView(ViewMatchers.withId(R.id.choiced)).perform(ViewActions.click());
-                }
+                List<String> choices = getChoiceText();
+                makeSelectionIf(choices.get(0), choices.get(1), choices.get(2), choices.get(3),correct);
 
                 onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
                 countQ++;
                 if (countQ != 5) {
-                    ViewInteraction correctText = Espresso.onView(ViewMatchers.withId(R.id.correctText));
-                    correctText.check( // used to check if we are back on Correct Answer screen
-                            ViewAssertions.matches(
-                                    ViewMatchers.withSubstring(
-                                            "CORRECT!!!"
-                                    )
-                            )
-                    );
+                    checkCorrectScreen();
                     onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
                 }else{
-                    ViewInteraction congrats = Espresso.onView(ViewMatchers.withId(R.id.congratsText));
-                    congrats.check( // used to check if we are back on Game Won screen
-                            ViewAssertions.matches(
-                                    ViewMatchers.withSubstring(
-                                            "CONGRATS! YOU WON THE GAME! YOU'RE A TRIVIA MASTER!"
-                                    )
-                            )
-                    );
-
+                    checkCongratsScreen();
                     switch(countR) {
                         case 0:
                             onView(ViewMatchers.withId(R.id.yeswonbutton)).perform(ViewActions.click());
-                            ViewInteraction submitB = Espresso.onView(ViewMatchers.withId(R.id.submitbutton));
-                            submitB.check( // used to check if we are back on Active Question screen
-                                    ViewAssertions.matches(
-                                            ViewMatchers.withSubstring(
-                                                    "SUBMIT"
-                                            )
-                                    )
-                            );
+                            checkSubmitButton();
                             break;
                         case 1:
                             onView(ViewMatchers.withId(R.id.menuwonbutton)).perform(ViewActions.click());
-                            ViewInteraction gameName = Espresso.onView(ViewMatchers.withId(R.id.game_name)); // saves game name text
-                            gameName.check( // used to check if we are back on Game Config screen
-                                    ViewAssertions.matches(
-                                            ViewMatchers.withSubstring(
-                                                    "Welcome to Trivia Time"
-                                            )
-                                    )
-                            );
+                            checkGameConfig();
                             break;
                     }
                 }
@@ -232,7 +136,7 @@ public class QuestionAndroidTest {
      * play again or go back to the menu
      */
     @Test
-    public void RunningThroughQuestionsLoseAndReplay(){
+    public void RunningThroughQuestionsLoseAndReplayWMM(){
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         AssetManager assetManager = appContext.getAssets();
         RandMultiChoice r = new RandMultiChoice(assetManager);
@@ -243,77 +147,37 @@ public class QuestionAndroidTest {
         while(count!=2) {
             String category = getText(withId(R.id.categoryText));
             String prompt = getText(withId(R.id.aQuestion));
-
-
             Question q = r.searchQuestion(prompt,category);
             String correct = q.getCorrectChoice().toString();
-            String choiceA = getText(withId(R.id.choicea));
-            String choiceB = getText(withId(R.id.choiceb));
-            String choiceC = getText(withId(R.id.choicec));
-            String choiceD = getText(withId(R.id.choiced));
+            List<String> choices = getChoiceText();
             boolean isCorrect = true;
 
             while (isCorrect) { //runs until false answer is selected
                 int selection = (int) (Math.random() * 4);
                 Log.d("selection", String.valueOf(selection));
-                switch (selection) {
-                    case 0:
-                        onView(ViewMatchers.withId(R.id.choicea)).perform(ViewActions.click());
-                        isCorrect = choiceA.equals(correct);
-                        break;
-                    case 1:
-                        onView(ViewMatchers.withId(R.id.choiceb)).perform(ViewActions.click());
-                        isCorrect = choiceB.equals(correct);
-                        break;
-                    case 2:
-                        onView(ViewMatchers.withId(R.id.choicec)).perform(ViewActions.click());
-                        isCorrect = choiceC.equals(correct);
-                        break;
-                    case 3:
-                        onView(ViewMatchers.withId(R.id.choiced)).perform(ViewActions.click());
-                        isCorrect = choiceD.equals(correct);
-                        break;
-                }
+                isCorrect = makeSelectionSwitch(selection,choices.get(0), choices.get(1), choices.get(2), choices.get(3),correct);
             }
             onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
 
-            ViewInteraction gameOver = Espresso.onView(ViewMatchers.withId(R.id.gameOverText));
-            gameOver.check( // used to check if we are back on Active Question screen
-                    ViewAssertions.matches(
-                            ViewMatchers.withSubstring(
-                                    "Sorry! Game Over!"
-                            )
-                    )
-            );
+            checkGameOver();
 
             switch(count) {
                 case 0:
                     onView(ViewMatchers.withId(R.id.yesbutton)).perform(ViewActions.click());
-                    ViewInteraction submitB = Espresso.onView(ViewMatchers.withId(R.id.submitbutton));
-                    submitB.check( // used to check if we are back on Active Question screen
-                            ViewAssertions.matches(
-                                    ViewMatchers.withSubstring(
-                                            "SUBMIT"
-                                    )
-                            )
-                    );
+                    checkSubmitButton();
                     break;
                 case 1:
                     onView(ViewMatchers.withId(R.id.menubutton)).perform(ViewActions.click());
-                    ViewInteraction gameName = Espresso.onView(ViewMatchers.withId(R.id.game_name)); // saves game name text
-                    gameName.check( // used to check if we are back on Game Config screen
-                            ViewAssertions.matches(
-                                    ViewMatchers.withSubstring(
-                                            "Welcome to Trivia Time"
-                                    )
-                            )
-                    );
+                    checkGameConfig();
                     break;
             }
             count++;
             }
         }
 
+    /**
+     * Tests the screens for when the user choose categories mode and gets every question right
+     */
     @Test
     public void RunningThroughQuestionsAllCorrectCategories(){
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -322,6 +186,61 @@ public class QuestionAndroidTest {
         String[] categories = {"GEOGRAPHY","TELEVISION","HOBBIES","SPORTS", "RANDOM"};
         // Perform a click action on a view
         onView(ViewMatchers.withId(R.id.categoriesbutton)).perform(ViewActions.click());
+        checkCategorySelectScreen();
+
+        for(String c: categories){
+            int countQ = 0;
+            String curCat = categorySelection(c);
+
+            while (countQ != 5) {
+                String category = getText(withId(R.id.categoryText));
+                ViewInteraction catText = Espresso.onView(ViewMatchers.withId(R.id.categoryText));
+                catText.check(
+                        ViewAssertions.matches(
+                                ViewMatchers.withSubstring(curCat)
+                        )
+                );
+
+                String prompt = getText(withId(R.id.aQuestion));
+                Question q = r.searchQuestion(prompt,category);
+                String correct = q.getCorrectChoice().toString();
+                List<String> choices = getChoiceText();
+                makeSelectionIf(choices.get(0), choices.get(1), choices.get(2), choices.get(3), correct);
+
+                onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
+                countQ++;
+                Log.d("questionNum", String.valueOf(countQ));
+                if (countQ != 5) {
+                    checkCorrectScreen();
+                    onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
+                }else{
+                    checkCongratsScreen();
+
+                    if ("RANDOM".equals(c)) {
+                        onView(withId(R.id.menuwonbutton)).perform(ViewActions.click());
+                        checkGameConfig();
+                    } else {
+                        onView(withId(R.id.yeswonbutton)).perform(ViewActions.click());
+                        checkCategorySelectScreen();
+                    }
+                }
+            }
+        }
+
+    }
+
+
+    /**
+     * Tests the screens for when the user choose trivial pursuit mode and gets every question right
+     */
+    @Test
+    public void RunningThroughQuestionsAllCorrectTrivialPursuit(){
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        AssetManager assetManager = appContext.getAssets();
+        RandMultiChoice r = new RandMultiChoice(assetManager);
+        String[] categories = {"GEOGRAPHY","TELEVISION","HOBBIES","SPORTS", "RANDOM"};
+        // Perform a click action on a view
+        onView(ViewMatchers.withId(R.id.trivpursuitbutton)).perform(ViewActions.click());
         ViewInteraction catPromptText = Espresso.onView(ViewMatchers.withId(R.id.categoryModeText)); // saves game name text
         catPromptText.check( // used to check if we are back on Game Config screen
                 ViewAssertions.matches(
@@ -330,128 +249,73 @@ public class QuestionAndroidTest {
                         )
                 )
         );
-
+        int countQ = 0;
         for(String c: categories){
-            int countQ = 0;
-            String curCat = c;
-            switch(c){
-                case "GEOGRAPHY":
-                    onView(ViewMatchers.withId(R.id.geobutton)).perform(ViewActions.click());
-                    break;
-                case "TELEVISION":
-                    Log.d("tv?","here");
-                    onView(ViewMatchers.withId(R.id.tvbutton)).perform(ViewActions.click());
-                    break;
-                case "HOBBIES":
-                    Log.d("hobbies?", "here");
-                    onView(ViewMatchers.withId(R.id.hobbiesbutton)).perform(ViewActions.click());
-                    break;
-                case "SPORTS":
-                    onView(ViewMatchers.withId(R.id.sportsbutton)).perform(ViewActions.click());
-                    break;
-                case "RANDOM":
-                    onView(ViewMatchers.withId(R.id.randomcatbutton)).perform(ViewActions.click());
-                    curCat = getText(withId(R.id.categoryText));
-                    break;
+            String curCat = categorySelection(c);
+
+            String category = getText(withId(R.id.categoryText));
+            ViewInteraction catText = Espresso.onView(ViewMatchers.withId(R.id.categoryText)); // saves game name text
+            catText.check( // used to check if we are back on Game Config screen
+                    ViewAssertions.matches(
+                            ViewMatchers.withSubstring(curCat)
+                    )
+            );
+
+            String prompt = getText(withId(R.id.aQuestion));
+            Question q = r.searchQuestion(prompt,category);
+            String correct = q.getCorrectChoice().toString();
+            List<String> choices = getChoiceText();
+
+            makeSelectionIf(choices.get(0), choices.get(1), choices.get(2), choices.get(3), correct);
+
+            onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
+            countQ++;
+            Log.d("questionNum", String.valueOf(countQ));
+            if (countQ != 5) {
+                checkCorrectScreen();
+                onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
+                checkCategorySelectScreen();
+            }else{
+                checkCongratsScreen();
             }
 
-            while (countQ != 5) {
-                String category = getText(withId(R.id.categoryText));
-                ViewInteraction catText = Espresso.onView(ViewMatchers.withId(R.id.categoryText)); // saves game name text
-                catText.check( // used to check if we are back on Game Config screen
-                        ViewAssertions.matches(
-                                ViewMatchers.withSubstring(curCat)
-                        )
-                );
-                String prompt = getText(withId(R.id.aQuestion));
-
-
-
-                Question q = r.searchQuestion(prompt,category);
-                String correct = q.getCorrectChoice().toString();
-                String choiceA = getText(withId(R.id.choicea));
-                String choiceB = getText(withId(R.id.choiceb));
-                String choiceC = getText(withId(R.id.choicec));
-                String choiceD = getText(withId(R.id.choiced));
-
-                if (correct.equals(choiceA)) {
-                    onView(ViewMatchers.withId(R.id.choicea)).perform(ViewActions.click());
-                } else if (correct.equals(choiceB)) {
-                    onView(ViewMatchers.withId(R.id.choiceb)).perform(ViewActions.click());
-                } else if (correct.equals(choiceC)) {
-                    onView(ViewMatchers.withId(R.id.choicec)).perform(ViewActions.click());
-                } else if (correct.equals(choiceD)) {
-                    onView(ViewMatchers.withId(R.id.choiced)).perform(ViewActions.click());
-                }
-
-                onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
-                countQ++;
-                Log.d("questionNum", String.valueOf(countQ));
-                if (countQ != 5) {
-                    ViewInteraction correctText = Espresso.onView(ViewMatchers.withId(R.id.correctText));
-                    correctText.check( // used to check if we are back on Correct Answer screen
-                            ViewAssertions.matches(
-                                    ViewMatchers.withSubstring(
-                                            "CORRECT!!!"
-                                    )
-                            )
-                    );
-                    onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
-                }else{
-                    ViewInteraction congrats = Espresso.onView(ViewMatchers.withId(R.id.congratsText));
-                    congrats.check( // used to check if we are back on Game Won screen
-                            ViewAssertions.matches(
-                                    ViewMatchers.withSubstring(
-                                            "CONGRATS! YOU WON THE GAME! YOU'RE A TRIVIA MASTER!"
-                                    )
-                            )
-                    );
-
-                    switch(c) {
-                        case "RANDOM":
-                            onView(ViewMatchers.withId(R.id.menuwonbutton)).perform(ViewActions.click());
-                            ViewInteraction gameName = Espresso.onView(ViewMatchers.withId(R.id.game_name)); // saves game name text
-                            gameName.check( // used to check if we are back on Game Config screen
-                                    ViewAssertions.matches(
-                                            ViewMatchers.withSubstring(
-                                                    "Welcome to Trivia Time"
-                                            )
-                                    )
-                            );
-                            break;
-
-
-                        default:
-                            onView(ViewMatchers.withId(R.id.yeswonbutton)).perform(ViewActions.click());
-                            ViewInteraction submitB = Espresso.onView(ViewMatchers.withId(R.id.categoryModeText));
-                            submitB.check( // used to check if we are back on Active Question screen
-                                    ViewAssertions.matches(
-                                            ViewMatchers.withSubstring(
-                                                    "Please choose your wanted category:"
-                                            )
-                                    )
-                            );
-                            break;
-
-                    }
-                }
-            }
         }
 
     }
 
-    @Test
-    public void RunningThroughQuestionsAllCorrectTrivialPursuit(){
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        AssetManager assetManager = appContext.getAssets();
-        RandMultiChoice r = new RandMultiChoice(assetManager);
-        // Perform a click action on a view
-        onView(ViewMatchers.withId(R.id.trivpursuitbutton)).perform(ViewActions.click());
+
+
+
+    boolean makeSelectionSwitch(int selection, String choiceA, String choiceB, String choiceC, String choiceD, String correct){
+        switch(selection){
+            case 0:
+                onView(ViewMatchers.withId(R.id.choicea)).perform(ViewActions.click());
+                return choiceA.equals(correct);
+            case 1:
+                onView(ViewMatchers.withId(R.id.choiceb)).perform(ViewActions.click());
+                return choiceB.equals(correct);
+            case 2:
+                onView(ViewMatchers.withId(R.id.choicec)).perform(ViewActions.click());
+                return choiceC.equals(correct);
+            case 3:
+                onView(ViewMatchers.withId(R.id.choiced)).perform(ViewActions.click());
+                return choiceD.equals(correct);
+        }
+        return false;
     }
 
+    void makeSelectionIf(String choiceA, String choiceB, String choiceC, String choiceD, String correct){
+        if (correct.equals(choiceA)) {
+            onView(ViewMatchers.withId(R.id.choicea)).perform(ViewActions.click());
+        } else if (correct.equals(choiceB)) {
+            onView(ViewMatchers.withId(R.id.choiceb)).perform(ViewActions.click());
+        } else if (correct.equals(choiceC)) {
+            onView(ViewMatchers.withId(R.id.choicec)).perform(ViewActions.click());
+        } else if (correct.equals(choiceD)) {
+            onView(ViewMatchers.withId(R.id.choiced)).perform(ViewActions.click());
+        }
 
-
-
+    }
     String getText(final Matcher<View> matcher) {
         final String[] stringHolder = { null };
         onView(matcher).perform(new ViewAction() {
@@ -474,5 +338,102 @@ public class QuestionAndroidTest {
         return stringHolder[0];
     }
 
+    List<String> getChoiceText(){
+        List<String> choices = new ArrayList<>();
+        String choiceA = getText(withId(R.id.choicea));
+        String choiceB = getText(withId(R.id.choiceb));
+        String choiceC = getText(withId(R.id.choicec));
+        String choiceD = getText(withId(R.id.choiced));
+        choices.add(choiceA);
+        choices.add(choiceB);
+        choices.add(choiceC);
+        choices.add(choiceD);
+        return choices;
+    }
+    void checkSubmitButton(){
+        ViewInteraction submitB = Espresso.onView(ViewMatchers.withId(R.id.submitbutton));
+        submitB.check( // used to check if we are back on Active Question screen
+                ViewAssertions.matches(
+                        ViewMatchers.withSubstring(
+                                "SUBMIT"
+                        )
+                )
+        );
+    }
+
+    String categorySelection(String c){
+        switch(c){
+            case "GEOGRAPHY":
+                onView(ViewMatchers.withId(R.id.geobutton)).perform(ViewActions.click());
+                break;
+            case "TELEVISION":
+                onView(ViewMatchers.withId(R.id.tvbutton)).perform(ViewActions.click());
+                break;
+            case "HOBBIES":
+                onView(ViewMatchers.withId(R.id.hobbiesbutton)).perform(ViewActions.click());
+                break;
+            case "SPORTS":
+                onView(ViewMatchers.withId(R.id.sportsbutton)).perform(ViewActions.click());
+                break;
+            case "RANDOM":
+                onView(ViewMatchers.withId(R.id.randomcatbutton)).perform(ViewActions.click());
+                return getText(withId(R.id.categoryText));
+        }
+        return c;
+    }
+    void checkCorrectScreen(){
+        ViewInteraction correctText = Espresso.onView(ViewMatchers.withId(R.id.correctText));
+        correctText.check( // used to check if we are back on Correct Answer screen
+                ViewAssertions.matches(
+                        ViewMatchers.withSubstring(
+                                "CORRECT!!!"
+                        )
+                )
+        );
+    }
+
+    void checkCategorySelectScreen(){
+        ViewInteraction categorySelect = Espresso.onView(ViewMatchers.withId(R.id.categoryModeText));
+        categorySelect.check( // used to check if we are back on Active Question screen
+                ViewAssertions.matches(
+                        ViewMatchers.withSubstring(
+                                "Please choose your wanted category:"
+                        )
+                )
+        );
+    }
+
+    void checkGameConfig(){
+        ViewInteraction gameName = Espresso.onView(ViewMatchers.withId(R.id.game_name)); // saves game name text
+        gameName.check( // used to check if we are back on Game Config screen
+                ViewAssertions.matches(
+                        ViewMatchers.withSubstring(
+                                "Welcome to Trivia Time"
+                        )
+                )
+        );
+    }
+
+    void checkCongratsScreen(){
+        ViewInteraction congrats = Espresso.onView(ViewMatchers.withId(R.id.congratsText));
+        congrats.check( // used to check if we are back on Game Won screen
+                ViewAssertions.matches(
+                        ViewMatchers.withSubstring(
+                                "CONGRATS! YOU WON THE GAME! YOU'RE A TRIVIA MASTER!"
+                        )
+                )
+        );
+    }
+
+    void checkGameOver(){
+        ViewInteraction gameOver = Espresso.onView(ViewMatchers.withId(R.id.gameOverText));
+        gameOver.check( // used to check if we are back on Active Question screen
+                ViewAssertions.matches(
+                        ViewMatchers.withSubstring(
+                                "Sorry! Game Over!"
+                        )
+                )
+        );
+    }
 
 }
