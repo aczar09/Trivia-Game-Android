@@ -241,14 +241,7 @@ public class QuestionAndroidTest {
         String[] categories = {"GEOGRAPHY","TELEVISION","HOBBIES","SPORTS", "RANDOM"};
         // Perform a click action on a view
         onView(ViewMatchers.withId(R.id.trivpursuitbutton)).perform(ViewActions.click());
-        ViewInteraction catPromptText = Espresso.onView(ViewMatchers.withId(R.id.categoryModeText)); // saves game name text
-        catPromptText.check( // used to check if we are back on Game Config screen
-                ViewAssertions.matches(
-                        ViewMatchers.withSubstring(
-                                "Please choose your wanted category:"
-                        )
-                )
-        );
+        checkCategorySelectScreen();
         int countQ = 0;
         for(String c: categories){
             String curCat = categorySelection(c);
