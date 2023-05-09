@@ -34,14 +34,14 @@ public class ActiveQuestion extends Fragment implements IActiveQuestionView {
         this.binding = FragmentActiveQuestionBinding.inflate(inflater);
         return this.binding.getRoot();
     }
-
+/*
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         Bundle args = this.getArguments();
     }
-
+*/
 
 
     @Override
