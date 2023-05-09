@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
         if (savedInstanceState == null) {
             this.persistenceFacade.retrieveDatabase(this);
+            this.persistenceFacade.retrievePlayer(this);
             if (this.questionBase == null){
                 this.questionBase = new RandMultiChoice(this.getAssets());
             }
@@ -114,8 +115,11 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         outstate.putSerializable(PLAYER, this.player);
         outstate.putSerializable(AQUESTION, this.activeQuestion);
         this.persistenceFacade.saveDatabase(this.questionBase);
+        this.persistenceFacade.savePlayer(this.player);
     }
-
+    public void onPlayerReceived(Player player){
+        this.player = player;
+    }
     public void onDatabaseReceived(IGameShow database){
         this.questionBase = database;
     }
