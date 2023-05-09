@@ -4,15 +4,17 @@
 
 ## Trivia Game: Functionality
 
-This Android app serves as a provides a multiple choice trivia game experience, which in the future will
-include various game show formats. The user can select to play as many rounds of
-5 question multiple choice trivia as they'd like, with each rounding ending once the user
-has either got all 5 right or answered one incorrectly. However, there are some limitations:
-1. There is only one game mode available to play, single-player multiple choice, but this will
-expand in the future.
-2. Each round, the game pulls from the same question pool, so repeat questions are inevitable across
-rounds, but not within rounds themselves
-3. No data persistence as of right now, every time the game starts, previous results aren't kept track of.
+This Android app serves as a provides a multiple choice trivia game experience, providing several game modes to 
+diversify the user's trivia experience. There are around 10,000 possible questions which can appear. 
+<br>Each game mode has the same premise, get 5 questions right in a row and you win, and are as follows:
+1. **Who Wants To Be A Millionaire?** - Get 5 random questions from a variety of categories
+2. **Categories** - Choose from geography, TV, hobbies, and sports, and you will receive 5 questions from that category
+3. **Trivial Pursuit** - Choose the category for every question (geography, TV, hobbies, and sports)
+4. **Random** - Randomly select one of the previous three game modes
+
+<br>
+The user can also view their game stats at any given point, which details their best category and game mode, total number
+of questions rights, and total rounds won.
 
 
 
