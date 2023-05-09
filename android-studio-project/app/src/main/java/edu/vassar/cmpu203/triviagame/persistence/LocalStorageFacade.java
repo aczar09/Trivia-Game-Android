@@ -18,12 +18,12 @@ import edu.vassar.cmpu203.triviagame.model.RandMultiChoice;
 public class LocalStorageFacade implements IPersistenceFacade {
 
     private final File file; // the file to write to/read from
-    private IGameShow database;  // a recreation of the ledger because we can only easily save
+    //private IGameShow database;  // a recreation of the ledger because we can only easily save
     // full ledgers, instead of individual sales
 
     public LocalStorageFacade(File storageDir){
         this.file = new File(storageDir, "database");
-        this.database = null;
+        //this.database = null;
         //this.database = new RandMultiChoice();
     }
 
@@ -32,8 +32,8 @@ public class LocalStorageFacade implements IPersistenceFacade {
             try {
                 FileInputStream fileInputStream = new FileInputStream(file);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                this.database = (IGameShow) objectInputStream.readObject();
-                listener.onDatabaseReceived(this.database);
+                IGameShow database = (IGameShow) objectInputStream.readObject();
+                listener.onDatabaseReceived(database);
             } catch(IOException e){
                 final String emsg = String.format("I/O error writing to %s", this.file);
                 Log.e("TriviaTime", emsg);
@@ -50,13 +50,13 @@ public class LocalStorageFacade implements IPersistenceFacade {
     }
 
     public void saveDatabase(IGameShow database){
-        this.database = database;
+        //this.database = database;
         File outfile = new File(this.file, "questionbase");
         try {
             FileOutputStream fos = new FileOutputStream(this.file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-            oos.writeObject(this.database);
+            oos.writeObject(database);
 
         } catch (IOException e) {
             final String emsg = String.format("I/O error writing to %s", this.file);
