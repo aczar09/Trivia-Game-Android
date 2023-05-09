@@ -4,7 +4,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
-public class Choice {
+import java.io.Serializable;
+
+public class Choice implements Serializable {
     private static final String NAME = "name";
     private static final String CORRECT = "correct";
     String name;

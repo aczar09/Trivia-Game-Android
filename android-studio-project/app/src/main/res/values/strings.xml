@@ -59,5 +59,9 @@
 
     <string name="TP">Trivial Pursuit</string>
 
+    <string name="hobby">Hobbies</string>
+
+    <string name="sport">Sports</string>
+
     <string name="tpinfo">This is a game show where every question you pick a different category!</string>
 </resources>

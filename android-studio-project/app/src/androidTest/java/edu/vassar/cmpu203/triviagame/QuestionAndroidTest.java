@@ -330,16 +330,20 @@ public class QuestionAndroidTest {
                         )
                 )
         );
-        int countQ = 0;
+
         for(String c: categories){
+            int countQ = 0;
+            String curCat = c;
             switch(c){
                 case "GEOGRAPHY":
                     onView(ViewMatchers.withId(R.id.geobutton)).perform(ViewActions.click());
                     break;
                 case "TELEVISION":
+                    Log.d("tv?","here");
                     onView(ViewMatchers.withId(R.id.tvbutton)).perform(ViewActions.click());
                     break;
                 case "HOBBIES":
+                    Log.d("hobbies?", "here");
                     onView(ViewMatchers.withId(R.id.hobbiesbutton)).perform(ViewActions.click());
                     break;
                 case "SPORTS":
@@ -347,15 +351,16 @@ public class QuestionAndroidTest {
                     break;
                 case "RANDOM":
                     onView(ViewMatchers.withId(R.id.randomcatbutton)).perform(ViewActions.click());
-                    c = getText(withId(R.id.categoryText));
+                    curCat = getText(withId(R.id.categoryText));
                     break;
             }
+
             while (countQ != 5) {
                 String category = getText(withId(R.id.categoryText));
                 ViewInteraction catText = Espresso.onView(ViewMatchers.withId(R.id.categoryText)); // saves game name text
                 catText.check( // used to check if we are back on Game Config screen
                         ViewAssertions.matches(
-                                ViewMatchers.withSubstring(c)
+                                ViewMatchers.withSubstring(curCat)
                         )
                 );
                 String prompt = getText(withId(R.id.aQuestion));
@@ -381,6 +386,7 @@ public class QuestionAndroidTest {
 
                 onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
                 countQ++;
+                Log.d("questionNum", String.valueOf(countQ));
                 if (countQ != 5) {
                     ViewInteraction correctText = Espresso.onView(ViewMatchers.withId(R.id.correctText));
                     correctText.check( // used to check if we are back on Correct Answer screen
@@ -417,11 +423,11 @@ public class QuestionAndroidTest {
 
                         default:
                             onView(ViewMatchers.withId(R.id.yeswonbutton)).perform(ViewActions.click());
-                            ViewInteraction submitB = Espresso.onView(ViewMatchers.withId(R.id.submitbutton));
+                            ViewInteraction submitB = Espresso.onView(ViewMatchers.withId(R.id.categoryModeText));
                             submitB.check( // used to check if we are back on Active Question screen
                                     ViewAssertions.matches(
                                             ViewMatchers.withSubstring(
-                                                    "SUBMIT"
+                                                    "Please choose your wanted category:"
                                             )
                                     )
                             );

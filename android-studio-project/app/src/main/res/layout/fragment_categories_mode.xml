@@ -39,21 +39,24 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:text="@string/tv" />
+
         <Button
             android:id="@+id/hobbiesbutton"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:text="Hobbies" />
+            android:text="@string/hobby" />
+
         <Button
             android:id="@+id/sportsbutton"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:text="Sports" />
+            android:text="@string/sport" />
+
         <Button
             android:id="@+id/randomcatbutton"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:text="Random" />
+            android:text="@string/rand_mode" />
     </LinearLayout>
 
     <Button
