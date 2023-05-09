@@ -7,10 +7,13 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static java.util.regex.Pattern.matches;
 
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.test.InstrumentationRegistry;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
@@ -42,7 +45,14 @@ public class QuestionAndroidTest {
      */
     @Test
     public void RunningThroughQuestionsRandom(){
-        RandMultiChoice r = new RandMultiChoice();
+        // Obtain the Context of the application under test
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+
+// Get an instance of the AssetManager
+        AssetManager assetManager = appContext.getAssets();
+
+
+        RandMultiChoice r = new RandMultiChoice(assetManager);
         // Perform a click action on a view
         onView(ViewMatchers.withId(R.id.wwmbutton)).perform(ViewActions.click());
         int count = 0;
@@ -55,10 +65,11 @@ public class QuestionAndroidTest {
                             )
                     )
             );
+            String category = getText(withId(R.id.categoryText));
             String prompt = getText(withId(R.id.aQuestion));
             int selection  = (int) (Math.random() * 4);
 
-            Question q = r.searchQuestion(prompt);
+            Question q = r.searchQuestion(prompt,category);
             String correct = q.getCorrectChoice().toString();
             String choiceA = getText(withId(R.id.choicea));
             String choiceB = getText(withId(R.id.choiceb));
@@ -137,10 +148,12 @@ public class QuestionAndroidTest {
 
         while(countR !=2) {
             while (countQ != 5) {
+                String category = getText(withId(R.id.categoryText));
                 String prompt = getText(withId(R.id.aQuestion));
 
 
-                Question q = r.searchQuestion(prompt);
+
+                Question q = r.searchQuestion(prompt,category);
                 String correct = q.getCorrectChoice().toString();
                 String choiceA = getText(withId(R.id.choicea));
                 String choiceB = getText(withId(R.id.choiceb));
@@ -222,10 +235,11 @@ public class QuestionAndroidTest {
 
         int count = 0;
         while(count!=2) {
+            String category = getText(withId(R.id.categoryText));
             String prompt = getText(withId(R.id.aQuestion));
 
 
-            Question q = r.searchQuestion(prompt);
+            Question q = r.searchQuestion(prompt,category);
             String correct = q.getCorrectChoice().toString();
             String choiceA = getText(withId(R.id.choicea));
             String choiceB = getText(withId(R.id.choiceb));

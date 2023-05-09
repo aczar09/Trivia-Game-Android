@@ -12,27 +12,23 @@ import java.util.*;
 public class Question implements Serializable {
     private static final String PROMPT = "prompt";
 
-    private static final String DIFFICULTY = "difficulty";
 
     private static final String CATEGORY = "category";
 
-    private static final String QUESTIONTYPE = "questiontype";
     private static final String CHOICES = "choices";
 
 
     String prompt;
-    String difficulty;
+
 
     String category;
-    String questionType;
+
     List<Choice> choices = new ArrayList<>();
     public Question(){}
 
-    public Question(String prompt, String difficulty, String category, String questionType, Choice c1, Choice c2, Choice c3, Choice c4){
+    public Question(String prompt, String category, Choice c1, Choice c2, Choice c3, Choice c4){
         this.prompt = prompt;
-        this.difficulty = difficulty;
         this.category = category;
-        this.questionType = questionType;
         this.choices.add(c1);
         this.choices.add(c2);
         this.choices.add(c3);
@@ -112,9 +108,7 @@ public class Question implements Serializable {
     public Bundle toBundle(){
         final Bundle b = new Bundle();
         b.putString(PROMPT, this.prompt);
-        b.putString(DIFFICULTY, this.difficulty);
         b.putString(CATEGORY, this.category);
-        b.putString(QUESTIONTYPE, this.questionType);
         Bundle[] choiceBundle = new Bundle[this.choices.size()];
         int i = 0;
         for (Choice c: this.choices) choiceBundle[i++] = c.toBundle();
@@ -129,9 +123,7 @@ public class Question implements Serializable {
             question.choices.add(c);
         }
         question.prompt = b.getString(PROMPT);
-        question.difficulty = b.getString(DIFFICULTY);
         question.category = b.getString(CATEGORY);
-        question.questionType = b.getString(QUESTIONTYPE);
         return question;
     }
 

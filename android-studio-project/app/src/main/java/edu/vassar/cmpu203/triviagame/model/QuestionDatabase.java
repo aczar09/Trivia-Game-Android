@@ -64,7 +64,7 @@ public class QuestionDatabase {
                         Choice cChoice = new Choice(c, c.equals(correct));
                         String d = s.nextLine().substring(2);//scans last answer choice
                         Choice dChoice = new Choice(d, d.equals(correct));
-                        Question ques = new Question(q, "medium", category, "mcq", aChoice, bChoice, cChoice, dChoice);
+                        Question ques = new Question(q, category, aChoice, bChoice, cChoice, dChoice);
                         added++;
                         categoryQ.add(ques);
                         //System.out.println(ques);

@@ -240,8 +240,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     }
 
     /**
-     * This currently will only do the same as onWMM, but next iteration, when we add an additional
-     * game mode it should be implemented
+     * Randomly selects one of the three game modes available for the user to play
      */
     @Override
     public void onRandom(){
@@ -265,6 +264,9 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         this.mainView.displayFragment(questionFragment, true, "first-question");*/
     }
 
+    /**
+     * Selects a random category of question for the user
+     */
     @Override
     public void onRandomCat(){
 
@@ -289,7 +291,10 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
     }
 
-    //@Override
+    @Override
+    /**
+     * Takes user to Trivial Pursuit game mode, where every question is a new category selected by the player
+     */
     public void onTrivialPursuit(){
         curMode = "tp";
         CategoriesModeFragment categoriesModeFragment = new CategoriesModeFragment(this);

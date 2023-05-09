@@ -12,10 +12,14 @@ import java.util.Random;
 
 public class RandMultiChoice implements IGameShow {
     Map<String,List<Question>> qp = new HashMap<>();
+    boolean testMode = false;
     public RandMultiChoice(AssetManager assets) /*throws Exception*/ {
 
-        QuestionDatabase qd = new QuestionDatabase(assets);
-        qp = qd.database;
+        if(!testMode){
+            QuestionDatabase qd = new QuestionDatabase(assets);
+            qp = qd.database;
+        }
+
 
         /*Question q1 = new Question("When was the first Call of Duty title released?", "hard","Entertainment","mcq",
                 new Choice("December 1, 2003",false),new Choice("November 14, 2002",false),
@@ -139,6 +143,160 @@ public class RandMultiChoice implements IGameShow {
         //Collections.shuffle(database);
     }
 
+    public RandMultiChoice()
+    {
+        List<Question> geoQs = new ArrayList<>();
+        Question q1 = new Question("What is the capital of Afghanistan?", "Geography",
+                new Choice("Tirana", false),
+                new Choice("Kabul", true),
+                new Choice("Dushanbe", false),
+                new Choice("Tashkent", false));
+        geoQs.add(q1);
+
+        Question q2 = new Question("What is the capital of Australia?", "Geography",
+                new Choice("Canberra", true),
+                new Choice("Sydney", false),
+                new Choice("Melbourne", false),
+                new Choice("Ottawa", false));
+        geoQs.add(q2);
+
+        Question q3 = new Question("What is the capital of Belgium?", "Geography",
+                new Choice("Amsterdam", false),
+                new Choice("Luxemburg", false),
+                new Choice("Brussels", true),
+                new Choice("Stockholm", false));
+        geoQs.add(q3);
+
+        Question q4 = new Question("What is the capital of Greece?", "Geography",
+                new Choice("Ankara", false),
+                new Choice("Athens", true),
+                new Choice("Sofia", false),
+                new Choice("Thessaloniki", false));
+        geoQs.add(q4);
+
+        Question q5 = new Question("What is the capital of Italy?", "Geography",
+                new Choice("Venice", false),
+                new Choice("Rome", true),
+                new Choice("Naples", false),
+                new Choice("Milan", false));
+        geoQs.add(q5);
+        qp.put("geography",geoQs);
+
+        List<Question> hobbiesQs = new ArrayList<>();
+        Question q6 = new Question("Its your first day on the job at your favorite diner! The waitress next to you yells out to the short order cook that she needs two cows, make them cry, and paint em red. What has she requested the short order cook to prepare?", "Hobbies",
+                new Choice("Two hamburgers with onions, cover in ketchup", true),
+                new Choice("Two orders of beef liver and onions with ketchup", false),
+                new Choice("Salisbury steak with American sauce", false),
+                new Choice("Double cheeseburger, no onions, special sauce", false));
+        hobbiesQs.add(q6);
+
+        Question q7 = new Question("Your friend's favorite breakfast is a shingle with shimmy and shake, squeeze one. What does he like to eat for breakfast?", "Hobbies",
+                new Choice("French toast and apple juice", false),
+                new Choice("Link sausage, toast and juice", false),
+                new Choice("Buttered toast with jam and orange juice", true),
+                new Choice("Short stack of pancakes and instant coffee", false));
+        hobbiesQs.add(q7);
+
+        Question q8 = new Question("A guy orders a drag it through Georgia for his son. What has he ordered?", "Hobbies",
+                new Choice("Fried chicken basket", false),
+                new Choice("Chili dog, all the way", false),
+                new Choice("A slice of key lime pie", false),
+                new Choice("Cola with chocolate syrup", true));
+        hobbiesQs.add(q8);
+
+        Question q9 = new Question("What is diner-speak for an order of hash?", "Hobbies",
+                new Choice("Burn the British", false),
+                new Choice("Gravel train", false),
+                new Choice("Customer will take a chance", true),
+                new Choice("Pittsburgh", false));
+        hobbiesQs.add(q9);
+
+        Question q10 = new Question("Mom always told you to get plenty of iron in your diet, so you order a put out the lights and cry. What item have you ordered?", "Hobbies",
+                new Choice("Patty melt, no onions", false),
+                new Choice("Ham on rye with soup", false),
+                new Choice("T-Bone steak with onions", false),
+                new Choice("Liver and onions", true));
+        hobbiesQs.add(q10);
+        qp.put("hobbies",hobbiesQs);
+
+        List<Question> tvQs = new ArrayList<>();
+
+        Question q11 = new Question("What was the name of Darrin Stephens's boss on Bewitched?", "Television",
+                new Choice("Larry Strait", false),
+                new Choice("Larry Tate", true),
+                new Choice("Larry Anderson", false),
+                new Choice("Larry Mac Quade", false));
+        tvQs.add(q11);
+
+        Question q12 = new Question("Who was the second actor to portray Darrin Stephens on the hit sitcom Bewitched?", "Television",
+                new Choice("Dick York", false),
+                new Choice("Dick Sargent", true),
+                new Choice("Dick Colonel", false),
+                new Choice("Dick Goodman", false));
+        tvQs.add(q12);
+
+        Question q13 = new Question("What year did the long-running sitcom Bewitched leave the airwaves?", "Television",
+                new Choice("1975", false),
+                new Choice("1977", false),
+                new Choice("1973", false),
+                new Choice("1972", true));
+        tvQs.add(q13);
+
+        Question q14 = new Question("This 1999 movie, starring Adam Sandler, is about a single guy who adopts the child of his friend in order to impress his ex-girlfriend.", "Television",
+                new Choice("Big Daddy", true),
+                new Choice("Whos Your Daddy", false),
+                new Choice("Daddy Day Care", false),
+                new Choice("Fathers Day", false));
+        tvQs.add(q14);
+
+        Question q15 = new Question("This 1981 movie depicts the life of of a famous actress as seen through the eyes of her adopted daughter.", "Television",
+                new Choice("Mommy Dearest", true),
+                new Choice("Father of the Bride", false),
+                new Choice("Serial Mom", false),
+                new Choice("Daddy Day Care", false));
+        tvQs.add(q15);
+        qp.put("television",tvQs);
+
+        List<Question> sportsQs = new ArrayList<>();
+        Question q16 = new Question("On June 28, 1907, this Yankees catcher was unable to throw out any of the 13 Washington Senators who stole second base.", "Sports",
+                new Choice("Branch Rickey", true),
+                new Choice("Branch Rickey", false),
+                new Choice("John McGraw", false),
+                new Choice("Casey Stengel", false));
+        sportsQs.add(q16);
+
+        Question q17 = new Question("In 1960, the New York Yankees set a record for having three catchers each of whom hit at least twenty home runs. Who were they?", "Sports",
+                new Choice("Yogi Berra, Elston Howard, Johnny Blanchard", true),
+                new Choice("Yogi Berra, Elston Howard, Thurmon Munson", false),
+                new Choice("Yogi Berra, Sammy White, Elston Howard", false),
+                new Choice("Yogi Berra, Elston Howard, Hank Bauer", false));
+        sportsQs.add(q17);
+
+        Question q18 = new Question("In what year did baseball catchers first started using chest protectors?", "Sports",
+                new Choice("1885", true),
+                new Choice("1895", false),
+                new Choice("1915", false),
+                new Choice("1905", false));
+        sportsQs.add(q18);
+
+        Question q19 = new Question("Which company was the first to start producing catchers mitts?", "Sports",
+                new Choice("Draper and Maynard", true),
+                new Choice("Bresnahan", false),
+                new Choice("Wilson", false),
+                new Choice("Rawlings", false));
+        sportsQs.add(q19);
+
+        Question q20 = new Question("In 1914, this catcher broke the record for throwing out base runners in an inning.", "Sports",
+                new Choice("Les Nunamaker", true),
+                new Choice("Steve ONeil", false),
+                new Choice("Muddy Reul", false),
+                new Choice("Bill Dickey", false));
+        sportsQs.add(q20);
+        qp.put("sports",sportsQs);
+
+
+    }
+
     /**
      * Returns a random Question from the list of Questions and removes from the list
      * @return Question
@@ -189,11 +347,18 @@ public class RandMultiChoice implements IGameShow {
      */
     public Question searchQuestion(String search, String category){
 
-        /*for(Question q: qp){
-            if(q.getPrompt().equals(search)){
-                return q;
+        try{
+            List<Question> categoryQ = qp.get(category.toUpperCase());
+            for(Question q: categoryQ){
+                if(q.getPrompt().equals(search)){
+                    return q;
+                }
             }
-        }*/
+        }catch (Exception e){
+            Log.d("invalid category", "Invalid/Empty category");
+        }
+
+
         return null;
     }
 /*
