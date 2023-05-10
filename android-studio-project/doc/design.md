@@ -264,8 +264,25 @@ class TriviaTimeFragFactory{
 --
 +instantiate(classLoader, className): Fragment
 }
+
+interface IStatsView{
+
+}
+class StatsFragment{
+-binding: FragmentStatsBinding
+-listener: Listener
+--
++onCreateView(infalter, container, savedInstanceState): View
++onViewCreated(view, savedInstanceState): void
++topCategory(): String
++topMode(): String
++numWins(): String
++numQuestionsCorrect(): String
+}
+
 TriviaTimeFragFactory"1" -right- "1"MainActivity: "allows screen rotations for"
-ICategoriesModeView "1" <|.up. "1 "CategoriesModeFragment: "implented-by"
+IStatsView "1" <|.up. "1" StatsFragment: "implements"
+ICategoriesModeView "1" <|.up. "1 "CategoriesModeFragment: "implements"
 IMainView"1" <|.up. "1  "MainView: "implements"
 IGameConfigView"1" <|.down. "1  "GameConfigFragment: "implented-by"
 IGameWonView"1" <|.down. "1  "GameWonFragment: "implented-by"
@@ -289,20 +306,7 @@ MainActivity"1" .up.|> "1"IActiveQuestionView.Listener: "implented-by"
 MainActivity"1" .right.|> "1" ICategoriesModeView.Listener: "implented-by"
 MainActivity"1" -- "1"MainView: takes in
 
-interface IStatsView{
 
-}
-class StatsFragment{
--binding: FragmentStatsBinding
--listener: Listener
---
-+onCreateView(infalter, container, savedInstanceState): View
-+onViewCreated(view, savedInstanceState): void
-+topCategory(): String
-+topMode(): String
-+numWins(): String
-+numQuestionsCorrect(): String
-}
 
 
 interface IPersistenceFacade{
