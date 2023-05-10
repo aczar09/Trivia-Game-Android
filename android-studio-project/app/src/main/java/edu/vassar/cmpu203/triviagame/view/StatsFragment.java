@@ -81,9 +81,9 @@ public class StatsFragment extends Fragment implements IStatsView{
 
     public String topCategory(){
         return this.listener.getBestCategory();
-    }
+    } // retrieves bestCat
 
-    public String topMode(){ return this.listener.getBestMode();}
-    public String numWins(){ return this.listener.getNumberWins();}
-    public String numQuestionsCorrect(){ return this.listener.getNumberQuestionsCorrect();}
+    public String topMode(){ return this.listener.getBestMode();} // retrieves topMode
+    public String numWins(){ return this.listener.getNumberWins();} // retrieves NumWins
+    public String numQuestionsCorrect(){ return this.listener.getNumberQuestionsCorrect();} // retrieves num Questions correct
 }

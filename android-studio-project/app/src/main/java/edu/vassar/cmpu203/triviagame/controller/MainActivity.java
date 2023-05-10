@@ -100,41 +100,45 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
 
         if (savedInstanceState == null) {
-            this.persistenceFacade.retrieveDatabase(this);
-            this.persistenceFacade.retrievePlayer(this);
-            if (this.questionBase == null){
+            this.persistenceFacade.retrieveDatabase(this); // finds the database in local storage
+            this.persistenceFacade.retrievePlayer(this); // finds player object in local storage
+            if (this.questionBase == null){ // if null we will create new object
                 this.questionBase = new RandMultiChoice(this.getAssets());
             }
-            if (this.player == null){
+            if (this.player == null){ // if null we will create new object
                 this.player = new Player();
             }
 
-            this.mainView.displayFragment(new GameConfigFragment(this), false, "game-config");
+            this.mainView.displayFragment(new GameConfigFragment(this), false, "game-config"); // opening screen
         }
         else{
-            this.player = (Player) savedInstanceState.getSerializable(PLAYER);
-            this.activeQuestion = (Question) savedInstanceState.getSerializable(AQUESTION);
+            this.player = (Player) savedInstanceState.getSerializable(PLAYER); // for screen rotations
+            this.activeQuestion = (Question) savedInstanceState.getSerializable(AQUESTION); // for screen rotations
         }
         //this.persistenceFacade.savePlayer(this.player);
 
 
     }
 
+    /**
+     * It is the screen rotations and also the local storage things that need to be saved
+     * @param outstate
+     */
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outstate){
         super.onSaveInstanceState(outstate);
-        outstate.putSerializable(PLAYER, this.player);
-        outstate.putSerializable(AQUESTION, this.activeQuestion);
-        this.persistenceFacade.saveDatabase(this.questionBase);
-        this.persistenceFacade.savePlayer(this.player);
+        outstate.putSerializable(PLAYER, this.player); // player object for questionNumber for screen rotations
+        outstate.putSerializable(AQUESTION, this.activeQuestion); // active question for screen rotations
+        this.persistenceFacade.saveDatabase(this.questionBase); // saves database to local storage
+        this.persistenceFacade.savePlayer(this.player); // saves player stats to local storage
     }
     public void onPlayerReceived(@NonNull Player player){
-        this.player = player;
+        this.player = player; // this sets the MA player to the one from local storage
     }
 
 
     public void onDatabaseReceived(@NonNull IGameShow database){
-        this.questionBase = database;
+        this.questionBase = database; // sets MA database to be one from local storage
     }
 
     /**
@@ -158,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
     public Question getActiveQuestion(){
         return this.activeQuestion;
-    }
+    } // used for screen rotation and fragment builds
 
     /**
      * Sets activeQuestion to a random unused question from questionBase
@@ -196,10 +200,10 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     public int questionNumber(){
         return player.questionNumber;
-    }
+    } // retoeves player questionNumber
     public String getCategory(){
         return curCategory;
-    }
+    } // retrieves curCat
 
     /**
      * Return the category with the most player wins
