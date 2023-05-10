@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Player implements Serializable {
     private static final String NAME = "name";
@@ -18,9 +19,9 @@ public class Player implements Serializable {
 
     public int totalQuestionsCorrect = 0;
     public int totalWins = 0;
-    public HashMap<String, Integer> categoryScores = new HashMap<>();
+    public Map<String, Integer> categoryScores = new HashMap<>();
 
-    public HashMap<String, Integer> modeScores = new HashMap<>();
+    public Map<String, Integer> modeScores = new HashMap<>();
     public Player(String name) {
         this.name = name;
     }
@@ -64,8 +65,7 @@ public class Player implements Serializable {
 
     public int getWins(){return this.wins;}
 
-    public int getAnswerStreak(){return this.answerStreak;}
-
+    /*
     public Bundle toBundle(){
         final Bundle b = new Bundle();
         b.putString(NAME ,this.name);
@@ -85,5 +85,5 @@ public class Player implements Serializable {
         player.questionNumber = streakBundle + 1;
         return player;
     }
-
+*/
 }

@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         this.persistenceFacade.saveDatabase(this.questionBase);
         this.persistenceFacade.savePlayer(this.player);
     }
-    public void onPlayerReceived(Player player){
+    public void onPlayerReceived(@NonNull Player player){
         this.player = player;
     }
 
