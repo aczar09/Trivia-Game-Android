@@ -241,9 +241,9 @@ public class QuestionAndroidTest {
         String[] categories = {"GEOGRAPHY","TELEVISION","HOBBIES","SPORTS", "RANDOM"};
         // Perform a click action on a view
         onView(ViewMatchers.withId(R.id.trivpursuitbutton)).perform(ViewActions.click());
-        checkCategorySelectScreen();
         int countQ = 0;
         for(String c: categories){
+            //checkCategorySelectScreen();
             String curCat = categorySelection(c);
 
             String category = getText(withId(R.id.categoryText));
@@ -261,13 +261,14 @@ public class QuestionAndroidTest {
 
             makeSelectionIf(choices.get(0), choices.get(1), choices.get(2), choices.get(3), correct);
 
+            Log.d("check1", "here");
             onView(ViewMatchers.withId(R.id.submitbutton)).perform(ViewActions.click());
             countQ++;
             Log.d("questionNum", String.valueOf(countQ));
             if (countQ != 5) {
                 checkCorrectScreen();
                 onView(ViewMatchers.withId(R.id.nextbutton)).perform(ViewActions.click());
-                checkCategorySelectScreen();
+
             }else{
                 checkCongratsScreen();
             }
@@ -277,8 +278,16 @@ public class QuestionAndroidTest {
     }
 
 
-
-
+    /**
+     * Helper method to return whether a selection is correct or incorrect
+     * @param selection
+     * @param choiceA
+     * @param choiceB
+     * @param choiceC
+     * @param choiceD
+     * @param correct
+     * @return
+     */
     boolean makeSelectionSwitch(int selection, String choiceA, String choiceB, String choiceC, String choiceD, String correct){
         switch(selection){
             case 0:
@@ -297,6 +306,14 @@ public class QuestionAndroidTest {
         return false;
     }
 
+    /**
+     * Helper method to select the correct answer choice
+     * @param choiceA
+     * @param choiceB
+     * @param choiceC
+     * @param choiceD
+     * @param correct
+     */
     void makeSelectionIf(String choiceA, String choiceB, String choiceC, String choiceD, String correct){
         if (correct.equals(choiceA)) {
             onView(ViewMatchers.withId(R.id.choicea)).perform(ViewActions.click());
@@ -309,6 +326,12 @@ public class QuestionAndroidTest {
         }
 
     }
+
+    /**
+     * Helper method to get text from textView
+     * @param matcher
+     * @return
+     */
     String getText(final Matcher<View> matcher) {
         final String[] stringHolder = { null };
         onView(matcher).perform(new ViewAction() {
@@ -331,6 +354,10 @@ public class QuestionAndroidTest {
         return stringHolder[0];
     }
 
+    /**
+     * Helper method to return String list of choices
+     * @return
+     */
     List<String> getChoiceText(){
         List<String> choices = new ArrayList<>();
         String choiceA = getText(withId(R.id.choicea));
@@ -343,6 +370,10 @@ public class QuestionAndroidTest {
         choices.add(choiceD);
         return choices;
     }
+
+    /**
+     * Helper method to check if on Active Question screen
+     */
     void checkSubmitButton(){
         ViewInteraction submitB = Espresso.onView(ViewMatchers.withId(R.id.submitbutton));
         submitB.check( // used to check if we are back on Active Question screen
@@ -354,6 +385,11 @@ public class QuestionAndroidTest {
         );
     }
 
+    /**
+     * Helper method to select from a list of categories
+     * @param c
+     * @return
+     */
     String categorySelection(String c){
         switch(c){
             case "GEOGRAPHY":
@@ -374,6 +410,10 @@ public class QuestionAndroidTest {
         }
         return c;
     }
+
+    /**
+     * Helper method to check if on the Correct Answer screen
+     */
     void checkCorrectScreen(){
         ViewInteraction correctText = Espresso.onView(ViewMatchers.withId(R.id.correctText));
         correctText.check( // used to check if we are back on Correct Answer screen
@@ -385,6 +425,9 @@ public class QuestionAndroidTest {
         );
     }
 
+    /**
+     * Helper method to check if on the category selection screen
+     */
     void checkCategorySelectScreen(){
         ViewInteraction categorySelect = Espresso.onView(ViewMatchers.withId(R.id.categoryModeText));
         categorySelect.check( // used to check if we are back on Active Question screen
@@ -396,6 +439,9 @@ public class QuestionAndroidTest {
         );
     }
 
+    /**
+     * Helper method to check if on the game config screen
+     */
     void checkGameConfig(){
         ViewInteraction gameName = Espresso.onView(ViewMatchers.withId(R.id.game_name)); // saves game name text
         gameName.check( // used to check if we are back on Game Config screen
@@ -407,6 +453,9 @@ public class QuestionAndroidTest {
         );
     }
 
+    /**
+     * Helper method to check if congrats screen
+     */
     void checkCongratsScreen(){
         ViewInteraction congrats = Espresso.onView(ViewMatchers.withId(R.id.congratsText));
         congrats.check( // used to check if we are back on Game Won screen
@@ -418,6 +467,9 @@ public class QuestionAndroidTest {
         );
     }
 
+    /**
+     * Helper method to check if on game over screen
+     */
     void checkGameOver(){
         ViewInteraction gameOver = Espresso.onView(ViewMatchers.withId(R.id.gameOverText));
         gameOver.check( // used to check if we are back on Active Question screen

@@ -119,6 +119,16 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      * Resets player's answerStreak along with QuestionNumber. Creates new database as well
      */
     private void resetGame(){
+        if (player.answerStreak == 5) { // activated if player won the game
+            if (player.modeScores.containsKey(curMode)) {
+                Log.d(curMode, "is here");
+                //player.addModeWin(curMode);
+            } else {
+                player.modeScores.put(curMode, 1);
+            }
+
+            player.addWin();
+        }
         this.player.resetStreak(); // player reset
         //this.curMode = "";
         //this.questionBase = new RandMultiChoice(this.getAssets()); // database reset
@@ -405,13 +415,6 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
             Log.d("Category and score", curCategory+ " :" + player.categoryScores.get(curCategory));
         }
         if (player.answerStreak == 5){ // activated if player won the game
-            if(player.modeScores.containsKey(curMode)){
-                player.addModeWin(curMode);
-            }else{
-                player.modeScores.put(curMode, 1);
-            }
-
-            player.addWin();
             GameWonFragment game_won_fragment = new GameWonFragment(this);
             this.mainView.displayFragment(game_won_fragment, true, "won-the-game"); // game won screen displayed
         }

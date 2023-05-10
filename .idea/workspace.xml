@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92518c51-1e4d-40e8-a887-2474055ebb03" name="Changes" comment="Updated readme.md">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="92518c51-1e4d-40e8-a887-2474055ebb03" name="Changes" comment="Updated readme.md" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,7 +137,7 @@
       <workItem from="1681147338675" duration="244000" />
       <workItem from="1681234669674" duration="461000" />
       <workItem from="1681402256507" duration="1000" />
-      <workItem from="1683676180138" duration="357000" />
+      <workItem from="1683676180138" duration="516000" />
     </task>
     <task id="LOCAL-00001" summary="Changes to use case brief">
       <created>1679534464813</created>
@@ -253,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679542519356</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Updated readme.md">
+      <created>1683676686881</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1683676686881</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
