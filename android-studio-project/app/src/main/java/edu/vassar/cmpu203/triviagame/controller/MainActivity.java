@@ -201,6 +201,10 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         return curCategory;
     }
 
+    /**
+     * Return the category with the most player wins
+     * @return
+     */
     public String getBestCategory(){
         bestCategory = "None";
         if(player.categoryScores.size()>0){
@@ -210,6 +214,10 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         return bestCategory;
     }
 
+    /**
+     * Return the game mode with the most player wins
+     * @return
+     */
     public String getBestMode(){
         bestMode = "None";
         if(player.modeScores.size()>0){
@@ -219,14 +227,25 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         return bestMode;
     }
 
+    /**
+     * Returns the numbers of rounds won
+     * @return
+     */
     public String getNumberWins(){
         return String.valueOf(player.totalWins);
     }
 
+    /**
+     * Returns of questions answered correctly
+     * @return
+     */
     public String getNumberQuestionsCorrect(){
         return String.valueOf(player.totalQuestionsCorrect);
     }
 
+    /**
+     * Takes user to stats screen
+     */
     @Override
     public void onStats(){
         StatsFragment statsFragment = new StatsFragment(this);
@@ -245,6 +264,9 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         this.mainView.displayFragment(questionFragment, true, "first-question");
     }
 
+    /**
+     * Takes user to category selection screen
+     */
     @Override
     public void onCategoriesMode(){
         curMode = "Categories";
@@ -254,6 +276,9 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     }
 
 
+    /**
+     * Takes user to active question with a geography question
+     */
     @Override
     public void onGeo(){
         curCategory = "geography";
@@ -263,6 +288,9 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         this.mainView.displayFragment(questionFragment, true, "first-question");
     }
 
+    /**
+     * Takes user to active question with a TV question
+     */
     @Override
     public void onTV(){
         curCategory = "television";
@@ -271,6 +299,10 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         ActiveQuestion questionFragment = new ActiveQuestion(this);
         this.mainView.displayFragment(questionFragment, true, "first-question");
     }
+
+    /**
+     * Takes user to active question with a hobbies question
+     */
     @Override
     public void onHobbies(){
         curCategory = "hobbies";
@@ -280,6 +312,9 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         this.mainView.displayFragment(questionFragment, true, "first-question");
     }
 
+    /**
+     * Takes user to active question with a sports question
+     */
     @Override
     public void onSports(){
         curCategory = "sports";
