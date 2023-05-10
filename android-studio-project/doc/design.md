@@ -265,7 +265,7 @@ class TriviaTimeFragFactory{
 +instantiate(classLoader, className): Fragment
 }
 TriviaTimeFragFactory"1" -right- "1"MainActivity: "allows screen rotations for"
-ICategoriesModeView "1" <|.down. "1 "CategoriesModeFragment: "implented-by"
+ICategoriesModeView "1" <|.up. "1 "CategoriesModeFragment: "implented-by"
 IMainView"1" <|.up. "1  "MainView: "implements"
 IGameConfigView"1" <|.down. "1  "GameConfigFragment: "implented-by"
 IGameWonView"1" <|.down. "1  "GameWonFragment: "implented-by"
