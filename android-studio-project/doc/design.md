@@ -279,7 +279,7 @@ MainActivity"1" -up- "*"ActiveQuestionFrag: "created-by"
 MainActivity"1" -up- "*"GameLostFragment: "created-by"
 MainActivity"1" -up- "*"GameWonFragment: "created-by"
 MainActivity"1" -up- "*"GameModeFragment: "created-by"
-MainActivity"1" -up- "*" CategoriesModeFragment: "created-by"
+MainActivity"1" -right- "*" CategoriesModeFragment: "creates"
 MainActivity"1" .up.|> "1"IGameConfigView.Listener : "implented-by"
 MainActivity"1" .up.|> "1"IGameWonView.Listener: "implented-by"
 MainActivity"1" .up.|> "1"IGameModeView.Listener: "implented-by"
@@ -288,6 +288,21 @@ MainActivity"1" .up.|> "1"ICorrectAnsView.Listener: "implented-by"
 MainActivity"1" .up.|> "1"IActiveQuestionView.Listener: "implented-by"
 MainActivity"1" .up.|> "1" ICategoriesModeView.Listener: "implented-by"
 MainActivity"1" -- "1"MainView: takes in
+
+interface IStatsView{
+
+}
+class StatsFragment{
+-binding: FragmentStatsBinding
+-listener: Listener
+--
++onCreateView(infalter, container, savedInstanceState): View
++onViewCreated(view, savedInstanceState): void
++topCategory(): String
++topMode(): String
++numWins(): String
++numQuestionsCorrect(): String
+}
 
 
 interface IPersistenceFacade{
