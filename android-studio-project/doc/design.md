@@ -451,6 +451,7 @@ participant AQV as "ActiveQuestionView"
 participant RAV as "CorrectAnswerView"
 participant GLV as "GameLostView"
 participant GWV as "GameWonView"
+participant CMV as "CategoriesModeView"
 participant clr as "Main Activity (Controller)"
 participant p1 as "p1: Player"
 participant GS as "questionBase: RandMultiChoice"
@@ -458,6 +459,11 @@ participant QP as "questionPool: ArrayList<Question>"
 participant QST as ":Question"
 participant CA as "choices: choice Array"
 participant CHC as ":Choice"
+alt CategoriesMode first-round or Trivial Pursuit
+clr --> CMV: Makes "CategoriesModeView"
+CMV -> us: Displays various category options
+us --> CMV: User selects category of question to play
+end
 clr -> AQV: makes ActiveQuestion Fragment
 AQV --> rdb: setOnClickListener(this)
 AQV --> sub: setOnClickListener(this)
