@@ -268,6 +268,8 @@ class TriviaTimeFragFactory{
 interface IStatsView{
 
 }
+interface IStatsView.Listener{
+}
 class StatsFragment{
 -binding: FragmentStatsBinding
 -listener: Listener
@@ -297,13 +299,15 @@ MainActivity"1" -up- "*"GameLostFragment: "created-by"
 MainActivity"1" -up- "*"GameWonFragment: "created-by"
 MainActivity"1" -up- "*"GameModeFragment: "created-by"
 MainActivity"1" -right- "*" CategoriesModeFragment: "creates"
+MainActivity"1" -right- "*" StatsFragment: "creates"
 MainActivity"1" .up.|> "1"IGameConfigView.Listener : "implented-by"
 MainActivity"1" .up.|> "1"IGameWonView.Listener: "implented-by"
 MainActivity"1" .up.|> "1"IGameModeView.Listener: "implented-by"
 MainActivity"1" .up.|> "1"IGameLostView.Listener: "implented-by"
 MainActivity"1" .up.|> "1"ICorrectAnsView.Listener: "implented-by"
 MainActivity"1" .up.|> "1"IActiveQuestionView.Listener: "implented-by"
-MainActivity"1" .right.|> "1" ICategoriesModeView.Listener: "implented-by"
+MainActivity"1" .right.|> "1" ICategoriesModeView.Listener: "implents"
+MainActivity"1" .right.|> "1" IStatsView.Listener: "implemens
 MainActivity"1" -- "1"MainView: takes in
 
 
