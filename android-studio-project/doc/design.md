@@ -343,8 +343,8 @@ class QuestionDatabase{
 }
 IPersistenceFacade"1" <|.up. "1"LocalStorageFacade: "implented-by"
 IPersistenceFacadeListener .left.|> MainActivity: "implented-by"
-MainActivity -right- LocalStorageFacade: "has info stored locally in"
-
+MainActivity -down- LocalStorageFacade: "has info stored locally in"
+QuestionDatabase -right- RandMultiChoice: "feeds questions to"
 
 ```
 
