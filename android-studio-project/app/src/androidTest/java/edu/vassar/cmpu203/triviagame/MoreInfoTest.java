@@ -1,5 +1,7 @@
 package edu.vassar.cmpu203.triviagame;
 
+import static androidx.test.espresso.Espresso.onView;
+
 import android.view.View;
 
 import androidx.test.espresso.Espresso;
@@ -50,5 +52,21 @@ public class MoreInfoTest {
                 )
         );
 
+    }
+
+    /**
+     * Tests that stat screen is displayed
+     */
+    @Test
+    public void testStatsScreen(){
+        onView(ViewMatchers.withId(R.id.statsbutton)).perform(ViewActions.click());
+        ViewInteraction bestCatText = Espresso.onView(ViewMatchers.withId(R.id.bestcategorylabel));
+        bestCatText.check( // used to check if we are back on Correct Answer screen
+                ViewAssertions.matches(
+                        ViewMatchers.withSubstring(
+                                "Best Category:"
+                        )
+                )
+        );
     }
 }
