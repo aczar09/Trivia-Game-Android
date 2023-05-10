@@ -286,7 +286,7 @@ MainActivity"1" .up.|> "1"IGameModeView.Listener: "implented-by"
 MainActivity"1" .up.|> "1"IGameLostView.Listener: "implented-by"
 MainActivity"1" .up.|> "1"ICorrectAnsView.Listener: "implented-by"
 MainActivity"1" .up.|> "1"IActiveQuestionView.Listener: "implented-by"
-MainActivity"1" .up.|> "1" ICategoriesModeView.Listener: "implented-by"
+MainActivity"1" .right.|> "1" ICategoriesModeView.Listener: "implented-by"
 MainActivity"1" -- "1"MainView: takes in
 
 interface IStatsView{
