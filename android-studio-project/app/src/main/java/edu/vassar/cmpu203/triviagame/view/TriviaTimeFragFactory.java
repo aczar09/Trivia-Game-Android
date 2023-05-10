@@ -22,6 +22,12 @@ public class TriviaTimeFragFactory extends FragmentFactory {
         this.controller = controller;
     }
 
+    /**
+     * Instantiate for the screen saves
+     * @param classLoader The default classloader to use for instantiation
+     * @param className The class name of the fragment to instantiate.
+     * @return
+     */
     public Fragment instantiate(@NonNull ClassLoader classLoader, @NonNull String className){
         // convert from class name to class
         Class<? extends Fragment> fragClass = loadFragmentClass(classLoader, className);
