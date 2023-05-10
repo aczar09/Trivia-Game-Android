@@ -19,10 +19,14 @@ import edu.vassar.cmpu203.triviagame.model.RandMultiChoice;
 public class LocalStorageFacade implements IPersistenceFacade {
 
     private final File file; // the file to write to/read from
-    private final File file2;
+    private final File file2; // the file that player stats will be saved
     //private IGameShow database;  // a recreation of the ledger because we can only easily save
     // full ledgers, instead of individual sales
 
+    /**
+     * This is the constructor for LocalStorage
+     * @param storageDir
+     */
     public LocalStorageFacade(File storageDir){
         this.file = new File(storageDir, "database");
         this.file2 = new File(storageDir, "player");
@@ -30,6 +34,10 @@ public class LocalStorageFacade implements IPersistenceFacade {
         //this.database = new RandMultiChoice();
     }
 
+    /**
+     * This will retrieve the database for our questions.
+     * @param listener the observer to be notified of query result
+     */
     public void retrieveDatabase(@NonNull Listener listener) {
         if (file.isFile()) {
             try {
@@ -50,6 +58,11 @@ public class LocalStorageFacade implements IPersistenceFacade {
             }
         }
     }
+
+    /**
+     * This will retrieve the player stats back to MainActivity
+     * @param listener
+     */
         public void retrievePlayer(@NonNull Listener listener){
             if (file2.isFile()){
                 try{
@@ -72,7 +85,10 @@ public class LocalStorageFacade implements IPersistenceFacade {
         }
 
 
-
+    /**
+     * Saves the database from mainActivity
+     * @param database the question database
+     */
     public void saveDatabase(IGameShow database){
         //this.database = database;
         File outfile = new File(this.file, "questionbase");
@@ -90,6 +106,10 @@ public class LocalStorageFacade implements IPersistenceFacade {
 
     }
 
+    /**
+     * Saves the player stats from mainActivity
+     * @param player the player object from MA
+     */
     public void savePlayer(Player player){
         File outfile = new File(this.file2, "player");
         try{

@@ -243,7 +243,7 @@ public class QuestionAndroidTest {
         onView(ViewMatchers.withId(R.id.trivpursuitbutton)).perform(ViewActions.click());
         int countQ = 0;
         for(String c: categories){
-            //checkCategorySelectScreen();
+            checkCategorySelectScreen();
             String curCat = categorySelection(c);
 
             String category = getText(withId(R.id.categoryText));

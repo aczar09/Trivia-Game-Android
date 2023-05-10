@@ -348,13 +348,15 @@ QuestionDatabase -right- RandMultiChoice: "feeds questions to"
 
 ```
 
-
 ```plantuml
 @startuml
 hide footbox
 mainFrame sd Configure Game
 actor us as "User"
 participant wwmb as "WWM: button"
+participant stb as "Stats: button"
+participant cmb as "Categories: button"
+participant tpb as "Trivial Pursuit: button"
 participant rand as "Random: button"
 participant ginfo as "More Info: button"
 participant gback as "Go Back: button"
@@ -363,16 +365,20 @@ participant MIV as "GameInfoView"
 participant clr as "MainActivity (Controller)"
 participant p1 as "p1: Player"
 participant gs as "RandMultChoice: IGameShow"
+participant pf as "persistenceFacade: IPersistenceFacade"
 alt First Iteration
 clr -> p1 :player = new Player()
 clr -> gs: questionbase = new RandMultChoice()
 else Not First Iteration
-clr -> p1: player.resetStreak()
-clr -> gs: questionbase = new RandMultChoice()
+clr -> pf: player = persistenceFacade.retrievePlayer(this)
+clr -> pf: questionbase = persistenceFacade.retrieveDatbase(this)
 end
 clr -> GCV: Makes GameConfigView Fragment
 GCV --> ginfo: setOnClickListener(this)
 GCV --> rand: setOnClickListener(this)
+GCV --> tpb: setOnClickListener(this)
+GCV --> cmb: setOnClickListener(this)
+GCV --> stb: setOnClickListener(this)
 GCV --> wwmb: setOnClickListener(this)
 alt clickWWM
 us --> wwmb: click "WWM"
@@ -381,6 +387,23 @@ GCV -> clr: onWWM()
 ref over clr
 Play Games
 end
+else clickCateogriesMode
+us --> cmb: click "Categories Mode"
+cmb -> GCV: onClick(this)
+GCV -> clr: OnCategoriesMode()
+ref over clr
+Play Game Round
+end 
+else clickTrivialPursuit
+us --> tpb: click "Trivial Pursuit"
+tpb -> GCV: onClick(this)
+GCV -> clr: onTrivialPursuit()
+ref over clr
+Play Game Round
+end
+
+
+
 else  clickRandom
 us --> rand: click "Random"
 rand -> GCV: \t\t\t\t\t\t\t\t\tonClick(this)
@@ -393,6 +416,17 @@ us --> ginfo: click "More Info"
 ginfo -> GCV: \t\t\t\t\tonClick(this)
 GCV -> clr: onMoreInfo()
 clr -> MIV: Makes GameInfoView Fragment
+MIV --> gback:setOnClickListener(this)
+us --> gback: click "Go Back"
+gback -> MIV: \t\t\t\t\tonClick(this)
+MIV -> clr:\t\t\tonGoBack()
+ref over clr
+Configure Game
+end
+else clickStats
+us --> stb: click "Stats"
+stb -> GCV: onClick(this)
+GCV -> clr: onStats()
 MIV --> gback:setOnClickListener(this)
 us --> gback: click "Go Back"
 gback -> MIV: \t\t\t\t\tonClick(this)
