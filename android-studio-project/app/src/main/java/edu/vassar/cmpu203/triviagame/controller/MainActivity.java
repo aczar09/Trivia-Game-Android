@@ -6,11 +6,23 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Random;
 
+import edu.vassar.cmpu203.triviagame.persistence.IPersistenceFacade;
+import edu.vassar.cmpu203.triviagame.persistence.LocalStorageFacade;
+import edu.vassar.cmpu203.triviagame.view.ActiveQuestion;
+import edu.vassar.cmpu203.triviagame.view.CategoriesModeFragment;
+import edu.vassar.cmpu203.triviagame.view.IActiveQuestionView;
 import edu.vassar.cmpu203.triviagame.model.Choice;
 import edu.vassar.cmpu203.triviagame.model.IGameShow;
 import edu.vassar.cmpu203.triviagame.model.Player;
@@ -80,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
         this.mainView = new MainView(this);
         //questionBase = new RandMultiChoice(this.getAssets()); // sets questionBase
-        player = new Player(); // sets player object
+        //player = new Player(); // sets player object
         continueGame = true; // sets to true as player hasn't gotten question wrong yet
         this.setContentView(mainView.getRootView());
 
@@ -89,8 +101,12 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
         if (savedInstanceState == null) {
             this.persistenceFacade.retrieveDatabase(this);
+            this.persistenceFacade.retrievePlayer(this);
             if (this.questionBase == null){
                 this.questionBase = new RandMultiChoice(this.getAssets());
+            }
+            if (this.player == null){
+                this.player = new Player();
             }
 
             this.mainView.displayFragment(new GameConfigFragment(this), false, "game-config");
@@ -99,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
             this.player = (Player) savedInstanceState.getSerializable(PLAYER);
             this.activeQuestion = (Question) savedInstanceState.getSerializable(AQUESTION);
         }
+        //this.persistenceFacade.savePlayer(this.player);
 
 
     }
@@ -109,7 +126,12 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         outstate.putSerializable(PLAYER, this.player);
         outstate.putSerializable(AQUESTION, this.activeQuestion);
         this.persistenceFacade.saveDatabase(this.questionBase);
+        this.persistenceFacade.savePlayer(this.player);
     }
+    public void onPlayerReceived(@NonNull Player player){
+        this.player = player;
+    }
+
 
     public void onDatabaseReceived(@NonNull IGameShow database){
         this.questionBase = database;
@@ -272,7 +294,9 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
      */
     @Override
     public void onRandom(){
+        curCategory = "";
         //getQuestion();
+        Log.d("curCategory", curCategory);
         Random r = new Random();
         int i = r.nextInt(3);
         switch(i){
@@ -318,6 +342,9 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     }
 
     @Override
+    /**
+     * Takes user to Trivial Pursuit game mode, where every question is a new category selected by the player
+     */
     public void onTrivialPursuit(){
         curMode = "Trivial Pursuit";
         CategoriesModeFragment categoriesModeFragment = new CategoriesModeFragment(this);

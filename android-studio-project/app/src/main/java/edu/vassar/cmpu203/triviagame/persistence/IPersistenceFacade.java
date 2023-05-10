@@ -3,6 +3,7 @@ package edu.vassar.cmpu203.triviagame.persistence;
 import androidx.annotation.NonNull;
 
 import edu.vassar.cmpu203.triviagame.model.IGameShow;
+import edu.vassar.cmpu203.triviagame.model.Player;
 
 /**
  * Interace that specifies a contract that all persistence solutions must fulfill.
@@ -15,6 +16,8 @@ public interface IPersistenceFacade {
      */
     interface Listener{
         void onDatabaseReceived(@NonNull IGameShow database);
+
+        void onPlayerReceived(@NonNull Player player);
     }
     /**
      * Issues a ledger retrieval operation.
@@ -22,4 +25,7 @@ public interface IPersistenceFacade {
      */
     void retrieveDatabase(@NonNull Listener listener);
     void saveDatabase(IGameShow database);
+
+    void savePlayer(Player player);
+    void retrievePlayer(@NonNull Listener listener);
 }
