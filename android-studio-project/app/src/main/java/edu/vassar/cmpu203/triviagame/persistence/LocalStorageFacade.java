@@ -58,12 +58,12 @@ public class LocalStorageFacade implements IPersistenceFacade {
                     Player player = (Player) objectInputStream.readObject();
                     listener.onPlayerReceived(player);
                 } catch(IOException e){
-                    final String emsg = String.format("I/O error writing to %s", this.file);
+                    final String emsg = String.format("I/O error writing to %s", this.file2);
                     Log.e("TriviaTime", emsg);
                     e.printStackTrace();
 
                 } catch(ClassNotFoundException e){
-                    final String emsg = String.format("Can't find class of object from %s", this.file);
+                    final String emsg = String.format("Can't find class of object from %s", this.file2);
                     Log.e("TriviaTime", emsg);
                     e.printStackTrace();
 
@@ -98,7 +98,7 @@ public class LocalStorageFacade implements IPersistenceFacade {
 
             oos.writeObject(player);
         }catch (IOException e) {
-            final String emsg = String.format("I/O error writing to %s", this.file);
+            final String emsg = String.format("I/O error writing to %s", this.file2);
             Log.e("TriviaTime", emsg);
             e.printStackTrace();
         }

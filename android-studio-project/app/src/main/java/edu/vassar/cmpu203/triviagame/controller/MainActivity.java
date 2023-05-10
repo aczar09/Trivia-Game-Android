@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
         this.mainView = new MainView(this);
         //questionBase = new RandMultiChoice(this.getAssets()); // sets questionBase
-        player = new Player(); // sets player object
+        //player = new Player(); // sets player object
         continueGame = true; // sets to true as player hasn't gotten question wrong yet
         this.setContentView(mainView.getRootView());
 
@@ -101,8 +101,12 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
         if (savedInstanceState == null) {
             this.persistenceFacade.retrieveDatabase(this);
+            this.persistenceFacade.retrievePlayer(this);
             if (this.questionBase == null){
                 this.questionBase = new RandMultiChoice(this.getAssets());
+            }
+            if (this.player == null){
+                this.player = new Player();
             }
 
             this.mainView.displayFragment(new GameConfigFragment(this), false, "game-config");
@@ -111,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
             this.player = (Player) savedInstanceState.getSerializable(PLAYER);
             this.activeQuestion = (Question) savedInstanceState.getSerializable(AQUESTION);
         }
+        //this.persistenceFacade.savePlayer(this.player);
 
 
     }
@@ -121,11 +126,12 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
         outstate.putSerializable(PLAYER, this.player);
         outstate.putSerializable(AQUESTION, this.activeQuestion);
         this.persistenceFacade.saveDatabase(this.questionBase);
+        this.persistenceFacade.savePlayer(this.player);
     }
     public void onPlayerReceived(Player player){
         this.player = player;
     }
-    public void onDatabaseReceived(IGameShow database){
+
 
     public void onDatabaseReceived(@NonNull IGameShow database){
         this.questionBase = database;
@@ -222,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
     @Override
     public void onWWM(){
         ActiveQuestion questionFragment = new ActiveQuestion(this);
-        curMode = "";
+        curMode = "Who Wants To Be A Millionaire?";
         getQuestion();
         //this.setCurQuestion(questionBase);
         //questionFragment.setQuestionDisplay(activeQuestion);
@@ -231,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements IGameConfigView.L
 
     @Override
     public void onCategoriesMode(){
-        curMode = "cat";
+        curMode = "Categories";
         //getQuestion();
         CategoriesModeFragment categoriesModeFragment = new CategoriesModeFragment(this);
         this.mainView.displayFragment(categoriesModeFragment,true,"category-mode");
