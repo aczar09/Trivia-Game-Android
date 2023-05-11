@@ -1,9 +1,6 @@
-# CMPU-203 S23 - Team 2C
-
-
 
 ## Trivia Game: Functionality
-
+###Pablo Crisostomo Suarez and Alex Czarkowski
 This Android app serves as a provides a multiple choice trivia game experience, providing several game modes to 
 diversify the user's trivia experience. There are around 10,000 possible questions which can appear. 
 <br>Each game mode has the same premise, get 5 questions right in a row and you win, and are as follows:
