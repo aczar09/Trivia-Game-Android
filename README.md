@@ -13,7 +13,9 @@ diversify the user's trivia experience. There are around 10,000 possible questio
 The user can also view their game stats at any given point, which details their best category and game mode, total number
 of questions rights, and total rounds won.
 
-
+<br>
+<br>
+Question Pool: https://github.com/uberspot/OpenTriviaQA
 
 ## How to Run
 In order to run this app, you must open Android Studio and set a configuration with Trivia_Game.app.main, 
